@@ -1,0 +1,41 @@
+# C2 profile-DPP diversity variant (Russian eval) — PLAIN demos.
+# English demo pool; both score signals RU-query-encoded with ml_8x. The profile kernel
+# is stacked over ALL langs (bare base model, NOT the _RU eval model) + suffixes.
+# Operating point: lambda 0.3 (the established non-English diversity peak; see
+#  internal experiment notes). lambda 0 == relevance top-k (no diversity).
+
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180
+
+eval:
+  score_source_root: /path/to/XOver/dataset/OsmNL_russian
+  files:
+    dev: dev_final_russian.json
+    test: test_final_russian.json
+
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3_RU
+  influence_model: qwen3_qwen3_influence_euclidean_RU   # quality term R(q,e): RU influence
+  profile_influence_model: qwen3_qwen3_influence_euclidean
+  profile_influence_suffixes: ["", "ZH", "JA"]
+
+defaults:
+  k: 6
+  alpha: 0.2
+  split: dev
+  dedup_prefix_len: 80
+
+select:
+  method: dpp
+  kernel_mode: profile
+  M: 20
+  lambda: 0.3          # non-English diversity op-point; lambda 0 == relevance top-k
+  phi_mode: linear
+
+run:
+  out_dir: data/fewshot_ru_r1

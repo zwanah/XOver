@@ -1,0 +1,48 @@
+# C2 relevance-based PLAIN few-shot assembly — Chinese (mandarin_simplified) eval.
+# Same three decoupled stages (pipeline/c2_retrieval): score -> select -> assemble.
+# Selects top-k English-pool demos by relevance for each Chinese eval query and
+# stitches one plain (#question, #OverpassQL) prompt. No chain-of-thought.
+#
+# Cross-lingual selection: the demo POOL stays English (gold OverpassQL is shared
+# across languages), but both score signals are computed on the CHINESE query side
+# with the multilingual ml_8x model — that is the lever that recovers the CJK
+# selection deficit.
+
+# --- Pool source (English; the order the TACO embeddings/scores were built over) ---
+# Pool = [train (6047) + syn (133)] = 6180, file order (English score-source).
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:                            # (split, score_source_file)
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180                         # asserted == score-vector length
+
+# --- Eval side: Chinese queries (query_index indexes positionally into these) ---
+eval:
+  score_source_root: /path/to/XOver/dataset/OsmNL_mandarin_simplified
+  files:
+    dev: dev_final_mandarin_simplified.json
+    test: test_final_mandarin_simplified.json   # test pkls not yet generated -> fails loud
+
+# --- Precomputed TACO scores (reused, never recomputed; already [0,1]-normalized) ---
+# Both signals are CHINESE-query-encoded: sim = base qwen3 on ZH queries
+# (`qwen3_ZH`), influence = ml_8x on ZH queries (`..._ZH`). Collapsed config: at
+# alpha=0 the sim term vanishes (== the influence-only headline); at alpha>0 it is a
+# coherent ZH-sim / ZH-influence blend (NOT English sim — that was a footgun in the
+# upstream non-`_sim` config). Only `dev` scores exist for ZH today.
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3_ZH
+  influence_model: qwen3_qwen3_influence_ml_8x_euclidean_ZH
+  # Resolved paths: {root}/Similarity_score/{sim_encoder}_{split}_scores.pkl
+  #                 {root}/Influence_score/{influence_model}_{split}_scores.pkl
+
+# --- Selection / assembly defaults (overridable on the CLI) ---
+defaults:
+  k: 6                 # shots; sweep {3, 6}
+  alpha: 0.2           # relevance = alpha*sim + (1-alpha)*influence; sweep {0.0..0.3}
+  split: dev           # {dev, test}; dev-OQS for tuning, test/EX only when asked
+  dedup_prefix_len: 80 # W1 parity: skip a candidate sharing this gold-OVQ prefix
+
+run:
+  out_dir: data/fewshot_zh_ml8x

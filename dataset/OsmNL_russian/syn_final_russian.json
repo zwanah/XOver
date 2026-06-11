@@ -1,0 +1,3006 @@
+[
+  {
+    "sample_index": 0,
+    "split": "syn",
+    "nl_question": "Какие места в Мёрт-и-Мозель содержат в названии слово «college» или «College»?",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Meurthe-et-Moselle\"}}->.searchArea;(nwr[\"name\"~\"[cC]ollege\"](area.searchArea););out meta;>;(._;>;);out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Мёрт-и-Мозель"
+    },
+    "tags": {
+      "name~[cC]ollege": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "[cC]ollege"
+      }
+    }
+  },
+  {
+    "sample_index": 1,
+    "split": "syn",
+    "nl_question": "Где в Саксонии можно найти железнодорожные предупредительные сигналы ограничения скорости и объекты с названием «Landkreis Roth» или «IX. kerület»?",
+    "OverpassQL": "area[\"name\"=\"Sachsen\"]->.sachsen;(nwr[\"railway:signal:speed_limit_distant\"](area.sachsen);nwr[\"name\"=\"Landkreis Roth\"](area.sachsen);nwr[\"name\"=\"IX. kerület\"](area.sachsen););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Саксония"
+    },
+    "tags": {
+      "name=Sachsen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Sachsen"
+      },
+      "name=Landkreis Roth": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Landkreis Roth"
+      },
+      "name=IX. kerület": {
+        "key": "name",
+        "relation": "equal",
+        "value": "IX. kerület"
+      },
+      "railway:signal:speed_limit_distant": {
+        "key": "railway:signal:speed_limit_distant",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 2,
+    "split": "syn",
+    "nl_question": "Где в Бохольде можно найти суши-рестораны, плавательные бассейны или дороги с указанным покрытием велодорожки?",
+    "OverpassQL": "area[\"name\"=\"Bochold\"][\"admin_level\"=\"10\"]->.a;(nwr[\"cuisine\"=\"sushi\"](area.a);nwr[\"amenity\"=\"swimming_pool\"](area.a);way[\"cycleway:surface\"](area.a););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Бохольд"
+    },
+    "tags": {
+      "name=Bochold": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Bochold"
+      },
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      },
+      "cuisine=sushi": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "sushi"
+      },
+      "amenity=swimming_pool": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "swimming_pool"
+      },
+      "cycleway:surface": {
+        "key": "cycleway:surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 3,
+    "split": "syn",
+    "nl_question": "Какие отношения общественного транспорта, не являющиеся платформами, находятся в Капеллене?",
+    "OverpassQL": "[out:xml][timeout:400];area[\"name\"=\"Capellen\"][\"boundary\"=\"administrative\"]->.searchArea;relation[\"public_transport\"!~\"platform\"](area.searchArea);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Капеллен"
+    },
+    "tags": {
+      "name=Capellen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Capellen"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "public_transport!~platform": {
+        "key": "public_transport",
+        "relation": "regex_not_match",
+        "value": "platform"
+      }
+    }
+  },
+  {
+    "sample_index": 4,
+    "split": "syn",
+    "nl_question": "Покажи сезонные дороги в Нижнем Рейне.",
+    "OverpassQL": "[timeout:1500];{{geocodeArea:\"Bas-Rhin\"}}->.searchArea;(way[\"seasonal\"=\"yes\"](area.searchArea);>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Нижний Рейн"
+    },
+    "tags": {
+      "seasonal=yes": {
+        "key": "seasonal",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 5,
+    "split": "syn",
+    "nl_question": "Покажи все места в Австралийской столичной территории и Париже, где указаны дорожные знаки, видимые со встречного направления.",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Australia Capital Territory\"}}->.a;{{geocodeArea:\"Paris\"}}->.b;(nwr[\"traffic_sign:backward\"](area.a);nwr[\"traffic_sign:backward\"](area.b););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Австралийская столичная территория"
+    },
+    "tags": {
+      "traffic_sign:backward": {
+        "key": "traffic_sign:backward",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 6,
+    "split": "syn",
+    "nl_question": "Показать все больницы, клиники, медпункты, медицинские центры, дома престарелых и стоматологии в Марокко и Париже.",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Maroc\"}}->.a;{{geocodeArea:\"Paris\"}}->.b;(nwr[\"amenity\"~\"^(hospital|clinic|health_post|health_center|nursing_home|dentist)$\"](area.a);nwr[\"amenity\"~\"^(hospital|clinic|health_post|health_center|nursing_home|dentist)$\"](area.b););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Марокко"
+    },
+    "tags": {
+      "amenity~^(hospital|clinic|health_post|health_center|nursing_home|dentist)$": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "^(hospital|clinic|health_post|health_center|nursing_home|dentist)$"
+      }
+    }
+  },
+  {
+    "sample_index": 7,
+    "split": "syn",
+    "nl_question": "Какие города в Фёльс-ам-Шлерн — Фие-алло-Шильяр содержат рождественские объекты, оператор которых не начинается на «France» и которые не отмечены как проезды на парковке?",
+    "OverpassQL": "area[\"xmas:feature\"][\"operator\"!~\"^france\"]->.a;area[\"xmas:feature\"][\"service\"!=\"parking_aisle\"]->.b;node[\"place\"=\"town\"](area.a)(area.b);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "place=town": {
+        "key": "place",
+        "relation": "equal",
+        "value": "town"
+      },
+      "service!=parking_aisle": {
+        "key": "service",
+        "relation": "not_equal",
+        "value": "parking_aisle"
+      },
+      "operator!~^france": {
+        "key": "operator",
+        "relation": "regex_not_match",
+        "value": "^france"
+      },
+      "xmas:feature": {
+        "key": "xmas:feature",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 8,
+    "split": "syn",
+    "nl_question": "Где в Дортмунде находится Менгеде?",
+    "OverpassQL": "[out:json];relation[\"name\"=\"Dortmund\"];out geom;map_to_area;nwr[\"name\"=\"Mengede\"](area);out qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Dortmund": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Dortmund"
+      },
+      "name=Mengede": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Mengede"
+      }
+    }
+  },
+  {
+    "sample_index": 9,
+    "split": "syn",
+    "nl_question": "Показать все жилые улицы в Габоне, названия которых не содержат информации об этимологии.",
+    "OverpassQL": "[out:xml][timeout:250];{{geocodeArea:\"Gabon\"}}->.searchArea;(way[\"highway\"=\"residential\"][!\"name:etymology:wikidata\"](area.searchArea);way[\"highway\"=\"residential\"][!\"name:etymology:wikipedia\"](area.searchArea););out body geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Габон"
+    },
+    "tags": {
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      },
+      "!name:etymology:wikidata": {
+        "key": "name:etymology:wikidata",
+        "relation": "not_has_key",
+        "value": ""
+      },
+      "!name:etymology:wikipedia": {
+        "key": "name:etymology:wikipedia",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 10,
+    "split": "syn",
+    "nl_question": "Какие национальные парки и автомагистрали находятся в Ирландии?",
+    "OverpassQL": "[out:json][timeout:100];({{geocodeArea:Irland}};)->.searchArea;(nwr[\"boundary\"=\"national_park\"](area.searchArea);nwr[\"highway\"=\"motorway\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "boundary=national_park": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "national_park"
+      },
+      "highway=motorway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway"
+      }
+    }
+  },
+  {
+    "sample_index": 11,
+    "split": "syn",
+    "nl_question": "Какие автобусные маршруты и дороги (от основных до жилых) нанесены на карту в Уттаракханде?",
+    "OverpassQL": "[out:json][timeout:100];({{geocodeArea:\"Uttarakhand\"}};)->.searchArea;(nwr[\"route\"=\"bus\"](area.searchArea);nwr[\"highway\"~\"^(motorway|trunk|pedestrian|primary|secondary|tertiary|unclassified|service|residential|living_street)$\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Уттаракханд"
+    },
+    "tags": {
+      "route=bus": {
+        "key": "route",
+        "relation": "equal",
+        "value": "bus"
+      },
+      "highway~^(motorway|trunk|pedestrian|primary|secondary|tertiary|unclassified|service|residential|living_street)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(motorway|trunk|pedestrian|primary|secondary|tertiary|unclassified|service|residential|living_street)$"
+      }
+    }
+  },
+  {
+    "sample_index": 12,
+    "split": "syn",
+    "nl_question": "Покажи все основные дороги в Париже.",
+    "OverpassQL": "[out:json][timeout:2500];{{geocodeArea:\"Paris\"}}->.searchArea;(way[\"highway\"~\"motorway|motorway_link|trunk|trunk_link|primary|secondary|tertiary\"](area.searchArea););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway~motorway|motorway_link|trunk|trunk_link|primary|secondary|tertiary": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|motorway_link|trunk|trunk_link|primary|secondary|tertiary"
+      }
+    }
+  },
+  {
+    "sample_index": 13,
+    "split": "syn",
+    "nl_question": "Показать все пункты взимания платы в Париже.",
+    "OverpassQL": "[out:json][timeout:2500];{{geocodeArea:\"Paris\"}}->.searchArea;(nwr[\"barrier\"=\"toll_booth\"](area.searchArea););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "barrier=toll_booth": {
+        "key": "barrier",
+        "relation": "equal",
+        "value": "toll_booth"
+      }
+    }
+  },
+  {
+    "sample_index": 14,
+    "split": "syn",
+    "nl_question": "Какие дороги в радиусе 1000 метров от Хордаланна явно разрешают движение мопедов?",
+    "OverpassQL": "[out:json][timeout:25];(way[\"mofa\"=\"yes\"](around:1000,{{geocodeCoords:\"hordaland\"}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "mofa=yes": {
+        "key": "mofa",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 15,
+    "split": "syn",
+    "nl_question": "Какова общая протяженность всех линий в Нджамене с номером дома 165 и значением ref, начинающимся на «SC»?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"N'Djamena\"}}->.searchArea;way[\"addr:housenumber\"=\"165\"][\"ref\"~\"^SC*\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Нджамена"
+    },
+    "tags": {
+      "addr:housenumber=165": {
+        "key": "addr:housenumber",
+        "relation": "equal",
+        "value": "165"
+      },
+      "ref~^SC*": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "^SC*"
+      }
+    }
+  },
+  {
+    "sample_index": 16,
+    "split": "syn",
+    "nl_question": "Покажите общую протяженность дорог в Хорсте с грунтовым покрытием и датой начала 2006 года.",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Horst\"}}->.searchArea;way[\"surface\"=\"unpaved\"][\"start_date\"=\"2006\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Хорст"
+    },
+    "tags": {
+      "surface=unpaved": {
+        "key": "surface",
+        "relation": "equal",
+        "value": "unpaved"
+      },
+      "start_date=2006": {
+        "key": "start_date",
+        "relation": "equal",
+        "value": "2006"
+      }
+    }
+  },
+  {
+    "sample_index": 17,
+    "split": "syn",
+    "nl_question": "Какова общая протяженность Glebe Point Road в Баварии?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:Bayern}}->.searchArea;way[\"name\"=\"Glebe Point Road\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Бавария"
+    },
+    "tags": {
+      "name=Glebe Point Road": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Glebe Point Road"
+      }
+    }
+  },
+  {
+    "sample_index": 18,
+    "split": "syn",
+    "nl_question": "Покажите связанные улицы в Падуе, ширина которых составляет ровно 10 метров.",
+    "OverpassQL": "[out:xml];{{geocodeArea:\"Padova\"}}->.searchArea;way[\"width\"=\"10\"](area.searchArea)->.no;relation[\"type\"=\"associatedStreet\"](bn.no)->.rel;(nwr.no;relation.rel;);out meta;>;out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Падуя"
+    },
+    "tags": {
+      "width=10": {
+        "key": "width",
+        "relation": "equal",
+        "value": "10"
+      },
+      "type=associatedStreet": {
+        "key": "type",
+        "relation": "equal",
+        "value": "associatedStreet"
+      }
+    }
+  },
+  {
+    "sample_index": 19,
+    "split": "syn",
+    "nl_question": "Какие места в Берлине находятся в зоне загородного движения или имеют информацию о прокате мотоциклов?",
+    "OverpassQL": "[out:json];(area[\"name\"=\"Berlin\"];)->.a;(nwr[\"zone:traffic\"=\"DE:rural\"](area.a);nwr[\"motorcycle:rental\"](area.a););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Берлин"
+    },
+    "tags": {
+      "name=Berlin": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Berlin"
+      },
+      "zone:traffic=DE:rural": {
+        "key": "zone:traffic",
+        "relation": "equal",
+        "value": "DE:rural"
+      },
+      "motorcycle:rental": {
+        "key": "motorcycle:rental",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 20,
+    "split": "syn",
+    "nl_question": "Покажите координаты и номера телефонов всех заведений быстрого питания в Санта-Марии, РС.",
+    "OverpassQL": "[out:csv(::lat,::lon,\"contact:phone\")];{{geocodeArea:\"Santa Maria RS\"}}->.searchArea;nwr[\"amenity\"=\"fast_food\"](area.searchArea);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Санта-Мария, РС"
+    },
+    "tags": {
+      "amenity=fast_food": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fast_food"
+      }
+    }
+  },
+  {
+    "sample_index": 21,
+    "split": "syn",
+    "nl_question": "Какие съезды автомагистралей в Оттаве, Канада, были добавлены пользователем 'NegreanuAlina'?",
+    "OverpassQL": "{{geocodeArea:\"Ottawa, Canada\"}}->.searchArea;way[\"highway\"=\"motorway_link\"](user:\"NegreanuAlina\")(area.searchArea)(if:version()<2);out geom;make info versions=set(version());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Оттава, Канада"
+    },
+    "tags": {
+      "highway=motorway_link": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway_link"
+      }
+    }
+  },
+  {
+    "sample_index": 22,
+    "split": "syn",
+    "nl_question": "Покажите все зарядные станции в Антверпене, в регионе Фландрия?",
+    "OverpassQL": "[out:json][timeout:25];(area[\"name\"=\"Vlaanderen\"][\"admin_level\"=\"4\"];)->.b;(area[\"name\"=\"Antwerpen\"][\"admin_level\"=\"8\"](area.b);)->.a;(nwr[\"amenity\"=\"charging_station\"](area.a)(area.b););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Фландрия"
+    },
+    "tags": {
+      "name=Vlaanderen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Vlaanderen"
+      },
+      "admin_level=4": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "4"
+      },
+      "name=Antwerpen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Antwerpen"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "amenity=charging_station": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "charging_station"
+      }
+    }
+  },
+  {
+    "sample_index": 23,
+    "split": "syn",
+    "nl_question": "Сколько всего ресторанов в Париже и сколько из них предлагают китайскую, японскую или корейскую кухню?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.paris;node[\"amenity\"=\"restaurant\"](area.paris)->.rests;node.rests;out count;node.rests[\"cuisine\"=\"chinese\"];out count;node.rests[\"cuisine\"=\"japanese\"];out count;node.rests[\"cuisine\"=\"korean\"];out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      },
+      "cuisine=japanese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "japanese"
+      },
+      "cuisine=korean": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "korean"
+      }
+    }
+  },
+  {
+    "sample_index": 24,
+    "split": "syn",
+    "nl_question": "Какие второстепенные или пешеходные улицы находятся в радиусе 500 метров от координат 48.85683, 2.35087?",
+    "OverpassQL": "[out:json][timeout:25];(way[\"highway\"=\"tertiary\"](around:500,{{geocodeCoords:\"48.85683,2.35087\"}});way[\"highway\"=\"pedestrian\"](around:500,{{geocodeCoords:\"48.85683,2.35087\"}}););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway=tertiary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "tertiary"
+      },
+      "highway=pedestrian": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "pedestrian"
+      }
+    }
+  },
+  {
+    "sample_index": 25,
+    "split": "syn",
+    "nl_question": "Какие офисные здания высотой более 100 метров находятся в районе Дюссельталь, Дюссельдорф?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Düsseltal, Düsseldorf\"}}->.searchArea;(nwr[\"building\"=\"office\"](if:t[\"height\"]>100)(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Дюссельталь, Дюссельдорф"
+    },
+    "tags": {
+      "building=office": {
+        "key": "building",
+        "relation": "equal",
+        "value": "office"
+      },
+      "height": {
+        "key": "height",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 26,
+    "split": "syn",
+    "nl_question": "Какова суммарная высота зданий в Дюссельтале, Дюссельдорф?",
+    "OverpassQL": "{{geocodeArea:\"Düsseltal, Düsseldorf\"}}->.a;nwr[\"building\"](area.a)(if:is_number(t[\"height\"]));make total_hs hs=sum(t[\"height\"]);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Дюссельталь, Дюссельдорф"
+    },
+    "tags": {
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      },
+      "height": {
+        "key": "height",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 27,
+    "split": "syn",
+    "nl_question": "Найдите все отмеченные на карте участки, покрытые деревьями, и скамейки в Замбии.",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Zambia\"}}->.a;(nwr[\"landcover\"=\"trees\"](area.a);nwr[\"amenity\"=\"bench\"](area.a););out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Замбия"
+    },
+    "tags": {
+      "landcover=trees": {
+        "key": "landcover",
+        "relation": "equal",
+        "value": "trees"
+      },
+      "amenity=bench": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "bench"
+      }
+    }
+  },
+  {
+    "sample_index": 28,
+    "split": "syn",
+    "nl_question": "Покажите все линии отношений с названием «Сан-Бернарду-ду-Кампу», исключая линии 227805588 и 227805637?",
+    "OverpassQL": "(relation[\"name\"=\"São Bernardo do Campo\"];)->.searchArea;(((way(r.searchArea););-way(227805588););-way(227805637););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=São Bernardo do Campo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "São Bernardo do Campo"
+      }
+    }
+  },
+  {
+    "sample_index": 29,
+    "split": "syn",
+    "nl_question": "Какие точки и линии находятся в Сан-Бернарду-ду-Кампу, за исключением линии 227805588?",
+    "OverpassQL": "(relation[\"name\"=\"São Bernardo do Campo\"];)->.searchArea;((nw(r.searchArea););-way(227805588););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=São Bernardo do Campo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "São Bernardo do Campo"
+      }
+    }
+  },
+  {
+    "sample_index": 30,
+    "split": "syn",
+    "nl_question": "Каково количество и общая протяженность основных дорог и жилых улиц в Париже?",
+    "OverpassQL": "[out:csv(\"number\",\"length\")];{{geocodeArea:\"Paris\"}}->.searchArea;way[\"highway\"=\"primary\"](area.searchArea);make stat number=count(ways),length=sum(length());way[\"highway\"=\"living_street\"](area.searchArea);make stat number=count(ways),length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      },
+      "highway=living_street": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "living_street"
+      }
+    }
+  },
+  {
+    "sample_index": 31,
+    "split": "syn",
+    "nl_question": "Сколько китайских ресторанов в Париже открыто и сколько закрыто?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Paris\"}}->.a;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](area.a)(if:!is_closed());out count;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](area.a)(if:is_closed());out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 32,
+    "split": "syn",
+    "nl_question": "Какие дороги в Париже имеют грунтовое, земляное или песчаное покрытие, но при этом не имеют оценки качества или находятся в отличном состоянии?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Paris\"}}->.city;way(area.city)[\"highway\"](if:is_tag(\"surface\")&&lrs_in(t[\"surface\"],\"dirt;ground;sand\")&&(!is_tag(\"smoothness\")||t[\"smoothness\"]==\"excellent\"));out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 33,
+    "split": "syn",
+    "nl_question": "Какова общая протяженность грунтовых дорог в Париже, отредактированных с 1 января 2021 года, с разбивкой по пользователям?",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Paris\"}}->.searchArea;way(area.searchArea)[\"highway\"][\"surface\"=\"dirt\"](if:timestamp()>=\"2023-01-01T00:00:00Z\");for (user())(make stat number_of_ways=count(ways),user=_.val,length_in_m=sum(length());out;);",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "surface=dirt": {
+        "key": "surface",
+        "relation": "equal",
+        "value": "dirt"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 34,
+    "split": "syn",
+    "nl_question": "Сколько объектов в Гоа имеют информацию об одностороннем движении?",
+    "OverpassQL": "[out:json][timeout:45];area[\"name\"=\"Goa\"]->.searchArea;(nwr[\"oneway\"](area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Гоа"
+    },
+    "tags": {
+      "name=Goa": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Goa"
+      },
+      "oneway": {
+        "key": "oneway",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 35,
+    "split": "syn",
+    "nl_question": "Какие дома престарелых в Экваториальной Гвинее отмечены в OpenStreetMap как точки?",
+    "OverpassQL": "[out:csv(::type,::id,\"amenity\",\"name\";true;\" || \")][timeout:25];(relation[\"name\"=\"Guinée Equatoriale\"];)->.a;(.a;>>;)->.b;(node.b[\"amenity\"=\"retirement_home\"];);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Guinée Equatoriale": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Guinée Equatoriale"
+      },
+      "amenity=retirement_home": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "retirement_home"
+      }
+    }
+  },
+  {
+    "sample_index": 36,
+    "split": "syn",
+    "nl_question": "Какие места в Санту-Андре в текущей области просмотра имеют названия, написанные заглавными буквами?",
+    "OverpassQL": "[out:csv(::lat,::lon;true,\",\")][timeout:250];area[\"name\"=\"Santo André\"]->.a;relation[\"name\"=\"Santo André\"](area.a);map_to_area->.b;(nwr[\"name\"~\"^[A-Z]+$\"](area.b)({{bbox}}););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Санту-Андре"
+    },
+    "tags": {
+      "name=Santo André": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Santo André"
+      },
+      "name~^[A-Z]+$": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "^[A-Z]+$"
+      }
+    }
+  },
+  {
+    "sample_index": 37,
+    "split": "syn",
+    "nl_question": "Какие объекты с номером A4 есть в Леннештадте?",
+    "OverpassQL": "[out:json][timeout:50];{{geocodeArea:\"Lennestadt\"}}->.searchArea;(nwr[\"ref\"=\"A4\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Леннештадт"
+    },
+    "tags": {
+      "ref=A4": {
+        "key": "ref",
+        "relation": "equal",
+        "value": "A4"
+      }
+    }
+  },
+  {
+    "sample_index": 38,
+    "split": "syn",
+    "nl_question": "Какие места в Замбии имеют описание «Berliner Straßenbrunnen»?",
+    "OverpassQL": "[out:json][timeout:50];{{geocodeArea:\"zambia\"}}->.searchArea;(nwr[\"description\"=\"Berliner Straßenbrunnen\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Замбия"
+    },
+    "tags": {
+      "description=Berliner Straßenbrunnen": {
+        "key": "description",
+        "relation": "equal",
+        "value": "Berliner Straßenbrunnen"
+      }
+    }
+  },
+  {
+    "sample_index": 39,
+    "split": "syn",
+    "nl_question": "Какие объекты оператора OI находятся на расстоянии от 10 до 50 километров от центра Нижнесилезского воеводства?",
+    "OverpassQL": "[out:json][timeout:25];((nwr[\"operator\"=\"OI\"](around:50000,{{geocodeCoords:dolnoslaskie}});-nwr[\"operator\"=\"OI\"](around:10000,{{geocodeCoords:dolnoslaskie}}););(nwr[\"operator\"=\"OI\"](around:50000,{{geocodeCoords:dolnoslaskie}});-nwr[\"operator\"=\"OI\"](around:10000,{{geocodeCoords:dolnoslaskie}});););out qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "operator=OI": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "OI"
+      }
+    }
+  },
+  {
+    "sample_index": 40,
+    "split": "syn",
+    "nl_question": "Какие участки с древесным покровом расположены на расстоянии от 5 до 20 км от центра Стамбула, за исключением зоны в радиусе 5 км?",
+    "OverpassQL": "[out:json][timeout:25];((nwr[\"de:amtlicher_gemeindeschluessel\"=\"06611000\"](around:20000,{{geocodeCoords:\"Istanbul\"}});-nwr[\"de:amtlicher_gemeindeschluessel\"=\"06611000\"](around:5000,{{geocodeCoords:\"Istanbul\"}}););(nwr[\"landcover\"=\"trees\"](around:20000,{{geocodeCoords:\"Istanbul\"}});-nwr[\"landcover\"=\"trees\"](around:5000,{{geocodeCoords:\"Istanbul\"}});););out qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "de:amtlicher_gemeindeschluessel=06611000": {
+        "key": "de:amtlicher_gemeindeschluessel",
+        "relation": "equal",
+        "value": "06611000"
+      },
+      "landcover=trees": {
+        "key": "landcover",
+        "relation": "equal",
+        "value": "trees"
+      }
+    }
+  },
+  {
+    "sample_index": 41,
+    "split": "syn",
+    "nl_question": "На каких участках дорог в Швейцарии есть выделенная велосипедная дорожка с правой стороны?",
+    "OverpassQL": "[out:xml][timeout:600];{{geocodeArea:\"Suisse\"}}->.searchArea;(way[\"cycleway:right\"=\"track\"](area.searchArea););out meta;>;out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Швейцария"
+    },
+    "tags": {
+      "cycleway:right=track": {
+        "key": "cycleway:right",
+        "relation": "equal",
+        "value": "track"
+      }
+    }
+  },
+  {
+    "sample_index": 42,
+    "split": "syn",
+    "nl_question": "Какие объекты в округе Ламво имеют данные о численности населения, называются «Polska» или являются лавкой травника?",
+    "OverpassQL": "area[\"name\"=\"Lamwo\"]->.searchArea;(nwr[\"population\"](area.searchArea);nwr[\"name\"=\"Polska\"](area.searchArea);nwr[\"shop\"=\"herbalist\"](area.searchArea);nwr[\"population\"](area.searchArea););out;>;out skel;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ламво"
+    },
+    "tags": {
+      "name=Lamwo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Lamwo"
+      },
+      "name=Polska": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Polska"
+      },
+      "shop=herbalist": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "herbalist"
+      },
+      "population": {
+        "key": "population",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 43,
+    "split": "syn",
+    "nl_question": "Какие объекты с названием Stadtmitte имеют высоту, значение которой состоит минимум из трех цифр, начинающихся с 2–9, или любое четырехзначное значение?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"ele\"~\"([23456789]..|....)\"][\"name\"=\"Stadtmitte\"];nwr[\"ele\"~\"([23456789]..|....)\"][\"name\"=\"Stadtmitte\"];);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Stadtmitte": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Stadtmitte"
+      },
+      "ele~([23456789]..|....)": {
+        "key": "ele",
+        "relation": "regex_match",
+        "value": "([23456789]..|....)"
+      }
+    }
+  },
+  {
+    "sample_index": 44,
+    "split": "syn",
+    "nl_question": "Какие административные границы у округов в Керале?",
+    "OverpassQL": "{{geocodeArea:\"Kerala\"}}->.searchArea;relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"6\"](area.searchArea)->.rels;.rels out;relation(r.rels);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Керала"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      }
+    }
+  },
+  {
+    "sample_index": 45,
+    "split": "syn",
+    "nl_question": "Сколько линий во Фриллендорфе (Северный Рейн-Вестфалия) предлагают услуги по продаже автозапчастей без упоминания Circle K, и какова их общая протяженность по типам услуг?",
+    "OverpassQL": "[out:csv(\"key\",\"len\")];area[\"name\"=\"North Rhine-Westphalia\"][\"boundary\"=\"administrative\"];way[\"service:vehicle:parts\"][\"name\"=\"Frillendorf\"][\"ref:circlek\"!~\".*\"](area);for(t[\"service:vehicle:parts\"]){make stat num=count(ways),key=_.val,len=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Северный Рейн-Вестфалия"
+    },
+    "tags": {
+      "name=North Rhine-Westphalia": {
+        "key": "name",
+        "relation": "equal",
+        "value": "North Rhine-Westphalia"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "name=Frillendorf": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Frillendorf"
+      },
+      "ref:circlek!~.*": {
+        "key": "ref:circlek",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "service:vehicle:parts": {
+        "key": "service:vehicle:parts",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 46,
+    "split": "syn",
+    "nl_question": "Какие заброшенные дороги в Мисьонес, имеющие туалеты и называющиеся «München», были отредактированы в период с 1 по 10 января 2020 года?",
+    "OverpassQL": "[out:json][timeout:500];({{geocodeArea:\"misiones\"}};{{geocodeArea:\"misiones\"}};{{geocodeArea:\"misiones\"}};)->.searchArea;(nwr[\"highway\"=\"disused\"][\"amenity\"~\"toilet\"][\"name\"=\"München\"](changed:\"2020-01-01T00:00:00Z\",\"2020-01-10T23:59:59Z\")(area.searchArea););out;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Мисьонес"
+    },
+    "tags": {
+      "highway=disused": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "disused"
+      },
+      "name=München": {
+        "key": "name",
+        "relation": "equal",
+        "value": "München"
+      },
+      "amenity~toilet": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "toilet"
+      }
+    }
+  },
+  {
+    "sample_index": 47,
+    "split": "syn",
+    "nl_question": "Какие здания в Бенине, за исключением навесов, находятся более чем в 300 метрах от любого объекта с тегом moped_a?",
+    "OverpassQL": "{{geocodeArea:\"Benin\"}}->.searchArea;way[\"building\"][\"building\"!~\"roof\"](area.searchArea);node(w)->.buildings_all;(node(around.buildings_all:300)[\"moped_a\"]->.moped_points;);way(around.moped_points:300)[\"building\"][\"building\"!~\"roof\"](area.searchArea);node(w)->.buildings_near_moped;(.buildings_all;- .buildings_near_moped;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Бенин"
+    },
+    "tags": {
+      "building!~roof": {
+        "key": "building",
+        "relation": "regex_not_match",
+        "value": "roof"
+      },
+      "moped_a": {
+        "key": "moped_a",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 48,
+    "split": "syn",
+    "nl_question": "Какие дороги с плохим или ужасным качеством покрытия находятся в радиусе 1000 метров от координат -26.4851, -49.0713?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"smoothness\"~\"bad|horrible\"](around:1000,-26.4851,-49.0713););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "smoothness~bad|horrible": {
+        "key": "smoothness",
+        "relation": "regex_match",
+        "value": "bad|horrible"
+      }
+    }
+  },
+  {
+    "sample_index": 49,
+    "split": "syn",
+    "nl_question": "Какие достопримечательности в области 3600075864, которые также являются паромными терминалами, не имеют указанного города в адресе?",
+    "OverpassQL": "[out:json][timeout:300];area(3600075864)->.searchArea;(nwr[\"amenity\"~\"ferry_terminal\"][\"addr:city\"!~\".\"][\"tourism\"=\"attraction\"](area.searchArea););out qt geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "tourism=attraction": {
+        "key": "tourism",
+        "relation": "equal",
+        "value": "attraction"
+      },
+      "amenity~ferry_terminal": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "ferry_terminal"
+      },
+      "addr:city!~.": {
+        "key": "addr:city",
+        "relation": "regex_not_match",
+        "value": "."
+      }
+    }
+  },
+  {
+    "sample_index": 50,
+    "split": "syn",
+    "nl_question": "Какие жилые, неклассифицированные, служебные или пешеходные дороги в Сиднее без тега ref:st1 имеют менее двух или более четырех участников в связанных с ними объектах OSM?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Sydney\"}}->.searchArea;(nwr[\"highway\"!~\"track\"][\"highway\"~\"residential|unclassified|service|pedestrian\"][\"ref:st1\"!~\".*\"](if:count_members()<2)(area.searchArea);nwr[\"highway\"!~\"track\"][\"highway\"~\"residential|unclassified|service|pedestrian\"][\"ref:st1\"!~\".*\"](if:count_members()>4)(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Сидней"
+    },
+    "tags": {
+      "highway~residential|unclassified|service|pedestrian": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "residential|unclassified|service|pedestrian"
+      },
+      "highway!~track": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "track"
+      },
+      "ref:st1!~.*": {
+        "key": "ref:st1",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    }
+  },
+  {
+    "sample_index": 51,
+    "split": "syn",
+    "nl_question": "Какие пути в пределах региона Иль-де-Франс относятся к территории Вюстемаркер Форст?",
+    "OverpassQL": "relation[\"name\"=\"Île-de-France\"];out geom;map_to_area;(way[\"name\"=\"wüstemarker forst\"](area););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Île-de-France": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Île-de-France"
+      },
+      "name=wüstemarker forst": {
+        "key": "name",
+        "relation": "equal",
+        "value": "wüstemarker forst"
+      }
+    }
+  },
+  {
+    "sample_index": 52,
+    "split": "syn",
+    "nl_question": "Какие из отмеченных на карте путей в Минске обслуживаются Tesla Motors Inc.?",
+    "OverpassQL": "{{nominatimArea:\"Minsk\"}}->.searchArea;(way[\"operator\"=\"Tesla Motors Inc.\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "operator=Tesla Motors Inc.": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "Tesla Motors Inc."
+      }
+    }
+  },
+  {
+    "sample_index": 53,
+    "split": "syn",
+    "nl_question": "Какие мегалитические памятники в Баден-Вюртемберге находятся в пределах 200 метров от исторического мемориала?",
+    "OverpassQL": "[out:json];area[\"name\"=\"Baden-Württemberg\"];nwr[\"historic\"=\"memorial\"](area);nwr[\"site_type\"=\"megalith\"](around:200);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Баден-Вюртемберг"
+    },
+    "tags": {
+      "name=Baden-Württemberg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Baden-Württemberg"
+      },
+      "historic=memorial": {
+        "key": "historic",
+        "relation": "equal",
+        "value": "memorial"
+      },
+      "site_type=megalith": {
+        "key": "site_type",
+        "relation": "equal",
+        "value": "megalith"
+      }
+    }
+  },
+  {
+    "sample_index": 54,
+    "split": "syn",
+    "nl_question": "Какие индийские рестораны есть в Бауру, штат Сан-Паулу, Бразилия?",
+    "OverpassQL": "relation[\"name\"=\"Bauru\"][\"admin_level\"=\"8\"];out geom;area[\"name\"=\"Bauru\"][\"admin_level\"=\"8\"]->.searchArea;(way[\"cuisine\"=\"indian\"](area.searchArea););out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Бауру"
+    },
+    "tags": {
+      "name=Bauru": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Bauru"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "cuisine=indian": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "indian"
+      }
+    }
+  },
+  {
+    "sample_index": 55,
+    "split": "syn",
+    "nl_question": "Показать все MTB-маршруты Tempelhof-Schöneberg в Ломбардии.",
+    "OverpassQL": "(area[\"name\"=\"Lombardy\"];);(nwr[\"route\"=\"mtb\"][\"name\"=\"Tempelhof-Schöneberg\"](area););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ломбардия"
+    },
+    "tags": {
+      "name=Lombardy": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Lombardy"
+      },
+      "route=mtb": {
+        "key": "route",
+        "relation": "equal",
+        "value": "mtb"
+      },
+      "name=Tempelhof-Schöneberg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Tempelhof-Schöneberg"
+      }
+    }
+  },
+  {
+    "sample_index": 56,
+    "split": "syn",
+    "nl_question": "Покажите все островки в текущей области просмотра, которые находятся более чем в 300 метрах от любой дороги.",
+    "OverpassQL": "[out:json][bbox:{{bbox}}][timeout:800];nwr[\"place\"=\"islet\"]->.Islet;way[\"highway\"]->.highways;node.Islet(around.highways:300)->.reachableIslet;(.Islet; - .reachableIslet;);out geom meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "place=islet": {
+        "key": "place",
+        "relation": "equal",
+        "value": "islet"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 57,
+    "split": "syn",
+    "nl_question": "Где находятся киоски в сети RER в Иль-де-Франс?",
+    "OverpassQL": "{{geocodeArea:\"Île-de-France\"}}->.searchArea;relation[\"network\"=\"RER\"][\"type\"=\"public_transport\"](area.searchArea);nwr[\"shop\"=\"kiosk\"](r)(area.searchArea);out qt;relation[\"network\"=\"RER\"][\"type\"=\"public_transport\"](area.searchArea);nwr[\"shop\"=\"kiosk\"](r)(area.searchArea);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Иль-де-Франс"
+    },
+    "tags": {
+      "network=RER": {
+        "key": "network",
+        "relation": "equal",
+        "value": "RER"
+      },
+      "type=public_transport": {
+        "key": "type",
+        "relation": "equal",
+        "value": "public_transport"
+      },
+      "shop=kiosk": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "kiosk"
+      }
+    }
+  },
+  {
+    "sample_index": 58,
+    "split": "syn",
+    "nl_question": "Показать все места (точки), не являющиеся курортами, в текущей области просмотра.",
+    "OverpassQL": "[out:json][timeout:3600];(node({{bbox}});<;)->.a;(nwr[\"leisure\"=\"resort\"]({{bbox}});)->.b;(.a;- .b;);out body;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "leisure=resort": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "resort"
+      }
+    }
+  },
+  {
+    "sample_index": 59,
+    "split": "syn",
+    "nl_question": "Где находятся горнолыжные трассы во Львовской области, которые не являются частью дороги «Rodovia Lindolfo Leonhardt»?",
+    "OverpassQL": "area[\"name\"=\"Львівська область\"];node[\"piste:type\"](area)->.all;way[\"official_name\"~\"^Rodovia Lindolfo Leonhardt$\"](area)->.ways;(.all;-node(w.ways););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Львовская область"
+    },
+    "tags": {
+      "name=Львівська область": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Львівська область"
+      },
+      "official_name~^Rodovia Lindolfo Leonhardt$": {
+        "key": "official_name",
+        "relation": "regex_match",
+        "value": "^Rodovia Lindolfo Leonhardt$"
+      },
+      "piste:type": {
+        "key": "piste:type",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 60,
+    "split": "syn",
+    "nl_question": "Какие заведения в текущей области просмотра предлагают вегетарианскую еду или сэндвичи, но не являются ресторанами японской кухни?",
+    "OverpassQL": "[bbox:{{bbox}}];nwr[\"cuisine\"= \"vegetarian\"]->.e2;nwr[\"cuisine\"= \"sandwich\"]->.e3;(.e2;.e3;)->.e1;nwr.e1[\"cuisine\"!=\"japanese\"];out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "cuisine=vegetarian": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "vegetarian"
+      },
+      "cuisine=sandwich": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "sandwich"
+      },
+      "cuisine!=japanese": {
+        "key": "cuisine",
+        "relation": "not_equal",
+        "value": "japanese"
+      }
+    }
+  },
+  {
+    "sample_index": 61,
+    "split": "syn",
+    "nl_question": "Какие шорные мастерские находятся в радиусе 500 метров от точки 1981236357?",
+    "OverpassQL": "[out:json][timeout:25];node(1981236357)->.place;nwr(around.place:500)[\"craft\"=\"saddler\"];out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "craft=saddler": {
+        "key": "craft",
+        "relation": "equal",
+        "value": "saddler"
+      }
+    }
+  },
+  {
+    "sample_index": 62,
+    "split": "syn",
+    "nl_question": "Какие места в Мезон-Альфоре называются «Northeast 42nd Way», какие медицинские лаборатории там есть и у каких объектов в названии встречается слово «Wüstung»?",
+    "OverpassQL": "[out:json][timeout:60];area[\"name\"=\"Maisons-Alfort\"]->.a;(nwr[\"name\"=\"Northeast 42nd Way\"](area.a);nwr[\"healthcare\"=\"laboratory\"](area.a);nwr[\"name\"~\"Wüstung\"](area.a););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Мезон-Альфор"
+    },
+    "tags": {
+      "name=Maisons-Alfort": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Maisons-Alfort"
+      },
+      "name=Northeast 42nd Way": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Northeast 42nd Way"
+      },
+      "healthcare=laboratory": {
+        "key": "healthcare",
+        "relation": "equal",
+        "value": "laboratory"
+      },
+      "name~Wüstung": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Wüstung"
+      }
+    }
+  },
+  {
+    "sample_index": 63,
+    "split": "syn",
+    "nl_question": "Какие заведения с корейской, американской или французской кухней, а также рестораны «tradition» в Париже были отредактированы после 1 октября 2023 года?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.a;(nwr[\"cuisine\"~\"korean|american|french\"](area.a)(newer:\"2018-09-01T00:00:00Z\");nwr[\"restaurant\"=\"tradition\"](area.a)(newer:\"2023-10-01T00:00:00Z\"););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "restaurant=tradition": {
+        "key": "restaurant",
+        "relation": "equal",
+        "value": "tradition"
+      },
+      "cuisine~korean|american|french": {
+        "key": "cuisine",
+        "relation": "regex_match",
+        "value": "korean|american|french"
+      }
+    }
+  },
+  {
+    "sample_index": 64,
+    "split": "syn",
+    "nl_question": "Где в районе Пельгржимов находятся копировальные центры и заниженные бордюры?",
+    "OverpassQL": "{{geocodeArea:\"okres Pelhřimov\"}}->.searchArea;(nwr[\"shop\"=\"copyshop\"](area.searchArea);nwr[\"kerb\"=\"lowered\"](area.searchArea););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "район Пельгржимов"
+    },
+    "tags": {
+      "shop=copyshop": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "copyshop"
+      },
+      "kerb=lowered": {
+        "key": "kerb",
+        "relation": "equal",
+        "value": "lowered"
+      }
+    }
+  },
+  {
+    "sample_index": 65,
+    "split": "syn",
+    "nl_question": "Какие места с названием «Manche» в Манаусе (Амазонас, Бразилия) были изменены в период с 1 по 31 января 2020 года?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Manaus AM Brasil\"}}->.searchArea;nwr[\"name\"=\"Manche\"](changed:\"2020-01-01T00:00:00Z\",\"2020-01-31T23:59:59Z\")(area.searchArea);out;>;out skel;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Манаус, Амазонас, Бразилия"
+    },
+    "tags": {
+      "name=Manche": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Manche"
+      }
+    }
+  },
+  {
+    "sample_index": 66,
+    "split": "syn",
+    "nl_question": "Какие объекты были изменены с 00:00:00 до 09:36:20 1 января 2023 года в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:999];(nwr(changed:\"2023-01-01T00:00:00Z\",\"2023-01-01T09:36:20Z\")({{bbox}}););out qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 67,
+    "split": "syn",
+    "nl_question": "Где в Брно находятся отмеченные на карте велодорожки и тропы, и какие из велодорожек не являются односторонними?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Brno\"}}->.searchArea;nwr[\"highway\"~\"cycleway|path\"](area.searchArea);way[\"highway\"=\"cycleway\"][\"oneway\"!=\"yes\"](area.searchArea);(nwr[\"highway\"~\"cycleway|path\"](around:0););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Брно"
+    },
+    "tags": {
+      "highway=cycleway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "cycleway"
+      },
+      "oneway!=yes": {
+        "key": "oneway",
+        "relation": "not_equal",
+        "value": "yes"
+      },
+      "highway~cycleway|path": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "cycleway|path"
+      }
+    }
+  },
+  {
+    "sample_index": 68,
+    "split": "syn",
+    "nl_question": "Показать все входы на железнодорожные вокзалы в Париже?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.searchArea;(way[\"building\"=\"train_station\"](area.searchArea);relation[\"building\"=\"train_station\"](area.searchArea););>>->.station;(nwr[\"railway\"=\"train_station_entrance\"](area.searchArea);nwr.station[\"entrance\"];nwr.station[\"building\"=\"entrance\"];);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "building=train_station": {
+        "key": "building",
+        "relation": "equal",
+        "value": "train_station"
+      },
+      "railway=train_station_entrance": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "train_station_entrance"
+      },
+      "building=entrance": {
+        "key": "building",
+        "relation": "equal",
+        "value": "entrance"
+      },
+      "entrance": {
+        "key": "entrance",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 69,
+    "split": "syn",
+    "nl_question": "Какие скалы находятся дальше чем в 1500 метрах от любого магазина (кроме билетных касс) в текущей области просмотра?",
+    "OverpassQL": "[timeout:180][out:json][bbox:{{bbox}}];nwr[\"shop\"!=\"ticket\"]->.shops;nwr[\"natural\"=\"cliff\"]->.cliffs;(nwr.cliffs(around.shops:1500);>;)->.shops_cliffs;(.shops;- .resortsLifts;)->.shops_cliffs;(.result;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "natural=cliff": {
+        "key": "natural",
+        "relation": "equal",
+        "value": "cliff"
+      },
+      "shop!=ticket": {
+        "key": "shop",
+        "relation": "not_equal",
+        "value": "ticket"
+      }
+    }
+  },
+  {
+    "sample_index": 70,
+    "split": "syn",
+    "nl_question": "Какие основные дороги в радиусе 20 километров от узла 240109189 имеют номера, начинающиеся на «M» или «E»?",
+    "OverpassQL": "[out:json][timeout:25];node(240109189)->.center;node(around.center:20000);way[\"highway\"=\"primary\"][\"ref\"](bn)->.hw;way.hw[\"ref\"~\"^(M|E)\"]->.roads;(.roads;.center;);out;.roads >;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      },
+      "ref~^(M|E)": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "^(M|E)"
+      }
+    }
+  },
+  {
+    "sample_index": 71,
+    "split": "syn",
+    "nl_question": "Какие объекты добычи урана находятся в радиусе 5000 метров от точки с широтой 43.7711 и долготой 11.2486?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"resource\"=\"uranium\"](around:5000,43.7711,11.2486););out;>;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "resource=uranium": {
+        "key": "resource",
+        "relation": "equal",
+        "value": "uranium"
+      }
+    }
+  },
+  {
+    "sample_index": 72,
+    "split": "syn",
+    "nl_question": "Какие жилые дороги без информации о типе покрытия находятся в муниципалитете Адехе в провинции Санта-Крус-де-Тенерифе?",
+    "OverpassQL": "[out:json][timeout:250];area[\"admin_level\"=\"6\"][\"boundary\"=\"administrative\"][\"name\"=\"Santa Cruz de Tenerife\"]->.prov;area[\"admin_level\"=\"8\"][\"boundary\"=\"administrative\"][\"name\"=\"Adeje\"]->.muni;(way[\"highway\"=\"residential\"][\"surface\"!~\".*\"](area.prov)(area.muni););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "name=Santa Cruz de Tenerife": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Santa Cruz de Tenerife"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "name=Adeje": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Adeje"
+      },
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      },
+      "surface!~.*": {
+        "key": "surface",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    }
+  },
+  {
+    "sample_index": 73,
+    "split": "syn",
+    "nl_question": "Какие номера домов в Париже находятся более чем в 30 метрах от любых служебных, пешеходных, третичных, вторичных или основных дорог?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Paris\"}}->.searchArea;way[\"highway\"~\"(service|pedestrian|tertiary|secondary|primary)\"](area.searchArea)->.w;(nwr[\"addr:housenumber\"](area.searchArea)->.addr;-nwr.addr(around.w:30););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway~(service|pedestrian|tertiary|secondary|primary)": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "(service|pedestrian|tertiary|secondary|primary)"
+      },
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 74,
+    "split": "syn",
+    "nl_question": "Какие объекты в текущей области просмотра, отредактированные после 10:00 30 января 2023 года, либо не имеют тега power, либо являются автоматами по продаже парковочных билетов?",
+    "OverpassQL": "[timeout:100][out:json][bbox:{{bbox}}];(nwr[\"power\"!~\".\"]({{bbox}});nwr[\"vending\"=\"parking_tickets\"]({{bbox}});)->.all;nwr.all(newer:\"2023-01-30T10:00:00Z\");out meta;>;out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "vending=parking_tickets": {
+        "key": "vending",
+        "relation": "equal",
+        "value": "parking_tickets"
+      },
+      "power!~.": {
+        "key": "power",
+        "relation": "regex_not_match",
+        "value": "."
+      }
+    }
+  },
+  {
+    "sample_index": 75,
+    "split": "syn",
+    "nl_question": "Какие пути с названием 'CP', отмеченные как броды, находятся в Восточной Фландрии?",
+    "OverpassQL": "area[\"name\"=\"Oost-Vlaanderen\"];way[\"name\"=\"CP\"][\"ford\"=\"yes\"](area);out ids;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Восточная Фландрия"
+    },
+    "tags": {
+      "name=Oost-Vlaanderen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Oost-Vlaanderen"
+      },
+      "name=CP": {
+        "key": "name",
+        "relation": "equal",
+        "value": "CP"
+      },
+      "ford=yes": {
+        "key": "ford",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 76,
+    "split": "syn",
+    "nl_question": "Какие сельскохозяйственные угодья находятся в пределах 300 метров от любого здания в текущей области просмотра?",
+    "OverpassQL": "[bbox:{{bbox}}];node[\"building\"=\"yes\"]->.center;way[\"landuse\"=\"farmland\"](around.center:300);(._;>;);out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "building=yes": {
+        "key": "building",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "landuse=farmland": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "farmland"
+      }
+    }
+  },
+  {
+    "sample_index": 77,
+    "split": "syn",
+    "nl_question": "Какие объекты, измененные за последние семь дней, не имеют тега Wikidata в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:25];((nwr(newer:\"{{date:7Day}}\")({{bbox}}););-(nwr[\"wikidata\"](newer:\"{{date:7Day}}\")({{bbox}});););out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "wikidata": {
+        "key": "wikidata",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 78,
+    "split": "syn",
+    "nl_question": "Какие аптеки находятся в коммуне Ла-Шапель-сюр-Эрдр?",
+    "OverpassQL": "area[\"type\"=\"boundary\"][\"admin_level\"=\"8\"][\"name\"=\"La Chapelle-sur-Erdre\"]->.a;(nwr[\"amenity\"=\"pharmacy\"](area.a););out center;relation(pivot.a);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "type=boundary": {
+        "key": "type",
+        "relation": "equal",
+        "value": "boundary"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "name=La Chapelle-sur-Erdre": {
+        "key": "name",
+        "relation": "equal",
+        "value": "La Chapelle-sur-Erdre"
+      },
+      "amenity=pharmacy": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "pharmacy"
+      }
+    }
+  },
+  {
+    "sample_index": 79,
+    "split": "syn",
+    "nl_question": "Покажи названия всех парков и школ в текущей области просмотра.",
+    "OverpassQL": "[out:json];nwr[\"leisure\"=\"park\"][\"name\"]({{bbox}});for(t[\"name\"]){make park name=_.val,ids=set(id());out;}nwr[\"amenity\"=\"school\"][\"name\"]({{bbox}});for(t[\"name\"]){make school name=_.val,ids=set(id());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "leisure=park": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "park"
+      },
+      "amenity=school": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "school"
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 80,
+    "split": "syn",
+    "nl_question": "У каких объектов название улицы в почтовом адресе отличается от названия улицы, указанного в основном адресе?",
+    "OverpassQL": "[out:csv(::id,::type,\"addr:street\",\"contact:street\")][timeout:300];(nwr[\"addr:street\"][\"contact:street\"](if:t[\"addr:street\"]!=t[\"contact:street\"]););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "addr:street": {
+        "key": "addr:street",
+        "relation": "has_key",
+        "value": ""
+      },
+      "contact:street": {
+        "key": "contact:street",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 81,
+    "split": "syn",
+    "nl_question": "Показать все водные пути в Италии, на которых есть хотя бы одна плотина.",
+    "OverpassQL": "[out:json][timeout:120];area[\"ISO3166-1:alpha3\"=\"ITA\"]->.a;node[\"waterway\"=\"dam\"](area.a)->.dams;way(bn.dams)(area.a)[\"waterway\"]->.dways;(.dways;.dways >;)->.dways;.dways out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "ISO3166-1:alpha3=ITA": {
+        "key": "ISO3166-1:alpha3",
+        "relation": "equal",
+        "value": "ITA"
+      },
+      "waterway=dam": {
+        "key": "waterway",
+        "relation": "equal",
+        "value": "dam"
+      }
+    }
+  },
+  {
+    "sample_index": 82,
+    "split": "syn",
+    "nl_question": "Какие подпорные стены и пешеходные переходы «зебра» находятся в радиусе 1500 метров от координат 51.4512, 7.1234 в Северном Рейне-Вестфалии?",
+    "OverpassQL": "[out:json][timeout:30];(nwr[\"barrier\"=\"retaining_wall\"](around:1500,51.4512,7.1234);nwr[\"crossing\"=\"zebra\"](around:1500,51.4512,7.1234););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "barrier=retaining_wall": {
+        "key": "barrier",
+        "relation": "equal",
+        "value": "retaining_wall"
+      },
+      "crossing=zebra": {
+        "key": "crossing",
+        "relation": "equal",
+        "value": "zebra"
+      }
+    }
+  },
+  {
+    "sample_index": 83,
+    "split": "syn",
+    "nl_question": "Какие источники питьевой воды в текущей области просмотра находятся в пределах 100 метров от другого источника питьевой воды?",
+    "OverpassQL": "[out:json][timeout:25];node[\"amenity\"=\"drinking_water\"]({{bbox}})->.waters;node[\"amenity\"=\"drinking_water\"]({{bbox}})(around.waters:100)->.nearwater;(.nearwater;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "amenity=drinking_water": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "drinking_water"
+      }
+    }
+  },
+  {
+    "sample_index": 84,
+    "split": "syn",
+    "nl_question": "Какие дороги 2-й категории (grade2) находятся в Берлине и Мадриде, и какие дороги 3-й категории (grade3) расположены в Осло?",
+    "OverpassQL": "[out:json];area[\"name\"=\"Berlin\"]->.a;area[\"name\"=\"Madrid\"]->.b;area[\"name\"=\"Oslo\"]->.c;(nwr[\"tracktype\"=\"grade2\"](area.a);nwr[\"tracktype\"=\"grade2\"](area.b);nwr[\"tracktype\"=\"grade3\"](area.c););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Берлин"
+    },
+    "tags": {
+      "name=Berlin": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Berlin"
+      },
+      "name=Madrid": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Madrid"
+      },
+      "name=Oslo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Oslo"
+      },
+      "tracktype=grade2": {
+        "key": "tracktype",
+        "relation": "equal",
+        "value": "grade2"
+      },
+      "tracktype=grade3": {
+        "key": "tracktype",
+        "relation": "equal",
+        "value": "grade3"
+      }
+    }
+  },
+  {
+    "sample_index": 85,
+    "split": "syn",
+    "nl_question": "Какие правки были внесены в линию 10074543 20 сентября 2021 года?",
+    "OverpassQL": "[out:xml][timeout:30];(way(10074543)(changed:\"2021-09-20T00:00:00Z\",\"2021-09-20T23:59:59Z\"););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 86,
+    "split": "syn",
+    "nl_question": "Показать все территории, используемые как водохранилища, в Юбах-Паленберге.",
+    "OverpassQL": "[out:json][timeout:120];area[\"name\"=\"Übach-Palenberg\"]->.searchArea;nwr[\"landuse\"=\"reservoir\"](area.searchArea);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Юбах-Паленберг"
+    },
+    "tags": {
+      "name=Übach-Palenberg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Übach-Palenberg"
+      },
+      "landuse=reservoir": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "reservoir"
+      }
+    }
+  },
+  {
+    "sample_index": 87,
+    "split": "syn",
+    "nl_question": "Какова общая протяженность и количество путей, в названиях которых упоминаются тропы или пеший туризм, в Кастилии и Леоне, сгруппированные по названию?",
+    "OverpassQL": "[out:csv(\"name\",\"count\",\"length\")][timeout:250];{{geocodeArea:\"Castilla y León\"}}->.searchArea;way[\"name\"~\"trail|Trail|Hiking|hiking\"](area.searchArea);for(t[\"name\"]){make stat name=_.val,count=count(ways),length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Кастилия и Леон"
+    },
+    "tags": {
+      "name~trail|Trail|Hiking|hiking": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "trail|Trail|Hiking|hiking"
+      }
+    }
+  },
+  {
+    "sample_index": 88,
+    "split": "syn",
+    "nl_question": "Какие пешеходные дорожки в текущей области просмотра имеют указанный тип покрытия, и на каких из них явно запрещено движение на велосипедах?",
+    "OverpassQL": "[bbox:{{bbox}}];way[\"highway\"~\"^(footway|path)$\"]->.w1;way.w1[\"surface\"~\".+\"]->.w2;way.w1[\"bicycle\"=\"no\"]->.w3;(.w2;.w3;)->.w1;out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "bicycle=no": {
+        "key": "bicycle",
+        "relation": "equal",
+        "value": "no"
+      },
+      "highway~^(footway|path)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(footway|path)$"
+      },
+      "surface~.+": {
+        "key": "surface",
+        "relation": "regex_match",
+        "value": ".+"
+      }
+    }
+  },
+  {
+    "sample_index": 89,
+    "split": "syn",
+    "nl_question": "Какие дороги с временными ограничениями в текущей области просмотра имеют точки с названием «Oberpfalz» и оператором «уралсиб»?",
+    "OverpassQL": "[bbox:{{bbox}}];way[\"temporary:vehicle\"]->.philippines;node[\"name\"=\"Oberpfalz \"][\"operator\"=\"уралсиб\"](w.philippines);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "name=Oberpfalz ": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Oberpfalz "
+      },
+      "operator=уралсиб": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "уралсиб"
+      },
+      "temporary:vehicle": {
+        "key": "temporary:vehicle",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 90,
+    "split": "syn",
+    "nl_question": "Какие источники питьевой воды в Париже находятся дальше 40 метров от любого фонтана?",
+    "OverpassQL": "[out:json][timeout:90];{{geocodeArea:\"Paris\"}}->.a;nwr[\"amenity\"=\"drinking_water\"](area.a)->.p;nwr[\"amenity\"=\"fountain\"](area.a)->.s;nwr[\"amenity\"=\"drinking_water\"](around.s:40)->.near;(.p;- .near;)->.result;.result out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "amenity=drinking_water": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "drinking_water"
+      },
+      "amenity=fountain": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fountain"
+      }
+    }
+  },
+  {
+    "sample_index": 91,
+    "split": "syn",
+    "nl_question": "Где находятся детские площадки в Париже и во всех муниципалитетах Берлина 8-го административного уровня?",
+    "OverpassQL": "({{geocodeArea:\"Paris\"}};area[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"~\"^Berlin$\"];)->.area;nwr[\"leisure\"=\"playground\"](area.area);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "leisure=playground": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "playground"
+      },
+      "name~^Berlin$": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "^Berlin$"
+      }
+    }
+  },
+  {
+    "sample_index": 92,
+    "split": "syn",
+    "nl_question": "Какие дороги в Сан-Диего с тегом ref=40/0320 имеют точки с велосипедным насосом?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"San Diego\"}}->.searchArea;way[\"ref\"=\"40/0320\"](area.searchArea)->.ways;node(w.ways)[\"service:bicycle:pump\"]->.pump_nodes;way(bn.pump_nodes)[\"ref\"=\"40/0320\"](area.searchArea);out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Сан-Диего"
+    },
+    "tags": {
+      "ref=40/0320": {
+        "key": "ref",
+        "relation": "equal",
+        "value": "40/0320"
+      },
+      "service:bicycle:pump": {
+        "key": "service:bicycle:pump",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 93,
+    "split": "syn",
+    "nl_question": "Какова суммарная длина всех путей в Коулуне, Гонконг?",
+    "OverpassQL": "[out:json][timeout:30];rel(10268797);way(r);make tol_len length = sum(length());out;rel(10268797);way(r);convert geometry ::id=id(), type=type(), length=length();out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 94,
+    "split": "syn",
+    "nl_question": "Покажите все музыкальные магазины в Берлине или Варшаве.",
+    "OverpassQL": "[out:json][timeout:25];({{geocodeArea:\"Berlin\"}};{{geocodeArea:\"Warsaw\"}};)->.searchArea;nwr[\"shop\"=\"music\"](area.searchArea);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Берлин"
+    },
+    "tags": {
+      "shop=music": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "music"
+      }
+    }
+  },
+  {
+    "sample_index": 95,
+    "split": "syn",
+    "nl_question": "Какие китайские рестораны в Париже находятся в пределах 3 метров от общественных зданий?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Paris\"}}->.area;nwr[\"amenity\"=\"public_building\"](area.area)->.pb1;nwr[\"building\"=\"public\"](area.area)->.pb2;(nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](around.pb1:3);nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](around.pb2:3););(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "amenity=public_building": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "public_building"
+      },
+      "building=public": {
+        "key": "building",
+        "relation": "equal",
+        "value": "public"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 96,
+    "split": "syn",
+    "nl_question": "Какие основные или второстепенные дороги пересекают железнодорожные пути в Париже?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Paris\"}}->.s;way[\"railway\"=\"rail\"](area.s);node(w)->.a;way[\"highway\"~\"^(primary|secondary)$\"](area.s);node(w)->.b;node.a.b->.c;way(bn.c);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "railway=rail": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "rail"
+      },
+      "highway~^(primary|secondary)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(primary|secondary)$"
+      }
+    }
+  },
+  {
+    "sample_index": 97,
+    "split": "syn",
+    "nl_question": "Какие неклассифицированные дороги в Париже не имеют названия?",
+    "OverpassQL": "[out:json][timeout:125];{{geocodeArea:\"Paris\"}}->.a;way[\"highway\"=\"unclassified\"][!\"name\"](area.a)->.a;way[\"highway\"=\"unclassified\"][\"noname\"=\"yes\"](area.a)->.b;(.a;- .b;)->.c;.c out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway=unclassified": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "unclassified"
+      },
+      "noname=yes": {
+        "key": "noname",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "!name": {
+        "key": "name",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 98,
+    "split": "syn",
+    "nl_question": "Какие пути короче 30 метров с названием «Bureau Vallée» находятся в районе Ланген?",
+    "OverpassQL": "[out:json];area[\"name\"=\"Langen\"]->.searchArea;out;(way[\"name\"=\"Bureau Vallée\"](area.searchArea)(if:length()<30););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ланген"
+    },
+    "tags": {
+      "name=Langen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Langen"
+      },
+      "name=Bureau Vallée": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Bureau Vallée"
+      }
+    }
+  },
+  {
+    "sample_index": 99,
+    "split": "syn",
+    "nl_question": "Какие линии в Валлонии с тегом 'operator:type' были изменены в период с 1 января 2021 года по 1 февраля 2021 года?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:Wallonia}}->.searchArea;(way[\"operator:type\"](changed:\"2021-01-01T00:00:00Z\",\"2021-02-01T23:59:59Z\")(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "operator:type": {
+        "key": "operator:type",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 100,
+    "split": "syn",
+    "nl_question": "Покажите все рестораны и административные границы 6-го или 8-го уровня в радиусе 200 метров от точки 41.6529, -4.7286.",
+    "OverpassQL": "[out:json][timeout:120];(nwr[\"amenity\"=\"restaurant\"](around:200,41.6529,-4.7286);nwr[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](around:200,41.6529,-4.7286););out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level~^(6|8)$": {
+        "key": "admin_level",
+        "relation": "regex_match",
+        "value": "^(6|8)$"
+      }
+    }
+  },
+  {
+    "sample_index": 101,
+    "split": "syn",
+    "nl_question": "Покажите количество спортивных залов в Уэльсе.",
+    "OverpassQL": "[out:csv(::count;false;\", \")];area(id:3600058437);nwr[\"leisure\"=\"sports_hall\"](area);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "leisure=sports_hall": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "sports_hall"
+      }
+    }
+  },
+  {
+    "sample_index": 102,
+    "split": "syn",
+    "nl_question": "Покажи все маршруты для переноса каноэ в Ганновере.",
+    "OverpassQL": "area[\"name\"=\"Hannover\"]->.a;(node[\"canoe\"=\"portage\"](area.a);way[\"canoe\"=\"portage\"](area.a);relation[\"canoe\"=\"portage\"](area.a););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ганновер"
+    },
+    "tags": {
+      "name=Hannover": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Hannover"
+      },
+      "canoe=portage": {
+        "key": "canoe",
+        "relation": "equal",
+        "value": "portage"
+      }
+    }
+  },
+  {
+    "sample_index": 103,
+    "split": "syn",
+    "nl_question": "Какие китайские рестораны есть в Париже и Лондоне?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.paris;{{geocodeArea:\"London\"}}->.london;(.paris;.london;)->.a;relation(pivot.a);out geom;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](area.a);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 104,
+    "split": "syn",
+    "nl_question": "Какие правки были внесены в way с UID 4710054 12 января 2015 года?",
+    "OverpassQL": "[out:json][timeout:600];(way(uid:4710054)(changed:\"2015-01-12T00:00:00Z\",\"2015-01-12T23:59:59Z\"););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 105,
+    "split": "syn",
+    "nl_question": "Какие отношения в Париже были отредактированы пользователем 1234567 в период с 1 по 31 января 2020 года?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Paris\"}}->.searchArea;(relation(uid:1234567)(changed:\"2020-01-01T00:00:00Z\",\"2020-01-31T23:59:59Z\")(area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 106,
+    "split": "syn",
+    "nl_question": "Сколько платформ общественного транспорта в Париже и какие из них не соединены с трамвайными путями или путями легкорельсового транспорта?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.area;nwr[\"public_transport\"=\"platform\"](area.area)->.all;.all out count;(way[\"railway\"~\"^(tram|light_rail)$\"](bn.all););(.all;- node.all(w););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "public_transport=platform": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "platform"
+      },
+      "railway~^(tram|light_rail)$": {
+        "key": "railway",
+        "relation": "regex_match",
+        "value": "^(tram|light_rail)$"
+      }
+    }
+  },
+  {
+    "sample_index": 107,
+    "split": "syn",
+    "nl_question": "Где в Лондоне находятся пересечения автомагистралей и второстепенных дорог?",
+    "OverpassQL": "[out:json][timeout:120];{{geocodeArea:\"London\"}}->.london;way[\"highway\"=\"motorway\"](area.london);node(w)->.a;way[\"highway\"=\"unclassified\"](area.london);node(w)->.b;node.a.b;out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Лондон"
+    },
+    "tags": {
+      "highway=motorway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway"
+      },
+      "highway=unclassified": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "unclassified"
+      }
+    }
+  },
+  {
+    "sample_index": 108,
+    "split": "syn",
+    "nl_question": "Какие объекты были отредактированы пользователем с ID 10074543 за последние две недели в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:25];nwr(uid:10074543)(newer:\"{{date:2week}}\")({{bbox}});out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 109,
+    "split": "syn",
+    "nl_question": "Показать все китайские рестораны в Париже, расположенные вдоль автобусных маршрутов.",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Paris\"}}->.paris;relation[\"route\"=\"bus\"](area.paris)->.bus_r;node(r.bus_r)->.bus_n;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](r.bus_n);out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "route=bus": {
+        "key": "route",
+        "relation": "equal",
+        "value": "bus"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 110,
+    "split": "syn",
+    "nl_question": "Сколько объектов в Марокко имеют тег image и доступ только для сельскохозяйственных нужд?",
+    "OverpassQL": "{{geocodeArea:MA}};nwr[\"image\"][\"access\"=\"agricultural\"];out count;(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "access=agricultural": {
+        "key": "access",
+        "relation": "equal",
+        "value": "agricultural"
+      },
+      "image": {
+        "key": "image",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 111,
+    "split": "syn",
+    "nl_question": "Какова численность населения городов в радиусе 300 км от Берлина?",
+    "OverpassQL": "[out:csv(::id,\"name\",::lat,::lon,\"population\";true;\"|\")];node[\"name\"=\"Berlin\"][\"place\"=\"city\"]->.center;node[\"place\"=\"city\"](around.center:300000);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Berlin": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Berlin"
+      },
+      "place=city": {
+        "key": "place",
+        "relation": "equal",
+        "value": "city"
+      }
+    }
+  },
+  {
+    "sample_index": 112,
+    "split": "syn",
+    "nl_question": "Какие основные дороги в текущей области просмотра имеют рестораны поблизости?",
+    "OverpassQL": "[out:json][timeout:20];way[\"highway\"=\"primary\"]({{bbox}})->.roads;nwr[\"amenity\"=\"restaurant\"](around.roads:0);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      }
+    }
+  },
+  {
+    "sample_index": 113,
+    "split": "syn",
+    "nl_question": "Какие подземные пожарные гидранты диаметром 200 мм есть в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:60];node[\"emergency\"=\"fire_hydrant\"][\"fire_hydrant:type\"=\"underground\"][\"fire_hydrant:diameter\"=\"200\"]({{bbox}});out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "emergency=fire_hydrant": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "fire_hydrant"
+      },
+      "fire_hydrant:type=underground": {
+        "key": "fire_hydrant:type",
+        "relation": "equal",
+        "value": "underground"
+      },
+      "fire_hydrant:diameter=200": {
+        "key": "fire_hydrant:diameter",
+        "relation": "equal",
+        "value": "200"
+      }
+    }
+  },
+  {
+    "sample_index": 114,
+    "split": "syn",
+    "nl_question": "Какие рестораны связаны с маршрутами маршрутных такси в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:60];relation[\"route\"=\"share_taxi\"]({{bbox}});nwr[\"amenity\"=\"restaurant\"](r)({{bbox}});out center;relation[\"route\"=\"share_taxi\"]({{bbox}});nwr[\"amenity\"=\"restaurant\"](r)({{bbox}});out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "route=share_taxi": {
+        "key": "route",
+        "relation": "equal",
+        "value": "share_taxi"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      }
+    }
+  },
+  {
+    "sample_index": 115,
+    "split": "syn",
+    "nl_question": "Какова общая протяженность основных дорог в Париже, Франция?",
+    "OverpassQL": "[out:csv(\"length\",\"highway\")][timeout:25];{{geocodeArea:\"Paris\"}};way[\"highway\"=\"primary\"](area);for(t[\"highway\"]){make stat highway=_.val,length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      }
+    }
+  },
+  {
+    "sample_index": 116,
+    "split": "syn",
+    "nl_question": "Какие точки внутри многоугольника −34.549571 −58.500719, −34.615550 −58.531930 и −34.687063 −58.485449 принимают Google Pay?",
+    "OverpassQL": "[out:json][timeout:25];node[\"payment:google_pay\"=\"yes\"](poly:\"-34.549571 -58.500719 -34.615550 -58.531930 -34.687063 -58.485449\");out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "payment:google_pay=yes": {
+        "key": "payment:google_pay",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 117,
+    "split": "syn",
+    "nl_question": "Какова статистика по количеству узлов и линий, созданных каждым пользователем с 1 марта 2021 года в текущей области просмотра?",
+    "OverpassQL": "[out:csv(user,total,nodes,ways)][timeout:120];(nwr(newer:\"2021-03-01T00:00:00Z\")({{bbox}}););for(user()){make stat user=_.val,nodes=count(nodes),ways=count(ways),total=count(nodes)+count(ways);out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 118,
+    "split": "syn",
+    "nl_question": "Какие предупредительные сигналы и сигналы ограничения скорости относятся к отношению 1234567?",
+    "OverpassQL": "[out:json][timeout:120];relation(1234567)->.myrel;way(r.myrel)->.myways;node(w.myways)->.mywaynodes;(node.mywaynodes[\"railway:signal:distant\"];node.mywaynodes[\"railway:signal:speed_limit\"];)->.signals;.signals out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "railway:signal:distant": {
+        "key": "railway:signal:distant",
+        "relation": "has_key",
+        "value": ""
+      },
+      "railway:signal:speed_limit": {
+        "key": "railway:signal:speed_limit",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 119,
+    "split": "syn",
+    "nl_question": "Какие скамейки находятся в пределах 30 метров от дорожек для верховой езды на Манхэттене?",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Manhattan, New York\"}}->.area;way[\"highway\"=\"bridleway\"](area.area)->.street;(.street;>;);nwr[\"amenity\"=\"bench\"](around.street:30);(._;>;);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Манхэттен, Нью-Йорк"
+    },
+    "tags": {
+      "highway=bridleway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "bridleway"
+      },
+      "amenity=bench": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "bench"
+      }
+    }
+  },
+  {
+    "sample_index": 120,
+    "split": "syn",
+    "nl_question": "Покажите все трамвайные пути в Вене вместе с узлами, имеющими информацию об уровне (level) или слое (layer).",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Wien\"}}->.a;(way[\"railway\"=\"tram\"][\"level\"](area.a);way[\"railway\"=\"tram\"][\"layer\"](area.a);)->.w;(node[\"level\"](w.w);node[\"layer\"](w.w););out;.w out tags geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Вена"
+    },
+    "tags": {
+      "railway=tram": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "tram"
+      },
+      "level": {
+        "key": "level",
+        "relation": "has_key",
+        "value": ""
+      },
+      "layer": {
+        "key": "layer",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 121,
+    "split": "syn",
+    "nl_question": "Какие платформы обслуживают все маршруты поездов и паромов в Париже?",
+    "OverpassQL": "[out:xml][timeout:20];{{geocodeArea:\"Paris\"}}->.searchArea;relation[\"type\"=\"route\"][\"route\"~\"train|ferry\"](area.searchArea);way(r);way._[\"public_transport\"=\"platform\"](area.searchArea);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "type=route": {
+        "key": "type",
+        "relation": "equal",
+        "value": "route"
+      },
+      "public_transport=platform": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "platform"
+      },
+      "route~train|ferry": {
+        "key": "route",
+        "relation": "regex_match",
+        "value": "train|ferry"
+      }
+    }
+  },
+  {
+    "sample_index": 122,
+    "split": "syn",
+    "nl_question": "На каких пешеходных переходах в текущей области просмотра отсутствует информация о тактильном покрытии?",
+    "OverpassQL": "[out:json][timeout:60];node[\"highway\"=\"crossing\"]({{bbox}})->.a;node.a[\"tactile_paving\"]->.b;(.a;- .b;)->.c;.c out geom qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "текущая область просмотра"
+    },
+    "tags": {
+      "highway=crossing": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "crossing"
+      },
+      "tactile_paving": {
+        "key": "tactile_paving",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 123,
+    "split": "syn",
+    "nl_question": "Какие аптеки находятся в городских районах в точке с координатами 48.210033, 16.363449?",
+    "OverpassQL": "[out:json][timeout:25];is_in(48.210033,16.363449);area._[\"admin_level\"=\"10\"]->.a;(nwr[\"amenity\"=\"pharmacy\"](area.a););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      },
+      "amenity=pharmacy": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "pharmacy"
+      }
+    }
+  },
+  {
+    "sample_index": 124,
+    "split": "syn",
+    "nl_question": "Покажи все промышленные здания на озере Байкал",
+    "OverpassQL": "[out:xml][timeout:20];area[\"wikidata\"=\"Q5513\"]->.BL;(nwr[\"building\"=\"industrial\"](area.BL););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "wikidata=Q5513": {
+        "key": "wikidata",
+        "relation": "equal",
+        "value": "Q5513"
+      },
+      "building=industrial": {
+        "key": "building",
+        "relation": "equal",
+        "value": "industrial"
+      }
+    }
+  },
+  {
+    "sample_index": 125,
+    "split": "syn",
+    "nl_question": "Какие пакеты правок соответствуют изменениям, внесенным на озере Поянху после 1 мая 2021 года?",
+    "OverpassQL": "[out:csv(::changeset)][timeout:25];area[\"wikidata\"=\"Q207690\"]->.lake;(nwr(newer:\"2021-05-01T00:00:00Z\")(area.lake););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "wikidata=Q207690": {
+        "key": "wikidata",
+        "relation": "equal",
+        "value": "Q207690"
+      }
+    }
+  },
+  {
+    "sample_index": 126,
+    "split": "syn",
+    "nl_question": "Сколько китайских и японских ресторанов в Лионе и у скольких из них есть названия?",
+    "OverpassQL": "[out:json];area[\"name\"=\"Lyon\"]->.a;(node(area.a)[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"];node(area.a)[\"amenity\"=\"restaurant\"][\"cuisine\"=\"japanese\"];)->.b;node.b[\"name\"]->.c;make count total=b.count(nodes), named=c.count(nodes);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Лион"
+    },
+    "tags": {
+      "name=Lyon": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Lyon"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      },
+      "cuisine=japanese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "japanese"
+      }
+    }
+  },
+  {
+    "sample_index": 127,
+    "split": "syn",
+    "nl_question": "Какие дороги в Кёльне имеют покрытие, отличное от грунтового или травяного, или рейтинг ровности выше, чем «плохо» или «очень плохо»?",
+    "OverpassQL": "[out:json];area[\"name\"=\"Köln\"]->.a;way(area.a)[\"highway\"](if:is_tag(\"surface\")&&!lrs_in(t[\"surface\"],\"unpaved;grass\")||is_tag(\"smoothness\")&&!lrs_in(t[\"smoothness\"],\"bad;very_bad\"));out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Кёльн"
+    },
+    "tags": {
+      "name=Köln": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Köln"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      },
+      "smoothness": {
+        "key": "smoothness",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 128,
+    "split": "syn",
+    "nl_question": "Какие региональные пешеходные маршруты связаны с отношением 6331691?",
+    "OverpassQL": "[out:json][timeout:60];relation(6331691)->.r0;way(r.r0)->.w0;relation[\"network\"=\"rwn\"](bw.w0)->.net;.net out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "network=rwn": {
+        "key": "network",
+        "relation": "equal",
+        "value": "rwn"
+      }
+    }
+  },
+  {
+    "sample_index": 129,
+    "split": "syn",
+    "nl_question": "Какие трамвайные платформы в Париже не имеют соответствующей трамвайной остановки?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.a;way[\"public_transport\"=\"platform\"][\"tram\"=\"yes\"](area.a)->.p;node(w.p)[\"railway\"=\"tram_stop\"];way.p(bn)->.s;(.p;- .s;);(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "public_transport=platform": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "platform"
+      },
+      "tram=yes": {
+        "key": "tram",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "railway=tram_stop": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "tram_stop"
+      }
+    }
+  },
+  {
+    "sample_index": 130,
+    "split": "syn",
+    "nl_question": "Какие участки земли в Париже искусственно приспособлены для удержания воды?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Paris\"}}->.a;(nwr[\"landuse\"=\"basin\"](area.a););map_to_area->.r;(relation(pivot.r);way(pivot.r););out qt;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "landuse=basin": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "basin"
+      }
+    }
+  },
+  {
+    "sample_index": 131,
+    "split": "syn",
+    "nl_question": "Какие пешеходные переходы в Париже либо не приспособлены для инвалидных колясок, либо не имеют тактильного покрытия?",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.a;(nwr[\"highway\"=\"crossing\"][\"wheelchair\"!~\".*\"][\"tactile_paving\"!~\".*\"](area.a);nwr[\"highway\"=\"crossing\"][\"wheelchair\"!~\".*\"][\"tactile_paving\"](area.a);nwr[\"highway\"=\"crossing\"][\"wheelchair\"][\"tactile_paving\"!~\".*\"](area.a););out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Париж"
+    },
+    "tags": {
+      "highway=crossing": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "crossing"
+      },
+      "wheelchair!~.*": {
+        "key": "wheelchair",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "tactile_paving!~.*": {
+        "key": "tactile_paving",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    }
+  },
+  {
+    "sample_index": 132,
+    "split": "syn",
+    "nl_question": "Какие есть административные границы округов в штате Карнатака, Индия?",
+    "OverpassQL": "{{geocodeArea:\"Karnataka\"}}->.searchArea;relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"5\"](area.searchArea);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Карнатака"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=5": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "5"
+      }
+    }
+  }
+]

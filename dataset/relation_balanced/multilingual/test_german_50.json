@@ -1,0 +1,1880 @@
+[
+  {
+    "sample_index": 737,
+    "split": "test",
+    "nl_question": "Welche Haltestellen gibt es entlang von Bahnlinien, die weder zum Transilien-Netzwerk gehören noch die Referenz H haben, im Großraum Paris?",
+    "OverpassQL": "[out:json][timeout:25];(relation[\"network\"!=\"Transilien\"][\"ref\"!=\"H\"];)->.Input;(nwr(r.Input:\"stop\"););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "network!=Transilien": {
+        "key": "network",
+        "relation": "not_equal",
+        "value": "Transilien"
+      },
+      "ref!=H": {
+        "key": "ref",
+        "relation": "not_equal",
+        "value": "H"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 737,
+    "v2_index": 1737,
+    "qc_index": 673,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query selects stops from relations not in Transilien network and without ref H, but the NL implies stops along train routes, which is slightly ambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 0,
+    "nl_question_en": "What are all the stops along train routes that are not in the Transilien network and do not have the reference H in the Paris metropolitan area?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 605,
+    "split": "test",
+    "nl_question": "Welche Grenzen von Regionen, Provinzen und Gemeinden in Italien, die keine Verwaltungsgrenzen sind, haben ISTAT-Referenzcodes?",
+    "OverpassQL": "[out:csv(\"ref:ISTAT\",\"admin_level\",\"name\")][timeout:250];{{geocodeArea:\"Italia\"}}->.searchArea;(relation[\"type\"!=\"boundary\"][\"admin_level\"!~\"[468]\"][!\"ref:ISTAT\"](area.searchArea););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Italia"
+    },
+    "tags": {
+      "type!=boundary": {
+        "key": "type",
+        "relation": "not_equal",
+        "value": "boundary"
+      },
+      "admin_level!~[468]": {
+        "key": "admin_level",
+        "relation": "regex_not_match",
+        "value": "[468]"
+      },
+      "!ref:ISTAT": {
+        "key": "ref:ISTAT",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 605,
+    "v2_index": 1605,
+    "qc_index": 130,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for non-administrative relations, but the query filters out specific admin_levels and ref:ISTAT, which is more restrictive than just 'not administrative'."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 9,
+    "nl_question_en": "What are the relations in Italy that are not administrative",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 124,
+    "split": "test",
+    "nl_question": "Welche Gesundheits- und Notfalleinrichtungen, einschließlich Feuerwachen, Ärzte, Krankenhäuser, Kliniken, Apotheken und Zahnärzte, befinden sich im aktuellen Kartenausschnitt?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"amenity\"~\"fire_station|doctors|hospital|clinic|pharmacy|dentist\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "amenity~fire_station|doctors|hospital|clinic|pharmacy|dentist": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "fire_station|doctors|hospital|clinic|pharmacy|dentist"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 124,
+    "qc_index": 295,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately lists all amenity types in the regex, is grammatically perfect, and clearly describes the query intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 18,
+    "nl_question_en": "What health and emergency service facilities, including fire stations, doctors, hospitals, clinics, pharmacies, and dentists, are located within the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 724,
+    "split": "test",
+    "nl_question": "Wo finde ich Dinge, die keine Geldautomaten sind und Bitcoin nicht als Zahlungsmittel akzeptieren?",
+    "OverpassQL": "[out:json][timeout:600];(nwr[\"amenity\"!=\"atm\"][\"currency:XBT\"!=\"yes\"];nwr[\"amenity\"!=\"atm\"][\"payment:bitcoin\"!=\"yes\"];);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "amenity!=atm": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "atm"
+      },
+      "currency:XBT!=yes": {
+        "key": "currency:XBT",
+        "relation": "not_equal",
+        "value": "yes"
+      },
+      "payment:bitcoin!=yes": {
+        "key": "payment:bitcoin",
+        "relation": "not_equal",
+        "value": "yes"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 724,
+    "v2_index": 1724,
+    "qc_index": 189,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies a single set of things that are not ATMs and do not accept Bitcoin, but the query unions two separate sets (one excluding currency:XBT=yes, one excluding payment:bitcoin=yes), which may double-count or miss items."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 21,
+    "nl_question_en": "Where can I find things that are not ATMs and do not accept Bitcoin as a payment method?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 529,
+    "split": "test",
+    "nl_question": "Zeige ausgewiesene Radwege und verkehrsberuhigte Bereiche ohne Überwege im aktuellen Kartenausschnitt.",
+    "OverpassQL": "[out:json][timeout:60];(way[\"highway\"=\"path\"][\"bicycle\"=\"designated\"]({{bbox}});way[\"highway\"=\"living_street\"]({{bbox}});)->.all;node(w.all)[\"highway\"=\"crossing\"]->.cross;(.all; - way(bn.cross););out body;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway=path": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "path"
+      },
+      "bicycle=designated": {
+        "key": "bicycle",
+        "relation": "equal",
+        "value": "designated"
+      },
+      "highway=living_street": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "living_street"
+      },
+      "highway=crossing": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "crossing"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 529,
+    "qc_index": 91,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query retrieves paths and living streets, then subtracts those with crossing nodes, but the NL phrase 'no crossings' could be interpreted as excluding ways that intersect with crossings, which is what the query does, though it's slightly ambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 30,
+    "nl_question_en": "Show designated bicycle paths and living streets with no crossings in the current view.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 297,
+    "split": "test",
+    "nl_question": "Welche Merkmale hat der Fluss Odra?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"name\"=\"Odra\"][\"waterway\"=\"river\"];);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Odra": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Odra"
+      },
+      "waterway=river": {
+        "key": "waterway",
+        "relation": "equal",
+        "value": "river"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 297,
+    "qc_index": 50,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question asks for 'features' which is vague, but the query retrieves all nodes, ways, and relations with that name and waterway type, which is a reasonable interpretation."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 33,
+    "nl_question_en": "What are the features of the Odra River?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 741,
+    "split": "test",
+    "nl_question": "Welche Straßen im aktuellen Kartenausschnitt haben keine Barrieren, die sie versperren?",
+    "OverpassQL": "[out:json][timeout:60];way[\"highway\"]({{bbox}})->.all_hw;node[\"barrier\"]({{bbox}})->.b_nodes;way.all_hw(bn.b_nodes)->.hw_w_b;(.all_hw;- .hw_w_b;)->.hw_no_b;.hw_no_b out geom qt;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "barrier": {
+        "key": "barrier",
+        "relation": "has_key",
+        "value": ""
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 741,
+    "qc_index": 422,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, which selects highways in the current view that are not obstructed by barrier nodes."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 42,
+    "nl_question_en": "Which highways in current view have no barriers obstructing them?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 235,
+    "split": "test",
+    "nl_question": "Welche Orte in Ungarn haben Namen, die 'tonas' oder 'tona' und 'sír' enthalten?",
+    "OverpassQL": "[out:json][timeout:125];{{geocodeArea:\"Hungary\"}}->.searchArea;(nwr[\"name\"~\".*tonas.*\"](area.searchArea);nwr[\"name\"~\".*tona.*sír.*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Hungary"
+    },
+    "tags": {
+      "name~.*tonas.*": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": ".*tonas.*"
+      },
+      "name~.*tona.*sír.*": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": ".*tona.*sír.*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 235,
+    "qc_index": 294,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies 'tonas' OR ('tona' AND 'sír'), but the query uses two separate regex patterns, which may not exactly match the intended logic."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 78,
+    "nl_question_en": "What places in Hungary have names containing 'tonas' or 'tona' and 'sír'?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 250,
+    "split": "test",
+    "nl_question": "Welche Straßen in Portugal haben eine Referenznummer, beginnen aber nicht mit 'A' und entsprechen nicht den spezifischen Mustern für Hauptverkehrsstraßen?",
+    "OverpassQL": "[out:json];{{geocodeArea:\"portugal\"}}->.searchArea;(way[\"highway\"][\"ref\"][\"ref\"!~\"^A (0-9){2}|(EN|ER) (0-9){3}|(EM|CM) (0-9){4}$\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "portugal"
+    },
+    "tags": {
+      "ref!~^A (0-9){2}|(EN|ER) (0-9){3}|(EM|CM) (0-9){4}$": {
+        "key": "ref",
+        "relation": "regex_not_match",
+        "value": "^A (0-9){2}|(EN|ER) (0-9){3}|(EM|CM) (0-9){4}$"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 250,
+    "qc_index": 437,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is mostly accurate but the regex pattern in the query is more specific than 'specific patterns for major routes' suggests."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 81,
+    "nl_question_en": "What roads in Portugal have a reference number but do not start with 'A' and do not match specific patterns for major routes?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 820,
+    "split": "test",
+    "nl_question": "Wo befinden sich die Ladestationen für Elektroautos in Deutschland, der Schweiz und Österreich?",
+    "OverpassQL": "[out:json];((area[\"name:de\"=\"Deutschland\"];area[\"name:de\"=\"Schweiz\"];area[\"name:de\"=\"Österreich\"];);nwr[\"amenity\"=\"charging_station\"](area);>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name:de=Deutschland": {
+        "key": "name:de",
+        "relation": "equal",
+        "value": "Deutschland"
+      },
+      "name:de=Schweiz": {
+        "key": "name:de",
+        "relation": "equal",
+        "value": "Schweiz"
+      },
+      "name:de=Österreich": {
+        "key": "name:de",
+        "relation": "equal",
+        "value": "Österreich"
+      },
+      "amenity=charging_station": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "charging_station"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 820,
+    "qc_index": 34,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query's intent to find charging stations in Germany, Switzerland, and Austria."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 91,
+    "nl_question_en": "Where are the charging stations for electric cars in Germany, Switzerland, and Austria?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 574,
+    "split": "test",
+    "nl_question": "Welche Knoten, Wege und Relationen in Rio Grande do Sul, Brasilien, haben portugiesische Wikipedia-Seiten?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(nwr[\"wikipedia:pt\"~\".*\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "wikipedia:pt~.*": {
+        "key": "wikipedia:pt",
+        "relation": "regex_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 574,
+    "qc_index": 240,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query's intent to retrieve all nodes, ways, and relations with a Portuguese Wikipedia tag within Rio Grande do Sul."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 93,
+    "nl_question_en": "What nodes, ways, and relations have Portuguese Wikipedia pages in Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 933,
+    "split": "test",
+    "nl_question": "Welche Straßen in Dänemark haben Namen, die „Sankt“, „Sct“ oder „Sanct“ enthalten, und welche nahegelegenen Adresspunkte stimmen nicht mit diesen Straßennamen überein?",
+    "OverpassQL": "[out:xml][timeout:2500];{{geocodeArea:Denmark}}->.searchArea;( way[\"highway\"][\"name\"~\"Sankt|Sct|Sanct\"](area.searchArea); )->.roads;( node(around.roads:50)[\"addr:street\"][\"addr:street\"~\"Sankt|Sct|Sanct\"](if:(t[\"addr:street\"] !~ .roads[name])); )->.matchingPoints;(.matchingPoints; .roads;);out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name~Sankt|Sct|Sanct": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Sankt|Sct|Sanct"
+      },
+      "addr:street~Sankt|Sct|Sanct": {
+        "key": "addr:street",
+        "relation": "regex_match",
+        "value": "Sankt|Sct|Sanct"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 933,
+    "qc_index": 296,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question asks for roads and nearby address points that do not match, but the query actually selects address points whose street name matches the pattern, then filters those that do not match the road names, which is slightly different from the NL description."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 98,
+    "nl_question_en": "What roads in Denmark have names containing \"Sankt\", \"Sct\", or \"Sanct\", and what nearby address points do not match these street names?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 644,
+    "split": "test",
+    "nl_question": "Welche Wege, die keine Shared-Lane-Radwege sind, befinden sich im aktuellen Kartenausschnitt?",
+    "OverpassQL": "[out:json][timeout:100];(way[\"cycleway\"!=\"shared_lane\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "cycleway!=shared_lane": {
+        "key": "cycleway",
+        "relation": "not_equal",
+        "value": "shared_lane"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 644,
+    "v2_index": 1644,
+    "qc_index": 633,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 106,
+    "nl_question_en": "What ways that are not shared lane cycleways are in the current view?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 327,
+    "split": "test",
+    "nl_question": "Welche Objekte im aktuellen Kartenausschnitt haben einen Namen und eine Hausnummer, sind aber nicht als Einrichtung, Geschäft, Tourismus, Büro, Handwerksbetrieb, Freizeit, bauliche Anlage oder Gesundheitswesen klassifiziert?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"amenity\"!~\".*\"][\"shop\"!~\".*\"][\"tourism\"!~\".*\"][\"office\"!~\".*\"][\"craft\"!~\".*\"][\"leisure\"!~\".*\"][\"man_made\"!~\".*\"][\"healthcare\"!~\".*\"][\"name\"][\"addr:housenumber\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "-2.021408,30.103569,-1.931511,30.212746",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "amenity!~.*": {
+        "key": "amenity",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "shop!~.*": {
+        "key": "shop",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "tourism!~.*": {
+        "key": "tourism",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "office!~.*": {
+        "key": "office",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "craft!~.*": {
+        "key": "craft",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "leisure!~.*": {
+        "key": "leisure",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "man_made!~.*": {
+        "key": "man_made",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "healthcare!~.*": {
+        "key": "healthcare",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      },
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 327,
+    "qc_index": 338,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the OverpassQL query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 111,
+    "nl_question_en": "What features have a name and house number but are not classified as amenities, shops, tourism, offices, crafts, leisure, man-made structures, or healthcare in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 338,
+    "split": "test",
+    "nl_question": "Welche stillgelegten Straßen gibt es im aktuellen Kartenausschnitt?",
+    "OverpassQL": "[out:json][timeout:25];(way[\"abandoned:highway\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "abandoned:highway": {
+        "key": "abandoned:highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 338,
+    "qc_index": 398,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 114,
+    "nl_question_en": "What abandoned highways are in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 987,
+    "split": "test",
+    "nl_question": "Welche ausgewiesenen Laufstrecken und Joggingpfade gibt es im aktuellen Kartenausschnitt?",
+    "OverpassQL": "[out:json][timeout:25];(way[\"route\"=\"running\"]({{bbox}});relation[\"route\"=\"running\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "route=running": {
+        "key": "route",
+        "relation": "equal",
+        "value": "running"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 987,
+    "qc_index": 47,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query for running routes, is grammatically perfect, and clearly conveys the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 116,
+    "nl_question_en": "What are the designated running paths and trails in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 632,
+    "split": "test",
+    "nl_question": "Welche Tankstellen in der Ukraine verkaufen 98-Oktan-Benzin?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Україна\"}}->.searchArea;(nwr[\"amenity\"=\"fuel\"][\"fuel:octane_98\"=\"yes\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Україна"
+    },
+    "tags": {
+      "amenity=fuel": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fuel"
+      },
+      "fuel:octane_98=yes": {
+        "key": "fuel:octane_98",
+        "relation": "equal",
+        "value": "yes"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 632,
+    "qc_index": 79,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 122,
+    "nl_question_en": "What gas stations in Ukraine sell Octane 98 fuel?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 460,
+    "split": "test",
+    "nl_question": "Welche Objekte, die keine Trinkwasserstellen sind, gibt es in den Niederlanden?",
+    "OverpassQL": "[out:json][timeout:2500];{{geocodeArea:\"Netherlands\"}}->.searchArea;(nwr[\"amenity\"!=\"drinking_water\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Netherlands"
+    },
+    "tags": {
+      "amenity!=drinking_water": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "drinking_water"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 460,
+    "v2_index": 1460,
+    "qc_index": 588,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query retrieves all amenities that are not drinking water sources, but the NL question's phrasing 'things' is vague and could imply any feature, not just amenities."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 143,
+    "nl_question_en": "What are the things that are not drinking water sources in the Netherlands?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 738,
+    "split": "test",
+    "nl_question": "Welche Orte im angegebenen Bereich stehen im Zusammenhang mit der Peer-to-Peer-Wirtschaft?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"identity\"~\"p2p_economy\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "identity~p2p_economy": {
+        "key": "identity",
+        "relation": "regex_match",
+        "value": "p2p_economy"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 738,
+    "qc_index": 271,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is fluent but slightly vague; the query uses 'identity' tag with 'p2p_economy' regex, which is a specific interpretation not fully captured by 'peer-to-peer economy'."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 156,
+    "nl_question_en": "What places are related to the peer-to-peer economy in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 629,
+    "split": "test",
+    "nl_question": "Welche Stationen, die keine U-Bahn-Stationen sind, befinden sich im Umkreis von 50 Kilometern um Warschau?",
+    "OverpassQL": "nwr[\"station\"!=\"subway\"](around:50000,{{geocodeCoords:\"Warsaw\"}});out;>;out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "station!=subway": {
+        "key": "station",
+        "relation": "not_equal",
+        "value": "subway"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 629,
+    "v2_index": 1629,
+    "qc_index": 628,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query uses 'nwr' which includes nodes, ways, and relations, but the NL question implies only stations (typically nodes), and the query also outputs child elements with '>; out;' which is not mentioned."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 163,
+    "nl_question_en": "What stations that are not subway stations are within 50 kilometers of Warsaw?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 807,
+    "split": "test",
+    "nl_question": "Welche Gesundheitseinrichtungen wie Kliniken, Gesundheitsstationen, Zahnärzte, Krankenhäuser oder Apotheken befinden sich in dem durch die Koordinaten 27,3, 84,6, 28,3, 86 definierten Gebiet?",
+    "OverpassQL": "(nwr[\"amenity\"~\"clinic|health_post|dentist|hospital|pharmacy\"](27.3,84.6,28.3,86);>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "amenity~clinic|health_post|dentist|hospital|pharmacy": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "clinic|health_post|dentist|hospital|pharmacy"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 807,
+    "qc_index": 275,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, listing all relevant amenity types and the bounding box coordinates."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 184,
+    "nl_question_en": "What healthcare facilities, such as clinics, health posts, dentists, hospitals, or pharmacies, are located within the area defined by the coordinates 27.3, 84.6, 28.3, 86?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 272,
+    "split": "test",
+    "nl_question": "Welche Straßen ohne wechselnde Einbahnstraßenregelung gibt es im aktuellen Kartenausschnitt?",
+    "OverpassQL": "[out:json][timeout:25];(way[\"oneway\"!=\"reversible\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "oneway!=reversible": {
+        "key": "oneway",
+        "relation": "not_equal",
+        "value": "reversible"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 272,
+    "v2_index": 1272,
+    "qc_index": 131,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies roads without reversible one-way traffic, but the query selects all ways where oneway is not 'reversible', which includes roads with no oneway tag at all, not just those with explicit one-way tags."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 185,
+    "nl_question_en": "What are the roads that do not have reversible one-way traffic in the current view?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 112,
+    "split": "test",
+    "nl_question": "Welche Verwaltungsgrenzen mit Ebenen zwischen 5 und 11 gibt es im angegebenen Bereich?",
+    "OverpassQL": "[out:json][timeout:60];(relation[\"admin_level\"][\"wikidata\"](if:t[\"admin_level\"]>=5&&t[\"admin_level\"]<=11)({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "-33.86400143886,151.20006929231,-33.853880415415,151.21772895646",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level": {
+        "key": "admin_level",
+        "relation": "has_key",
+        "value": ""
+      },
+      "wikidata": {
+        "key": "wikidata",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 112,
+    "qc_index": 446,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits the wikidata filter and the output details, but the core intent is clear."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 190,
+    "nl_question_en": "What are the administrative boundaries with levels between 5 and 11 in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 413,
+    "split": "test",
+    "nl_question": "Zeige Straßen, die keine Fußgängerstraßen sind, in Cambridge, Watertown, Somerville und Charlestown.",
+    "OverpassQL": "[out:json][timeout:90];{{geocodeArea:\"Cambridge, Massachusetts\"}}->.cam;{{geocodeArea:\"Watertown, Massachusetts\"}}->.wat;{{geocodeArea:\"Somerville, Massachusetts\"}}->.som;{{geocodeArea:\"Charlestown, Boston, Massachusetts\"}}->.chs;(.cam;.wat;.som;.chs;)->.area;way[\"highway\"!=\"pedestrian\"](area.area);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Cambridge, Massachusetts"
+    },
+    "tags": {
+      "highway!=pedestrian": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "pedestrian"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 413,
+    "v2_index": 1413,
+    "qc_index": 582,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 193,
+    "nl_question_en": "Show non-pedestrian streets in Cambridge, Watertown, Somerville, and Charlestown.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 12,
+    "split": "test",
+    "nl_question": "Welche Knoten und Wege in Belgien sind der Marke mit der Wikidata-ID Q55935433 zugeordnet?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Belgium\"}}->.searchArea;(nwr[\"brand:wikidata\"=\"Q55935433\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Belgium"
+    },
+    "tags": {
+      "brand:wikidata=Q55935433": {
+        "key": "brand:wikidata",
+        "relation": "equal",
+        "value": "Q55935433"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 12,
+    "qc_index": 8,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 201,
+    "nl_question_en": "What nodes and ways are branded with the entity identified by Wikidata ID Q55935433 in Belgium?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 52,
+    "split": "test",
+    "nl_question": "Welche Geschäfte namens Douglas in den Niederlanden verkaufen Drogerieartikel, Schönheitsprodukte oder Kosmetik?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Netherlands\"}}->.searchArea;(nwr[\"name\"~\"Douglas\"][\"shop\"=\"chemist\"](area.searchArea);nwr[\"name\"~\"Douglas\"][\"shop\"=\"beauty\"](area.searchArea);nwr[\"name\"~\"Douglas\"][\"shop\"=\"cosmetics\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Netherlands"
+    },
+    "tags": {
+      "shop=chemist": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "chemist"
+      },
+      "shop=beauty": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "beauty"
+      },
+      "shop=cosmetics": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "cosmetics"
+      },
+      "name~Douglas": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Douglas"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 52,
+    "qc_index": 11,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, is grammatically correct, and clearly describes the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 216,
+    "nl_question_en": "What shops named Douglas sell chemist products, beauty items, or cosmetics in the Netherlands?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 805,
+    "split": "test",
+    "nl_question": "Welche Parkplätze gibt es in der Provinz Bologna?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Provincia di Bologna\"}}->.searchArea;(nwr[\"amenity\"=\"parking\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Provincia di Bologna"
+    },
+    "tags": {
+      "amenity=parking": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "parking"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 805,
+    "qc_index": 52,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 230,
+    "nl_question_en": "What parking areas are in the Province of Bologna?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 223,
+    "split": "test",
+    "nl_question": "Geschäfte in Deutschland, die keine Bestattungsunternehmen sind",
+    "OverpassQL": "[out:xml][timeout:600];{{geocodeArea:\"Deutschland\"}}->.searchArea;(nwr[\"shop\"!=\"funeral_directors\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Deutschland"
+    },
+    "tags": {
+      "shop!=funeral_directors": {
+        "key": "shop",
+        "relation": "not_equal",
+        "value": "funeral_directors"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 223,
+    "v2_index": 1223,
+    "qc_index": 524,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query selects all shops that are not funeral directors, but the NL question implies only shops, while the query also includes ways and relations."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 232,
+    "nl_question_en": "Shops that are not funeral directors in Germany",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 88,
+    "split": "test",
+    "nl_question": "Welche Straßen in RS, Brasilien tragen den offiziellen Namen 'Rodovia Dyógenes Auildo Martins Pinto'?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(way[\"highway\"~\".*\"][\"official_name\"~\"^Rodovia Dyógenes Auildo Martins Pinto$\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "highway~.*": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": ".*"
+      },
+      "official_name~^Rodovia Dyógenes Auildo Martins Pinto$": {
+        "key": "official_name",
+        "relation": "regex_match",
+        "value": "^Rodovia Dyógenes Auildo Martins Pinto$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 88,
+    "qc_index": 256,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 249,
+    "nl_question_en": "What roads in RS, Brazil are officially named 'Rodovia Dyógenes Auildo Martins Pinto'?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 56,
+    "split": "test",
+    "nl_question": "Welche Straßen in Jaraguá do Sul sind keine untergeordneten Straßentypen und haben keine Gehwege?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Jaraguá do Sul\"}}->.searchArea;(way[\"highway\"][\"highway\"!~\"^(construction|cycleway|footway|path|proposed|service|track)$\"][\"sidewalk:width\"!~\".*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Jaraguá do Sul"
+    },
+    "tags": {
+      "highway!~^(construction|cycleway|footway|path|proposed|service|track)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(construction|cycleway|footway|path|proposed|service|track)$"
+      },
+      "sidewalk:width!~.*": {
+        "key": "sidewalk:width",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 56,
+    "qc_index": 330,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits the specific highway types excluded and the sidewalk condition is slightly misstated (query excludes ways with any sidewalk:width tag, not just missing sidewalks)."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 250,
+    "nl_question_en": "What highways in Jaraguá do Sul are not minor types and do not include sidewalks?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 60,
+    "split": "test",
+    "nl_question": "Welche Bahnhöfe und Haltepunkte in England, Wales und Schottland haben einen CRS-Referenzcode und sind Teil des Overground- oder Rail-Netzwerks?",
+    "OverpassQL": "area(id:3600058437,3600058446,3600058447);nwr[\"railway\"~\"^station$|^halt$\"][\"ref:crs\"][\"network\"~\"Overground|Rail\"](area);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "railway~^station$|^halt$": {
+        "key": "railway",
+        "relation": "regex_match",
+        "value": "^station$|^halt$"
+      },
+      "network~Overground|Rail": {
+        "key": "network",
+        "relation": "regex_match",
+        "value": "Overground|Rail"
+      },
+      "ref:crs": {
+        "key": "ref:crs",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 60,
+    "qc_index": 230,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically perfect, and clearly conveys the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 257,
+    "nl_question_en": "What railway stations and stops in England, Wales, and Scotland have a CRS reference code and are part of the Overground or Rail network?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 982,
+    "split": "test",
+    "nl_question": "Welche Haltepositionen des öffentlichen Nahverkehrs in Thüringen verfügen über Bänke oder Mülleimer?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Thüringen\"}}->.th;node[\"public_transport\"=\"stop_position\"](area.th)(if:t[\"bench\"]==\"yes\"||t[\"bin\"]==\"yes\");out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Thüringen"
+    },
+    "tags": {
+      "public_transport=stop_position": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "stop_position"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 982,
+    "qc_index": 72,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, is grammatically correct, and clearly describes the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 268,
+    "nl_question_en": "Public transport stop positions in Thuringia that have benches or bins.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 303,
+    "split": "test",
+    "nl_question": "Welche Knoten befinden sich an den Straßen Bauness und Olazábal in CABA?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"CABA\"}}->.searchArea;(way[\"highway\"][\"name\"~\"Bauness\"](area.searchArea)->.w1;way[\"highway\"][\"name\"~\"Olazábal\"](area.searchArea)->.w2;);node(w.w1)(w.w2);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "CABA"
+    },
+    "tags": {
+      "name~Bauness": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Bauness"
+      },
+      "name~Olazábal": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Olazábal"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 303,
+    "qc_index": 249,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query finds nodes that are on both ways, not nodes along each highway separately, which is a minor semantic mismatch."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 269,
+    "nl_question_en": "What are the nodes located along the highways Bauness and Olazábal in CABA?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 50,
+    "split": "test",
+    "nl_question": "Wie lauten die Namen der Stadtteile, die mit Adressen in São Luís, Jaraguá do Sul verknüpft sind?",
+    "OverpassQL": "[out:csv(\"addr:suburb\",::type,::id)][timeout:900];{{geocodeArea:\"São Luís,jaraguá do sul\"}}->.searchArea;(nwr[\"addr:suburb\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "São Luís,jaraguá do sul"
+    },
+    "tags": {
+      "addr:suburb": {
+        "key": "addr:suburb",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 50,
+    "qc_index": 374,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question asks for suburb names, but the query also outputs type and id, and the geocode area name has a typo."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 290,
+    "nl_question_en": "What are the suburb names associated with addresses in São Luís, Jaraguá do Sul?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 245,
+    "split": "test",
+    "nl_question": "Welche Geschäfte, die keine Metzgereien sind, gibt es im aktuellen Kartenausschnitt?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"shop\"!=\"butcher\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "shop!=butcher": {
+        "key": "shop",
+        "relation": "not_equal",
+        "value": "butcher"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 245,
+    "v2_index": 1245,
+    "qc_index": 535,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 294,
+    "nl_question_en": "What shops that are not butcher shops are in the current view area?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 301,
+    "split": "test",
+    "nl_question": "Welche Straßentypen, einschließlich primary, secondary, tertiary, trunk, service, residential und unclassified, gibt es im aktuellen Kartenausschnitt, die weder überdacht noch Tunnel sind?",
+    "OverpassQL": "way[\"covered\"!~\".*\"][\"tunnel\"!~\".*\"][\"highway\"~\"primary|secondary|tertiary|trunk|service|residential|primary_link|secondary_link|footway|tertiary_link|unclassified\"]({{bbox}});out geom;>;out qt;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway~primary|secondary|tertiary|trunk|service|residential|primary_link|secondary_link|footway|tertiary_link|unclassified": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "primary|secondary|tertiary|trunk|service|residential|primary_link|secondary_link|footway|tertiary_link|unclassified"
+      },
+      "covered!~.*": {
+        "key": "covered",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "tunnel!~.*": {
+        "key": "tunnel",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 301,
+    "qc_index": 336,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits 'primary_link', 'secondary_link', 'footway', and 'tertiary_link' from the listed highway types, and the phrasing 'not covered or tunnels' is slightly ambiguous but understandable."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 311,
+    "nl_question_en": "What types of roads, including primary, secondary, tertiary, trunk, service, residential, and unclassified, are in the specified area that are not covered or tunnels?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 398,
+    "split": "test",
+    "nl_question": "Zeige alle Bushaltestellen in Belo Horizonte, Minas Gerais, Brasilien.",
+    "OverpassQL": "[out:json];area[\"name\"=\"Brasil\"][\"admin_level\"=\"2\"]->.country;area[\"name\"=\"Minas Gerais\"][\"admin_level\"=\"4\"]->.state;area[\"name\"=\"Belo Horizonte\"][\"admin_level\"=\"8\"]->.city;(nwr[\"highway\"=\"bus_stop\"](area.city)(area.state)(area.country););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Belo Horizonte"
+    },
+    "tags": {
+      "name=Brasil": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Brasil"
+      },
+      "admin_level=2": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "2"
+      },
+      "name=Rio Grande do Sul": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Rio Grande do Sul"
+      },
+      "admin_level=4": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "4"
+      },
+      "name=Santa Maria": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Santa Maria"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "highway=bus_stop": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "bus_stop"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 398,
+    "qc_index": 48,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query's intent to retrieve all bus stops in Belo Horizonte."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 315,
+    "nl_question_en": "Show all bus stops in Belo Horizonte, Minas Gerais, Brazil.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 680,
+    "split": "test",
+    "nl_question": "Welche Wasserquellen, einschließlich Wasserstellen, Trinkwasserstellen, Wassertanks und Quellen, gibt es in Arua und Maracha?",
+    "OverpassQL": "[out:xml][timeout:250];({{geocodeArea:\"Arua\"}};{{geocodeArea:\"Maracha\"}};)->.searchArea;(nwr[\"amenity\"~\"water_point|drinking water\"](area.searchArea);nwr[\"emergency\"~\"water_tank\"](area.searchArea);nwr[\"natural\"~\"spring\"](area.searchArea););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Arua"
+    },
+    "tags": {
+      "amenity~water_point|drinking water": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "water_point|drinking water"
+      },
+      "emergency~water_tank": {
+        "key": "emergency",
+        "relation": "regex_match",
+        "value": "water_tank"
+      },
+      "natural~spring": {
+        "key": "natural",
+        "relation": "regex_match",
+        "value": "spring"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 680,
+    "qc_index": 253,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question accurately lists water sources but omits the emergency water tanks and uses 'points' instead of the OverpassQL's 'water_point' amenity."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 316,
+    "nl_question_en": "What water sources, including points, drinking facilities, tanks, and springs, are available in Arua and Maracha?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 681,
+    "split": "test",
+    "nl_question": "Welche Relationen in Arunachal Pradesh sind keine Verwaltungsgrenzen und haben keine Distriktebene?",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Arunachal Pradesh\"}}->.searchArea;(relation[\"boundary\"!=\"administrative\"][\"admin_level\"!=\"5\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Arunachal Pradesh"
+    },
+    "tags": {
+      "boundary!=administrative": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "administrative"
+      },
+      "admin_level!=5": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "5"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 681,
+    "v2_index": 1681,
+    "qc_index": 651,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question correctly captures the main filters but omits the 'out meta' and recursive '>' parts of the query."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 318,
+    "nl_question_en": "What are the relations in Arunachal Pradesh that are not administrative boundaries and do not have an administrative level of 5?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 709,
+    "split": "test",
+    "nl_question": "Alle Kommunikationstürme und -masten in Friaul-Julisch Venetien.",
+    "OverpassQL": "[out:xml][timeout:60];{{geocodeArea:\"Friuli Venezia Giulia\"}}->.searchArea;(nwr[\"man_made\"~\"tower|mast\"][\"tower:type\"=\"communication\"](area.searchArea););out meta center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Friuli Venezia Giulia"
+    },
+    "tags": {
+      "tower:type=communication": {
+        "key": "tower:type",
+        "relation": "equal",
+        "value": "communication"
+      },
+      "man_made~tower|mast": {
+        "key": "man_made",
+        "relation": "regex_match",
+        "value": "tower|mast"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 709,
+    "qc_index": 94,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 324,
+    "nl_question_en": "All communication towers and masts in Friuli Venezia Giulia.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 273,
+    "split": "test",
+    "nl_question": "Welche historischen Burgen gibt es in Sizilien?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Sicilia\"}}->.searchArea;(nwr[\"historic\"=\"castle\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Sicilia"
+    },
+    "tags": {
+      "historic=castle": {
+        "key": "historic",
+        "relation": "equal",
+        "value": "castle"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 273,
+    "qc_index": 27,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query, is grammatically correct, and clearly asks for historic castles in Sicilia."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 332,
+    "nl_question_en": "What are the historic castles in Sicilia?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 958,
+    "split": "test",
+    "nl_question": "Wie lauten die Namen und Standorte verschiedener Arten von Straßen oder Wegen im Umkreis von 2000 Metern um die Koordinaten 48.708783, 9.001694?",
+    "OverpassQL": "[out:csv(::id,\"name\",::lat,::lon;false;\";\")];nwr[\"highway\"~\"motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|footway|path|living_street|road\"][\"name\"](around:2000,48.708783,9.001694);out tags qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway~motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|footway|path|living_street|road": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|footway|path|living_street|road"
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 958,
+    "qc_index": 458,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question mentions 'locations' but the query outputs only center points, not full geometry, which is a minor omission."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 353,
+    "nl_question_en": "What are the names and locations of various types of roads or paths within 2000 meters of the coordinates 48.708783, 9.001694?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 425,
+    "split": "test",
+    "nl_question": "Zeige für Autos befahrbare Straßen mit Fahrspuren in Simbabwe.",
+    "OverpassQL": "[out:csv(::type,::id,::user,\"highway\",\"lanes\")][timeout:180];{{geocodeArea:\"Zimbabwe\"}}->.za;way[\"highway\"~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service)$\"][\"lanes\"](area.za);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Zimbabwe"
+    },
+    "tags": {
+      "highway~^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|unclassified|residential|service)$"
+      },
+      "lanes": {
+        "key": "lanes",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 425,
+    "qc_index": 380,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 362,
+    "nl_question_en": "Show car-drivable roads with lanes in Zimbabwe.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 193,
+    "split": "test",
+    "nl_question": "Welche Tunnel im aktuellen Kartenausschnitt haben eine angegebene Ebene?",
+    "OverpassQL": "[out:json][timeout:100];(nwr[\"tunnel\"][\"level\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "tunnel": {
+        "key": "tunnel",
+        "relation": "has_key",
+        "value": ""
+      },
+      "level": {
+        "key": "level",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 193,
+    "qc_index": 371,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is accurate but slightly ambiguous as 'specified floor levels' could imply multiple levels, while the query just checks for any level tag."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 363,
+    "nl_question_en": "What tunnels have specified floor levels in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 162,
+    "split": "test",
+    "nl_question": "Welche Straßen und Infrastruktur des öffentlichen Nahverkehrs befinden sich im angegebenen Bereich?",
+    "OverpassQL": "[out:xml];(way[\"highway\"]({{bbox}});relation[\"highway\"]({{bbox}});way[\"public_transport\"]({{bbox}});relation[\"public_transport\"]({{bbox}});)->.a;.a <<->.b;.a >->.c;(.a;.b;.c;);out meta;>;out skel qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "public_transport": {
+        "key": "public_transport",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 162,
+    "qc_index": 366,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question mentions 'roads and public transport infrastructure' but the query also includes relations and nodes via recursion, which is not explicitly stated."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 364,
+    "nl_question_en": "What roads and public transport infrastructure are in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 407,
+    "split": "test",
+    "nl_question": "Welche Rolltreppen und Fahrsteige gibt es in Hongkong?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Hong Kong\"}}->.searchArea;(nwr[\"conveying\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Hong Kong"
+    },
+    "tags": {
+      "conveying": {
+        "key": "conveying",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 407,
+    "qc_index": 416,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query retrieves all features with the 'conveying' tag, which includes escalators and moving walkways, but also other conveyors like travelators, so it's slightly broader than the question."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 365,
+    "nl_question_en": "What escalators and moving walkways are available in Hong Kong?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 374,
+    "split": "test",
+    "nl_question": "Welche Objekte, die keine Tankstellen sind, gibt es auf Mallorca?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Mallorca\"}}->.searchArea;nwr[\"amenity\"!=\"fuel\"](area.searchArea);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Mallorca"
+    },
+    "tags": {
+      "amenity!=fuel": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "fuel"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 374,
+    "v2_index": 1374,
+    "qc_index": 166,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query returns all features except fuel amenities, but the NL question says 'gas stations' which is a broader term than 'fuel' in OSM."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 373,
+    "nl_question_en": "What features that are not gas stations are in Mallorca",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 774,
+    "split": "test",
+    "nl_question": "Welche Berggipfel gibt es in Deutschland?",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Deutschland\"}}->.searchArea;(nwr[\"natural\"=\"peak\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Deutschland"
+    },
+    "tags": {
+      "natural=peak": {
+        "key": "natural",
+        "relation": "equal",
+        "value": "peak"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 774,
+    "qc_index": 54,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 376,
+    "nl_question_en": "What are the mountain peaks in Deutschland?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 621,
+    "split": "test",
+    "nl_question": "Welche Elemente, die keine Straßenelemente sind, sind im aktuellen Kartenausschnitt mit Stand vom 17. November 2013 sichtbar?",
+    "OverpassQL": "[out:xml][timeout:800][date:\"2013-11-17T00:00:00Z\"];(node[!\"highway\"]({{bbox}});way[!\"highway\"]({{bbox}});relation[!\"highway\"]({{bbox}}););out meta;>;out meta;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "!highway": {
+        "key": "highway",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 621,
+    "v2_index": 1621,
+    "qc_index": 484,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 380,
+    "nl_question_en": "What features that are not highways are visible in the current view as of November 17, 2013?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 816,
+    "split": "test",
+    "nl_question": "Welche Arten von Geschäften gibt es in Donauwörth?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Donauwörth\"}}->.searchArea;(nwr[\"shop\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Donauwörth"
+    },
+    "tags": {
+      "shop": {
+        "key": "shop",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 816,
+    "qc_index": 414,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "german",
+    "is_duplicate": false,
+    "ml_index": 382,
+    "nl_question_en": "What types of shops are in Donauwörth?",
+    "nl_source": "curated"
+  }
+]

@@ -1,0 +1,41 @@
+# C2 profile-DPP diversity variant (Korean eval) — PLAIN demos.
+# English demo pool; both score signals KO-query-encoded with ml_8x. The profile kernel
+# is stacked over ALL langs (bare base model, NOT the _KO eval model) + suffixes.
+# Operating point: lambda 0.3 (the established non-English diversity peak; see
+#  internal experiment notes). lambda 0 == relevance top-k (no diversity).
+
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180
+
+eval:
+  score_source_root: /path/to/XOver/dataset/OsmNL_korean
+  files:
+    dev: dev_final_korean.json
+    test: test_final_korean.json
+
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3_KO
+  influence_model: qwen3_qwen3_influence_ml_8x_euclidean_KO   # quality term R(q,e): KO influence
+  profile_influence_model: qwen3_qwen3_influence_ml_8x_euclidean
+  profile_influence_suffixes: ["", "ZH", "JA"]
+
+defaults:
+  k: 6
+  alpha: 0.2
+  split: dev
+  dedup_prefix_len: 80
+
+select:
+  method: dpp
+  kernel_mode: profile
+  M: 20
+  lambda: 0.3          # non-English diversity op-point; lambda 0 == relevance top-k
+  phi_mode: linear
+
+run:
+  out_dir: data/fewshot_ko_profile

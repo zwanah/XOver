@@ -1,0 +1,51 @@
+# Config for C2 relevance-based PLAIN few-shot assembly.
+# Three decoupled stages (pipeline/c2_retrieval): score -> select (-> pool
+# indices) -> assemble. Selects top-k demos by relevance and stitches one plain
+# (#question, #OverpassQL) prompt per eval query. No chain-of-thought (the
+# methodology §4 main setting).
+
+# --- Pool source (the order the TACO embeddings/scores were built over) ---
+# Pool = [train (6047) + syn (133)] = 6180, file order. In plain mode the pool is
+# built directly from these score-source files (each row already carries
+# nl_question + gold OverpassQL); no CoT corpus / cot_source is needed.
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:                            # (split, score_source_file)
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180                         # asserted == score-vector length
+
+# --- Eval side (query_index indexes positionally into the score-source split) ---
+eval:
+  score_source_root: /path/to/OsmNL_source
+  files:
+    dev: dev_final.json
+    test: test_final.json
+
+# --- Precomputed TACO scores (reused, never recomputed; already [0,1]-normalized) ---
+# This is the default ScoreFunction. A trained R1-R3 retriever would plug in at
+# the pipeline.c2_retrieval.scores.ScoreFunction seam instead.
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3
+  # ml_8x = the 8x-multilingual-replication influence model — the validated default
+  # selector. On dev-OQS (plain, paired n=1000) it significantly beats both the
+  # english-only baseline and ml_random on EVERY language at k3/k6, and even LIFTS
+  # English (+3.0/+2.4 pts SIG) — see internal experiment notes.
+  # Per-query min-max normalized to [0,1], commensurable with sim, so the raw
+  # alpha-blend is fair. Do NOT swap to any `_cos` file — those were unnormalized
+  # ([0.85,0.98]) and let sim dominate past alpha~=0.13 (scale artifact, retracted).
+  # English-only baseline (recoverable): qwen3_qwen3_influence_euclidean
+  influence_model: qwen3_qwen3_influence_ml_8x_euclidean
+  # Resolved paths: {root}/Similarity_score/{sim_encoder}_{split}_scores.pkl
+  #                 {root}/Influence_score/{influence_model}_{split}_scores.pkl
+
+# --- Selection / assembly defaults (overridable on the CLI) ---
+defaults:
+  k: 6                 # shots; sweep {3, 6}
+  alpha: 0.2           # relevance = alpha*sim + (1-alpha)*influence; sweep {0.1,0.2,0.3}
+  split: dev           # {dev, test}; dev-OQS for tuning, test/EX only when asked
+  dedup_prefix_len: 80 # W1 parity: skip a candidate sharing this gold-OVQ prefix
+
+run:
+  out_dir: data/fewshot

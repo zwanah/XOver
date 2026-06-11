@@ -1,0 +1,1829 @@
+[
+  {
+    "sample_index": 489,
+    "split": "test",
+    "nl_question": "马格尼托哥尔斯克有哪些不是有轨电车站？",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Magnitogorsk\"}}->.searchArea;(nwr[\"railway\"!=\"tram_stop\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Magnitogorsk"
+    },
+    "tags": {
+      "railway!=tram_stop": {
+        "key": "railway",
+        "relation": "not_equal",
+        "value": "tram_stop"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 489,
+    "v2_index": 1489,
+    "qc_index": 599,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question accurately describes the query, is grammatically perfect, and clearly asks for objects that are not tram stops."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 10,
+    "nl_question_en": "What objects in Magnitogorsk are not tram stops?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 712,
+    "split": "test",
+    "nl_question": "巴伐利亚有哪些不是河流的水路？",
+    "OverpassQL": "[out:json][timeout:165];{{geocodeArea:\"bavaria\"}}->.searchArea;(way[\"waterway\"!=\"river\"](area.searchArea);relation[\"waterway\"!=\"river\"](area.searchArea););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "bavaria"
+    },
+    "tags": {
+      "waterway!=river": {
+        "key": "waterway",
+        "relation": "not_equal",
+        "value": "river"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 712,
+    "v2_index": 1712,
+    "qc_index": 665,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 27,
+    "nl_question_en": "What waterways that are not rivers are in Bavaria?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 716,
+    "split": "test",
+    "nl_question": "士林区有哪些轮椅无障碍场所？",
+    "OverpassQL": "[out:json][timeout:925];{{geocodeArea:\"士林區\"}}->.searchArea;(nwr[\"wheelchair\"](area.searchArea););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "士林區"
+    },
+    "tags": {
+      "wheelchair": {
+        "key": "wheelchair",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 716,
+    "qc_index": 433,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 28,
+    "nl_question_en": "What places in Shilin District have wheelchair accessibility?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 686,
+    "split": "test",
+    "nl_question": "当前视图中哪些地点有 Facebook 页面或主页？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"contact:facebook\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "contact:facebook": {
+        "key": "contact:facebook",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 686,
+    "qc_index": 397,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question is clear and fluent, but slightly inaccurate because the query retrieves nodes, ways, and relations with a contact:facebook tag, not just 'locations' or 'Facebook page or profile'."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 34,
+    "nl_question_en": "What locations have a Facebook page or profile in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 934,
+    "split": "test",
+    "nl_question": "有哪些不是城市的地方？\"\n\n    *   Actually, \"圣保罗有哪些不是城市的？\" is also very natural.\n\n    *   Let's go with: 圣保罗",
+    "OverpassQL": "[out:json][timeout:240];{{geocodeArea:\"São Paulo\"}}->.searchArea;(nwr[\"place\"!=\"city\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "São Paulo"
+    },
+    "tags": {
+      "place!=city": {
+        "key": "place",
+        "relation": "not_equal",
+        "value": "city"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 934,
+    "v2_index": 1934,
+    "qc_index": 115,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits that the query returns all place-tagged features (not just settlements) and includes non-city places like towns, villages, etc."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 41,
+    "nl_question_en": "What places that are not cities are in São Paulo",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 632,
+    "split": "test",
+    "nl_question": "乌克兰有哪些设施不是加油站且不提供 98 号汽油？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Україна\"}}->.searchArea;(nwr[\"amenity\"!=\"fuel\"][\"fuel:octane_98\"!=\"yes\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Україна"
+    },
+    "tags": {
+      "amenity!=fuel": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "fuel"
+      },
+      "fuel:octane_98!=yes": {
+        "key": "fuel:octane_98",
+        "relation": "not_equal",
+        "value": "yes"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 632,
+    "v2_index": 1632,
+    "qc_index": 629,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes gas stations and features without octane 98, but the NL question implies features that are not gas stations and do not sell octane 98, which could include non-fuel amenities; the query's negation logic is slightly ambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 51,
+    "nl_question_en": "What features in Ukraine are not gas stations and do not sell Octane 98 fuel?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 312,
+    "split": "test",
+    "nl_question": "瑞士有哪些可以练习射击运动以外的运动的地方？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Schweiz\"}}->.searchArea;(nwr[\"sport\"!=\"shooting\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Schweiz"
+    },
+    "tags": {
+      "sport!=shooting": {
+        "key": "sport",
+        "relation": "not_equal",
+        "value": "shooting"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 312,
+    "v2_index": 1312,
+    "qc_index": 555,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 52,
+    "nl_question_en": "Where are the locations for practicing sports other than shooting in Switzerland?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 211,
+    "split": "test",
+    "nl_question": "德国乌尔姆有哪些纪念纳粹迫害受害者的绊脚石纪念碑？",
+    "OverpassQL": "[out:csv(::id,::lat,::lon,\"memorial:addr\",\"network\",\"start_date\",\"name\",\"person:date_of_birth\",\"person:date_of_death\",\"wikimedia_commons\",\"wikipedia\",\"website\",\"memorial:text\")][timeout:25];(nwr[\"network\"=\"Stolpersteine Ulm\"];);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "network=Stolpersteine Ulm": {
+        "key": "network",
+        "relation": "equal",
+        "value": "Stolpersteine Ulm"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 211,
+    "qc_index": 75,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 59,
+    "nl_question_en": "What are the Stolperstein memorials in Ulm, Germany that commemorate victims of Nazi persecution?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 169,
+    "split": "test",
+    "nl_question": "当前视图内有哪些名称中包含“Unverpackt”的地点？",
+    "OverpassQL": "[out:json][timeout:100];(nwr[\"name\"~\".*[Uu]nverpackt.*\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "name~.*[Uu]nverpackt.*": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": ".*[Uu]nverpackt.*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 169,
+    "qc_index": 278,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 66,
+    "nl_question_en": "What locations have 'Unverpackt' in their name within the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 224,
+    "split": "test",
+    "nl_question": "昆士兰州有哪些不是医院的要素？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Queensland\"}}->.searchArea;(nwr[\"amenity\"!=\"hospital\"](area.searchArea);nwr[\"healthcare\"!=\"hospital\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Queensland"
+    },
+    "tags": {
+      "amenity!=hospital": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "hospital"
+      },
+      "healthcare!=hospital": {
+        "key": "healthcare",
+        "relation": "not_equal",
+        "value": "hospital"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 224,
+    "v2_index": 1224,
+    "qc_index": 525,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is ambiguous about 'features' and doesn't specify that it excludes both amenity=hospital and healthcare=hospital, but the query is mostly accurate."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 68,
+    "nl_question_en": "What features are not hospitals in Queensland?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 677,
+    "split": "test",
+    "nl_question": "滨海塞纳省有哪些生活设施、商店和休闲设施，它们的详细信息是什么？",
+    "OverpassQL": "[out:csv(::id,\"amenity\",\"name\",\"contact:website\",\"brand\",\"source\",::type,::lon,::lat,::count;true;\"|\")];area[\"name\"=\"Seine-Maritime\"]->.a;(nwr[\"amenity\"](area.a);nwr[\"shop\"](area.a);nwr[\"leisure\"](area.a););out;out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Seine-Maritime"
+    },
+    "tags": {
+      "name=Seine-Maritime": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Seine-Maritime"
+      },
+      "amenity": {
+        "key": "amenity",
+        "relation": "has_key",
+        "value": ""
+      },
+      "shop": {
+        "key": "shop",
+        "relation": "has_key",
+        "value": ""
+      },
+      "leisure": {
+        "key": "leisure",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 677,
+    "qc_index": 413,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question accurately describes the query's selection of amenities, shops, and leisure facilities in Seine-Maritime, but omits mention of the CSV output format and specific fields like ID, coordinates, and source."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 71,
+    "nl_question_en": "What amenities, shops, and leisure facilities are available in Seine-Maritime, and what are their details?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 992,
+    "split": "test",
+    "nl_question": "罗加兰有哪些不属于 Circle K、Esso、ST1、YX 或 Best 品牌的加油站？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Rogaland\"}}->.searchArea;(nwr[\"amenity\"=\"fuel\"][\"ref:circlek\"!~\".*\"][\"ref:esso\"!~\".*\"][\"ref:st1\"!~\".*\"][\"ref:yx\"!~\".*\"][\"ref:best\"!~\".*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Rogaland"
+    },
+    "tags": {
+      "amenity=fuel": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fuel"
+      },
+      "ref:circlek!~.*": {
+        "key": "ref:circlek",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:esso!~.*": {
+        "key": "ref:esso",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:st1!~.*": {
+        "key": "ref:st1",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:yx!~.*": {
+        "key": "ref:yx",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:best!~.*": {
+        "key": "ref:best",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 992,
+    "qc_index": 358,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question accurately describes the query's intent but uses 'branding' while the query filters by ref tags, which may not fully capture all branding variations."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 74,
+    "nl_question_en": "Where are the fuel stations in Rogaland that do not have Circle K, Esso, ST1, YX, or Best branding?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 487,
+    "split": "test",
+    "nl_question": "马来西亚有哪些高速公路、干线公路和一级公路连接线？",
+    "OverpassQL": "[out:json][timeout:2500];({{geocodeArea:\"Malaysia\"}};)->.searchArea;(way[\"highway\"~\"motorway|trunk|primary_link\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Malaysia"
+    },
+    "tags": {
+      "highway~motorway|trunk|primary_link": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary_link"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 487,
+    "qc_index": 243,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly states the intent."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 77,
+    "nl_question_en": "What are the motorway, trunk, and primary link roads in Malaysia?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 634,
+    "split": "test",
+    "nl_question": "显示当前视图中不在施工的地方。",
+    "OverpassQL": "[out:json][timeout:25];(nwr[!\"construction\"]({{bbox}});nwr[\"landuse\"!=\"construction\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "!construction": {
+        "key": "construction",
+        "relation": "not_has_key",
+        "value": ""
+      },
+      "landuse!=construction": {
+        "key": "landuse",
+        "relation": "not_equal",
+        "value": "construction"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 634,
+    "v2_index": 1634,
+    "qc_index": 135,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes features with a 'construction' tag or landuse, but the NL question is slightly ambiguous about what 'under construction' means."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 103,
+    "nl_question_en": "Show me the places that are not currently under construction in the current view.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 224,
+    "split": "test",
+    "nl_question": "昆士兰州有哪些提供住院治疗的医院？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Queensland\"}}->.searchArea;(nwr[\"amenity\"=\"hospital\"](area.searchArea);nwr[\"healthcare\"=\"hospital\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Queensland"
+    },
+    "tags": {
+      "amenity=hospital": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "hospital"
+      },
+      "healthcare=hospital": {
+        "key": "healthcare",
+        "relation": "equal",
+        "value": "hospital"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 224,
+    "qc_index": 25,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query retrieves hospitals but doesn't filter for in-patient medical treatment, which is a minor omission."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 110,
+    "nl_question_en": "What hospitals provide in-patient medical treatment in Queensland?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 347,
+    "split": "test",
+    "nl_question": "弗罗茨瓦夫有哪些不是图书馆？",
+    "OverpassQL": "[out:json][timeout:120];{{geocodeArea:\"Wrocław\"}}->.searchArea;(nwr[\"amenity\"!=\"library\"](area.searchArea););out;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Wrocław"
+    },
+    "tags": {
+      "amenity!=library": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "library"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 347,
+    "v2_index": 1347,
+    "qc_index": 568,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query returns all features with any amenity tag except library, but the NL question implies all features that are not libraries, which is broader."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 113,
+    "nl_question_en": "What is in Wrocław that is not a library?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 563,
+    "split": "test",
+    "nl_question": "巴西有哪些五层及以上的建筑？",
+    "OverpassQL": "[out:json][timeout:900];{{geocodeArea:\"brazil\"}}->.searchArea;(nwr[\"building:levels\"~\"^[5-9][0-9]|[0-9]{3,}$\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "brazil"
+    },
+    "tags": {
+      "building:levels~^[5-9][0-9]|[0-9]{3,}$": {
+        "key": "building:levels",
+        "relation": "regex_match",
+        "value": "^[5-9][0-9]|[0-9]{3,}$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 563,
+    "qc_index": 292,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for buildings with five or more levels, but the OverpassQL regex excludes levels 5-9 and only matches 10+ or three-digit numbers, missing single-digit 5-9."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 133,
+    "nl_question_en": "What buildings have five or more levels in Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 695,
+    "split": "test",
+    "nl_question": "巴西有哪些不是酒吧的要素？",
+    "OverpassQL": "[out:json][timeout:900];{{geocodeArea:\"Brasil\"}}->.searchArea;(nwr[\"amenity\"!=\"pub\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Brasil"
+    },
+    "tags": {
+      "amenity!=pub": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "pub"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 695,
+    "v2_index": 1695,
+    "qc_index": 658,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query retrieves all features with any amenity tag except pubs, but the NL question implies all features (not just amenities) that are not pubs."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 134,
+    "nl_question_en": "What features that are not pubs are in Brazil?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 510,
+    "split": "test",
+    "nl_question": "当前视图中，主要道路与住宅街道的交汇点有哪些？",
+    "OverpassQL": "[bbox:{{bbox}}];way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary)_link)$\"]->.major;way[\"highway\"~\"^(unclassified|residential|living_street)$\"]->.minor;node(w.major)(w.minor);out;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway~^(motorway|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary)_link)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(motorway|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary)_link)$"
+      },
+      "highway~^(unclassified|residential|living_street)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(unclassified|residential|living_street)$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 510,
+    "qc_index": 293,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's logic of finding nodes shared by major and minor roads within the current view."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 137,
+    "nl_question_en": "What are the intersection points between major roads and residential streets in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 744,
+    "split": "test",
+    "nl_question": "法国有哪些单行道不允许骑行者通行？",
+    "OverpassQL": "[out:xml][timeout:600];{{geocodeArea:\"France\"}}->.searchArea;(way[\"cycleway\"!=\"opposite_lane\"][\"oneway\"=\"yes\"](area.searchArea);way[\"cycleway:left\"!=\"opposite_lane\"][\"oneway\"=\"yes\"](area.searchArea);way[\"cycleway:right\"!=\"opposite_lane\"][\"oneway\"=\"yes\"](area.searchArea););out meta;>;out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "France"
+    },
+    "tags": {
+      "cycleway!=opposite_lane": {
+        "key": "cycleway",
+        "relation": "not_equal",
+        "value": "opposite_lane"
+      },
+      "cycleway:left!=opposite_lane": {
+        "key": "cycleway:left",
+        "relation": "not_equal",
+        "value": "opposite_lane"
+      },
+      "cycleway:right!=opposite_lane": {
+        "key": "cycleway:right",
+        "relation": "not_equal",
+        "value": "opposite_lane"
+      },
+      "oneway=yes": {
+        "key": "oneway",
+        "relation": "equal",
+        "value": "yes"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 744,
+    "v2_index": 1744,
+    "qc_index": 675,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query filters one-way roads without opposite cycle lanes, but the NL question asks for roads that 'do not allow cyclists', which is broader and not fully captured."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 142,
+    "nl_question_en": "Which one-way roads in France do not allow cyclists",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 902,
+    "split": "test",
+    "nl_question": "萨马拉州有哪些区级或地方级的行政边界？",
+    "OverpassQL": "[out:json];(area[\"name\"=\"Самарская область\"]->.a;relation[\"admin_level\"=\"9\"](area.a););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Самарская область"
+    },
+    "tags": {
+      "name=Самарская область": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Самарская область"
+      },
+      "admin_level=9": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "9"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 902,
+    "qc_index": 37,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 155,
+    "nl_question_en": "What are the administrative boundaries at the district or local level in Samara Oblast?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 506,
+    "split": "test",
+    "nl_question": "波兰有哪些不是博物馆的？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Poland\"}}->.searchArea;(nwr[\"tourism\"!=\"museum\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Poland"
+    },
+    "tags": {
+      "tourism!=museum": {
+        "key": "tourism",
+        "relation": "not_equal",
+        "value": "museum"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 506,
+    "v2_index": 1506,
+    "qc_index": 607,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query selects all features with tourism tag not equal to museum, but the NL question is vague about 'things' and doesn't specify the tourism key."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 160,
+    "nl_question_en": "What things that are not museums are in Poland?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 688,
+    "split": "test",
+    "nl_question": "巴西圣卡塔琳娜州南圣弗朗西斯科有哪些较小的本地行政单位，例如社区或区？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"SÃO FRANCISCO DO SUL SC Brasil\"}}->.searchArea;(nwr[\"admin_level\"=\"10\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "SÃO FRANCISCO DO SUL SC Brasil"
+    },
+    "tags": {
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 688,
+    "qc_index": 51,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query for admin_level=10 units in the specified area, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 171,
+    "nl_question_en": "What are the small local administrative units, like neighborhoods or districts, in São Francisco do Sul, SC, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 890,
+    "split": "test",
+    "nl_question": "美国马萨诸塞州埃塞克斯县有哪些一级、二级或三级道路没有标注最高限速？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Essex County, Massachusetts, United States of America\"}}->.searchArea;(way[\"highway\"~\"(primary|secondary|tertiary)\"][\"maxspeed\"!~\".*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Essex County, Massachusetts, United States of America"
+    },
+    "tags": {
+      "highway~(primary|secondary|tertiary)": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "(primary|secondary|tertiary)"
+      },
+      "maxspeed!~.*": {
+        "key": "maxspeed",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 890,
+    "qc_index": 268,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 178,
+    "nl_question_en": "What primary, secondary, or tertiary roads in Essex County, Massachusetts do not have a specified maximum speed?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 671,
+    "split": "test",
+    "nl_question": "图宾根有哪些地方没有门牌号？",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:25];{{geocodeArea:\"Tübingen\"}}->.searchArea;(nwr[!\"addr:housenumber\"](area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Tübingen"
+    },
+    "tags": {
+      "!addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 671,
+    "v2_index": 1671,
+    "qc_index": 491,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 195,
+    "nl_question_en": "What places do not have house numbers in Tübingen?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 770,
+    "split": "test",
+    "nl_question": "在坐标 34.225, -119.31, 34.34, -119.119 范围内，有哪些不是自行车和机动车共享的自行车道？",
+    "OverpassQL": "[bbox:34.225,-119.31,34.34,-119.119][out:xml][timeout:25];(way[\"cycleway\"!=\"shared_lane\"];way[\"cycleway:right\"!=\"shared_lane\"];way[\"cycleway:left\"!=\"shared_lane\"];);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "cycleway!=shared_lane": {
+        "key": "cycleway",
+        "relation": "not_equal",
+        "value": "shared_lane"
+      },
+      "cycleway:right!=shared_lane": {
+        "key": "cycleway:right",
+        "relation": "not_equal",
+        "value": "shared_lane"
+      },
+      "cycleway:left!=shared_lane": {
+        "key": "cycleway:left",
+        "relation": "not_equal",
+        "value": "shared_lane"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 770,
+    "v2_index": 1770,
+    "qc_index": 687,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question is clear and fluent, but the query also excludes ways where cycleway:right or cycleway:left are not shared_lane, which is a minor omission from the question."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 196,
+    "nl_question_en": "What cycleways are not shared lanes for bicycles and vehicles",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 424,
+    "split": "test",
+    "nl_question": "巴黎有哪些列入法国梅里美文化遗产数据库的要素？",
+    "OverpassQL": "[out:json][timeout:300];{{geocodeArea:\"Paris\"}}->.searchArea;(nwr[\"ref:mhs\"](area.searchArea););out;>;out skel;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Paris"
+    },
+    "tags": {
+      "ref:mhs": {
+        "key": "ref:mhs",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 424,
+    "qc_index": 386,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query uses 'ref:mhs' which is the Mérimée heritage database tag, but the NL question says 'features listed in the French Mérimée heritage database' which is accurate; however, the query also includes 'out;>;out skel;' which outputs geometry and child elements, not just the features themselves, a minor omission."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 205,
+    "nl_question_en": "What are the features listed in the French Mérimée heritage database in Paris?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 618,
+    "split": "test",
+    "nl_question": "雅拉瓜杜苏尔 Vila Lalau 主要道路的路面类型和长度是多少（不含自行车道、人行道、服务道路、在建、规划中或简易道路）？",
+    "OverpassQL": "[out:csv(\"surface\",\"length\")];{{geocodeArea:\"Vila Lalau,Jaraguá do Sul\"}}->.searchArea;way[\"highway\"][\"highway\"!~\"^(construction|cycleway|footway|path|proposed|service|track)$\"][\"surface\"](area.searchArea);for(t[\"surface\"]){make stat surface=_.val,count=count(ways),length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Vila Lalau,Jaraguá do Sul"
+    },
+    "tags": {
+      "highway!~^(construction|cycleway|footway|path|proposed|service|track)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(construction|cycleway|footway|path|proposed|service|track)$"
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 618,
+    "qc_index": 388,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for surface types and lengths of major roads, but the query excludes many highway types beyond just bicycle, pedestrian, service, and construction, and the output format is CSV with per-surface aggregates, not individual road details."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 207,
+    "nl_question_en": "What are the surface types and lengths of major roads in Vila Lalau, Jaraguá do Sul, excluding those for bicycles, pedestrians, service, or under construction?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 633,
+    "split": "test",
+    "nl_question": "当前视图内有哪些不是社会服务设施的要素？",
+    "OverpassQL": "[out:json][timeout:125];(nwr[\"amenity\"!=\"social_facility\"]({{bbox}});nwr[!\"social_facility\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "amenity!=social_facility": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "social_facility"
+      },
+      "!social_facility": {
+        "key": "social_facility",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 633,
+    "v2_index": 1633,
+    "qc_index": 630,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is clear and fluent, but the query's double condition (excluding amenity=social_facility and also excluding any feature with a social_facility tag) is not fully captured by the question."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 211,
+    "nl_question_en": "What features other than social service facilities are located within the specified area?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 791,
+    "split": "test",
+    "nl_question": "所有的飞盘高尔夫球场和设施有哪些？",
+    "OverpassQL": "[out:json][timeout:120];(nwr[\"disc_golf\"];nwr[\"discgolf\"];);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "disc_golf": {
+        "key": "disc_golf",
+        "relation": "has_key",
+        "value": ""
+      },
+      "discgolf": {
+        "key": "discgolf",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 791,
+    "qc_index": 418,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the query, which retrieves all elements tagged with disc golf-related keys."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 226,
+    "nl_question_en": "What are all the disc golf courses and facilities?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 216,
+    "split": "test",
+    "nl_question": "当前视图内有哪些冬季运动场地和设施？",
+    "OverpassQL": "[out:json];(nwr[~\"piste.*\"~\".*\"][\"piste.type\"!~\".*\"]({{bbox}});nwr[~\"piste.type\"~\"downhill|snow_park\"]({{bbox}});nwr[\"site\"=\"piste\"]({{bbox}});nwr[\"aerialway\"]({{bbox}});nwr[~\"railway\"~\"funicular|incline\"]({{bbox}});nwr[\"landuse\"=\"winter_sports\"]({{bbox}}););(._;>;);out;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "site=piste": {
+        "key": "site",
+        "relation": "equal",
+        "value": "piste"
+      },
+      "landuse=winter_sports": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "winter_sports"
+      },
+      "piste.type!~.*": {
+        "key": "piste.type",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "aerialway": {
+        "key": "aerialway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 216,
+    "qc_index": 58,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query includes many winter sports elements, but the NL question is vague about 'facilities' while the query also captures pistes, aerialways, and landuse, which is more than just facilities."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 259,
+    "nl_question_en": "What winter sports facilities are in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 568,
+    "split": "test",
+    "nl_question": "诺维萨德市有哪些住宅区道路？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Novi Sad City\"}}->.searchArea;(way[\"highway\"=\"residential\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Novi Sad City"
+    },
+    "tags": {
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 568,
+    "qc_index": 60,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 263,
+    "nl_question_en": "What are the residential roads in Novi Sad City?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 843,
+    "split": "test",
+    "nl_question": "日内瓦不是长椅的设施",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Geneva\"}}->.searchArea;(nwr[\"amenity\"!=\"bench\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Geneva"
+    },
+    "tags": {
+      "amenity!=bench": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "bench"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 843,
+    "v2_index": 1843,
+    "qc_index": 719,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is accurate but overly broad, as the query only excludes benches with the amenity tag, not all benches."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 272,
+    "nl_question_en": "Things that are not benches in Geneva",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 908,
+    "split": "test",
+    "nl_question": "阿尔特有哪些没有门牌号、邮政编码或街道地址的房屋？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Aalter\"}}->.searchArea;(nwr[\"building\"=\"house\"][\"addr:housenumber\"!~\".*\"](area.searchArea);nwr[\"building\"=\"house\"][\"addr:postcode\"!~\".*\"](area.searchArea);nwr[\"building\"=\"house\"][\"addr:street\"!~\".*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Aalter"
+    },
+    "tags": {
+      "building=house": {
+        "key": "building",
+        "relation": "equal",
+        "value": "house"
+      },
+      "addr:housenumber!~.*": {
+        "key": "addr:housenumber",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "addr:postcode!~.*": {
+        "key": "addr:postcode",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "addr:street!~.*": {
+        "key": "addr:street",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 908,
+    "qc_index": 356,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query uses OR logic (union of three separate conditions), but the NL question implies AND logic (houses missing all three attributes), so there is a minor semantic mismatch."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 275,
+    "nl_question_en": "What houses are in Aalter that do not have a house number, postcode, or street address?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 945,
+    "split": "test",
+    "nl_question": "卡纳塔克邦有哪些非 10 级的非行政边界？",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Karnataka\"}}->.searchArea;(relation[\"boundary\"!=\"administrative\"][\"admin_level\"!=\"10\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Karnataka"
+    },
+    "tags": {
+      "boundary!=administrative": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "administrative"
+      },
+      "admin_level!=10": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "10"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 945,
+    "v2_index": 1945,
+    "qc_index": 761,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 279,
+    "nl_question_en": "What are the boundaries that are not administrative and not at level 10 in Karnataka?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 630,
+    "split": "test",
+    "nl_question": "巴斯和东北萨默塞特有哪些没有参与英国食品卫生评分计划的商家？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Bath and North East Somerset\"}}->.Area;(nwr[!\"fhrs:id\"](area.Area););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Bath and North East Somerset"
+    },
+    "tags": {
+      "!fhrs:id": {
+        "key": "fhrs:id",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 630,
+    "v2_index": 1630,
+    "qc_index": 486,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically perfect, and clearly conveys the intent."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 288,
+    "nl_question_en": "Establishments not under the UK's Food Hygiene Rating Scheme in Bath and North East Somerset",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 337,
+    "split": "test",
+    "nl_question": "莱茵河畔路德维希港有哪些不是服务道路的道路？",
+    "OverpassQL": "[out:json][timeout:125];{{geocodeArea:\"Ludwigshafen am Rhein\"}}->.searchArea;(way[\"highway\"!=\"service\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ludwigshafen am Rhein"
+    },
+    "tags": {
+      "highway!=service": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "service"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 337,
+    "v2_index": 1337,
+    "qc_index": 564,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 299,
+    "nl_question_en": "What are the roads that are not service roads in Ludwigshafen am Rhein?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 729,
+    "split": "test",
+    "nl_question": "有哪些宗教场所的名称是“Iglesia”？",
+    "OverpassQL": "[out:json][timeout:900];(nwr[\"name\"=\"Iglesia\"][\"amenity\"=\"place_of_worship\"];);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Iglesia": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Iglesia"
+      },
+      "amenity=place_of_worship": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "place_of_worship"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 729,
+    "qc_index": 46,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 310,
+    "nl_question_en": "What places of worship are named 'Iglesia'?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 619,
+    "split": "test",
+    "nl_question": "吉森的非住宅区街道总长度是多少？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Gießen\"}}->.searchArea;way[\"highway\"!=\"residential\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Gießen"
+    },
+    "tags": {
+      "highway!=residential": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "residential"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 619,
+    "v2_index": 1619,
+    "qc_index": 188,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query sums all non-residential highway ways, but the NL question implies 'streets' which may exclude paths or tracks, causing a minor semantic mismatch."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 321,
+    "nl_question_en": "What is the total length of non-residential streets in Gießen?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 655,
+    "split": "test",
+    "nl_question": "当前视图的指定区域内有哪些不是交通信号灯的点？",
+    "OverpassQL": "[out:json][timeout:25];(node[\"highway\"!=\"traffic_signals\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway!=traffic_signals": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "traffic_signals"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 655,
+    "v2_index": 1655,
+    "qc_index": 637,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query returns nodes without highway=traffic_signals, but the NL question's 'current view' is ambiguous and the query also includes extra output statements."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 341,
+    "nl_question_en": "What nodes are not traffic signals in the current view of the specified area?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 409,
+    "split": "test",
+    "nl_question": "哪些由意大利高山俱乐部 (CAI) 运营的徒步路线编号在 700 到 799 之间，且在 2017 年进行过测绘？",
+    "OverpassQL": "[out:csv(::id,::type,\"name\",\"ref\")];(relation[\"route\"=\"hiking\"][\"ref\"~\"[7][0-9][0-9]\"][\"operator\"~\"CAI|C.A.I.|Club Alpino Italiano\"][\"survey:date\"~\"2017*\"];);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "route=hiking": {
+        "key": "route",
+        "relation": "equal",
+        "value": "hiking"
+      },
+      "ref~[7][0-9][0-9]": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "[7][0-9][0-9]"
+      },
+      "operator~CAI|C.A.I.|Club Alpino Italiano": {
+        "key": "operator",
+        "relation": "regex_match",
+        "value": "CAI|C.A.I.|Club Alpino Italiano"
+      },
+      "survey:date~2017*": {
+        "key": "survey:date",
+        "relation": "regex_match",
+        "value": "2017*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 409,
+    "qc_index": 267,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query filters for routes surveyed in 2017, but the question asks for routes not surveyed in 2017, which is a key semantic mismatch."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 354,
+    "nl_question_en": "What hiking routes operated by the Club Alpino Italiano have references in the 700-799 range and were not surveyed in 2017?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 926,
+    "split": "test",
+    "nl_question": "马丁纳弗兰卡有哪些咖啡馆？",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Martina Franca\"}}->.searchArea;(nwr[\"amenity\"=\"cafe\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Martina Franca"
+    },
+    "tags": {
+      "amenity=cafe": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "cafe"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 926,
+    "qc_index": 23,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query, is grammatically correct, and clearly asks for cafes in Martina Franca."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 359,
+    "nl_question_en": "What cafes are in Martina Franca?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 278,
+    "split": "test",
+    "nl_question": "新南威尔士州有哪些不是消防站的要素？",
+    "OverpassQL": "[out:csv(::type,::id,::lat,::lon,\"name\",\"operator\";true;\",\")][timeout:250];{{geocodeArea:\"New South Wales\"}}->.searchArea;(nwr[\"amenity\"!=\"fire_station\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "New South Wales"
+    },
+    "tags": {
+      "amenity!=fire_station": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "fire_station"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 278,
+    "v2_index": 1278,
+    "qc_index": 542,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies all features, but the query only retrieves nodes, ways, and relations with amenity not equal to fire_station, missing features without an amenity tag."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 368,
+    "nl_question_en": "What features that are not fire stations are located in New South Wales?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 579,
+    "split": "test",
+    "nl_question": "谢科维奇市镇 (Opština Šekovići) 境内有哪些不带编号且不是一级、二级或三级的公路？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Opština Šekovići\"}}->.searchArea;(way[\"highway\"!~\"primary|secondary|tertiary\"][!\"ref\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Opština Šekovići"
+    },
+    "tags": {
+      "highway!~primary|secondary|tertiary": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "primary|secondary|tertiary"
+      },
+      "!ref": {
+        "key": "ref",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 579,
+    "v2_index": 1579,
+    "qc_index": 480,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 371,
+    "nl_question_en": "What are the highways that are not primary, secondary, or tertiary and do not have reference numbers in Opština Šekovići?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 379,
+    "split": "test",
+    "nl_question": "维拉罗萨有哪些门牌号？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Villarosa\"}}->.searchArea;(nwr[\"addr:housenumber\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Villarosa"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 379,
+    "qc_index": 387,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question accurately and clearly asks for house numbers in Villarosa, matching the query."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 383,
+    "nl_question_en": "What are the house numbers in Villarosa?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 21,
+    "split": "test",
+    "nl_question": "南达科他州有哪些位于铁路编组站内的轨道？",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"South Dakota\"}}->.searchArea;(way[\"service\"=\"yard\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "South Dakota"
+    },
+    "tags": {
+      "service=yard": {
+        "key": "service",
+        "relation": "equal",
+        "value": "yard"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 21,
+    "qc_index": 29,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query retrieves ways with service=yard, which are rail yard tracks, but the NL question asks for 'tracks within rail yards', which could also include other track types inside yards."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 384,
+    "nl_question_en": "What tracks are located within rail yards in South Dakota?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 225,
+    "split": "test",
+    "nl_question": "德累斯顿有哪些道路的名称词源信息链接到了 Wikidata 标识符或维基百科文章？",
+    "OverpassQL": "[out:xml][timeout:250];{{geocodeArea:\"Dresden\"}}->.searchArea;((way[\"highway\"][\"name\"][\"name:etymology:wikidata\"](area.searchArea););(way[\"highway\"][\"name\"][\"name:etymology:wikipedia\"](area.searchArea);););(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Dresden"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name:etymology:wikidata": {
+        "key": "name:etymology:wikidata",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name:etymology:wikipedia": {
+        "key": "name:etymology:wikipedia",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 225,
+    "qc_index": 379,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 389,
+    "nl_question_en": "What roads in Dresden have names with etymology information linked to a Wikidata identifier or a Wikipedia article?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 723,
+    "split": "test",
+    "nl_question": "区域 3600061320 内有哪些药店？",
+    "OverpassQL": "[out:json];area(3600061320)->.search;(nwr[\"amenity\"=\"pharmacy\"](area.search););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "amenity=pharmacy": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "pharmacy"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 723,
+    "qc_index": 95,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 2,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The question is accurate but slightly awkward phrasing and ambiguous about 'area 3600061320'."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 390,
+    "nl_question_en": "What pharmacies are available for medications in the area 3600061320?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 956,
+    "split": "test",
+    "nl_question": "雅拉瓜-杜苏尔马尔维公园内主要道路（不含自行车道、人行道、服务道路或在建道路）的路面类型和长度有哪些？",
+    "OverpassQL": "[out:csv(\"surface\",\"length\")];{{geocodeArea:\"Parque Malwee,Jaraguá do Sul\"}}->.searchArea;way[\"highway\"][\"highway\"!~\"^(construction|cycleway|footway|path|proposed|service|track)$\"][\"surface\"](area.searchArea);for(t[\"surface\"]){make stat surface=_.val,count=count(ways),length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Parque Malwee,Jaraguá do Sul"
+    },
+    "tags": {
+      "highway!~^(construction|cycleway|footway|path|proposed|service|track)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(construction|cycleway|footway|path|proposed|service|track)$"
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 956,
+    "qc_index": 402,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for surface type and length of major roads, but the query excludes many highway types beyond just bicycles, pedestrians, service, and construction, and also uses a for-loop to aggregate stats rather than listing individual roads."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 398,
+    "nl_question_en": "What is the surface type and length of major roads in Parque Malwee, Jaraguá do Sul, excluding those for bicycles, pedestrians, service, or under construction?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 397,
+    "split": "test",
+    "nl_question": "菲律宾有哪些名称中包含“Savings”且曾用名为“Planters”的银行？",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Philippines\"}}->.searchArea;(nwr[\"amenity\"=\"bank\"][\"name\"~\"Savings\"][\"old_name\"~\"Planters\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Philippines"
+    },
+    "tags": {
+      "amenity=bank": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "bank"
+      },
+      "name~Savings": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Savings"
+      },
+      "old_name~Planters": {
+        "key": "old_name",
+        "relation": "regex_match",
+        "value": "Planters"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 397,
+    "qc_index": 297,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "mandarin_simplified",
+    "is_duplicate": false,
+    "ml_index": 399,
+    "nl_question_en": "What banks in the Philippines have 'Savings' in their name and were previously known as 'Planters'?",
+    "nl_source": "curated"
+  }
+]

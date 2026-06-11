@@ -1,0 +1,1919 @@
+[
+  {
+    "sample_index": 499,
+    "split": "test",
+    "nl_question": "バヌアツにある滑走路、ターミナル、ヘリポートなどの航空輸送インフラ施設を教えてください。",
+    "OverpassQL": "[out:csv(::id,::type,::version,::lat,::lon,\"aeroway\",\"name\",\"alt_name\",\"alt_name:1\",\"alt_name:2\",\"length\",\"iata\",\"icao\",\"source\",\"fixme\",\"wikipedia\",\"surface\",\"status\",\"building\",\"ref\",\"type\")];{{geocodeArea:\"Vanuatu\"}}->.searchArea;(nwr[\"aeroway\"](area.searchArea););out center;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Vanuatu"
+    },
+    "tags": {
+      "aeroway": {
+        "key": "aeroway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 499,
+    "qc_index": 432,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's focus on aeroway features in Vanuatu, is grammatically perfect, and clearly conveys the intent."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 1,
+    "nl_question_en": "What air transport infrastructure features are in Vanuatu, including runways, terminals, and helipads?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 403,
+    "split": "test",
+    "nl_question": "現在の表示範囲で安全を提供しているものは何ですか？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"provides\"~\"safety\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "provides~safety": {
+        "key": "provides",
+        "relation": "regex_match",
+        "value": "safety"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 403,
+    "qc_index": 224,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is clear and fluent, but 'objects that provide safety' is slightly vague compared to the query's specific tag 'provides'~'safety'."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 5,
+    "nl_question_en": "What objects provide safety in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 28,
+    "split": "test",
+    "nl_question": "プラカーシャムにある郡や独立市のレベル6行政境界を教えてください。",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Prakasam\"}}->.searchArea;(relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"6\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Prakasam"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 28,
+    "qc_index": 53,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query retrieves all admin_level=6 boundaries, not specifically districts or independent cities, which is a minor omission."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 7,
+    "nl_question_en": "What are the Level 6 administrative boundaries of districts or independent cities in Prakasam?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 299,
+    "split": "test",
+    "nl_question": "シンガポールにある、構成要素が3つ未満の、通行規制ではないものは何ですか？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Singapore\"}}->.searchArea;(relation[\"type\"!=\"restriction\"](if:count_members()<3)(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Singapore"
+    },
+    "tags": {
+      "type!=restriction": {
+        "key": "type",
+        "relation": "not_equal",
+        "value": "restriction"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 299,
+    "v2_index": 1299,
+    "qc_index": 550,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 17,
+    "nl_question_en": "What are the relations that are not access restrictions with fewer than three members",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 243,
+    "split": "test",
+    "nl_question": "現在の表示範囲内で、2つ以上のタグが付いているレクリエーション広場ではないものを表示してください。",
+    "OverpassQL": "[out:json][timeout:60];nwr[\"leisure\"!=\"recreation_ground\"](if:count_tags()>1)({{bbox}});out body;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "leisure!=recreation_ground": {
+        "key": "leisure",
+        "relation": "not_equal",
+        "value": "recreation_ground"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 243,
+    "v2_index": 1243,
+    "qc_index": 534,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 24,
+    "nl_question_en": "Show features in the current view that are not recreation grounds and have more than one tag.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 856,
+    "split": "test",
+    "nl_question": "現在の表示範囲で車椅子非対応の薬局以外のものを表示してください。",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"amenity\"!=\"pharmacy\"][\"wheelchair\"!=\"yes\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "amenity!=pharmacy": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "pharmacy"
+      },
+      "wheelchair!=yes": {
+        "key": "wheelchair",
+        "relation": "not_equal",
+        "value": "yes"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 856,
+    "v2_index": 1856,
+    "qc_index": 120,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 40,
+    "nl_question_en": "Show me the features that are not pharmacies and do not accept wheelchairs in the current view.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 445,
+    "split": "test",
+    "nl_question": "Summits On The Air (SOTA) プログラムに参加しているアマチュア無線局はどこにありますか？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[~\"^communication:amateur_radio:sota.*$\"~\".\"]->.comm_nodes;nwr[~\"^ref:sota.*$\"~\".\"]->.comm_nodes;nwr[\"sota\"]->.comm_nodes;nwr[\"SOTA\"]->.comm_nodes;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "sota": {
+        "key": "sota",
+        "relation": "has_key",
+        "value": ""
+      },
+      "SOTA": {
+        "key": "SOTA",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 445,
+    "qc_index": 391,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query searches for nodes/ways with SOTA-related tags, but the NL question specifically asks for 'amateur radio stations', which is a subset of what the query returns."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 45,
+    "nl_question_en": "Where are the amateur radio stations involved in the Summits On The Air (SOTA) program?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 97,
+    "split": "test",
+    "nl_question": "ポルデノーネにあるバス停をすべて教えてください。",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Pordenone\"}}->.searchArea;(nwr[\"highway\"=\"bus_stop\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Pordenone"
+    },
+    "tags": {
+      "highway=bus_stop": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "bus_stop"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 97,
+    "qc_index": 33,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 63,
+    "nl_question_en": "What are all the bus stops in Pordenone?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 297,
+    "split": "test",
+    "nl_question": "オドラ川ではない特徴は何ですか？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"name\"!=\"Odra\"][\"waterway\"!=\"river\"];);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name!=Odra": {
+        "key": "name",
+        "relation": "not_equal",
+        "value": "Odra"
+      },
+      "waterway!=river": {
+        "key": "waterway",
+        "relation": "not_equal",
+        "value": "river"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 297,
+    "v2_index": 1297,
+    "qc_index": 138,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits the waterway filter, so it's not fully accurate."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 88,
+    "nl_question_en": "What are the features not named Odra",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 459,
+    "split": "test",
+    "nl_question": "ドゥー＝セーヴル県で、コロナ禍の利用条件や営業時間に関する情報がある場所はどこですか？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Deux-Sèvres\"}}->.searchArea;(nwr[\"opening_hours:covid19\"](area.searchArea);nwr[\"description:covid19\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Deux-Sèvres"
+    },
+    "tags": {
+      "opening_hours:covid19": {
+        "key": "opening_hours:covid19",
+        "relation": "has_key",
+        "value": ""
+      },
+      "description:covid19": {
+        "key": "description:covid19",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 459,
+    "qc_index": 426,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question mentions 'access conditions' which is broader than the query's specific 'description:covid19' tag, but otherwise accurate."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 89,
+    "nl_question_en": "What locations in Deux-Sèvres have information on access conditions or opening hours during the coronavirus pandemic?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 624,
+    "split": "test",
+    "nl_question": "トロイスドルフにあるウェイの中で、建物、境界、バリヤー、アメニティ、レジャー施設、土地利用、鉄道、通信、自然物、建物のパーツ、屋根の縁、屋根の棟、水路、道路のいずれのタグも付いていないものはありますか？",
+    "OverpassQL": "area[\"name\"=\"Troisdorf\"];(way[\"building\"!~\".\"][\"boundary\"!~\".\"][\"barrier\"!~\".\"][\"amenity\"!~\".\"][\"leisure\"!~\".\"][\"landuse\"!~\".\"][\"railway\"!~\".\"][\"communication\"!~\".\"][\"natural\"!~\".\"][\"building:part\"!~\".\"][\"roof:edge\"!~\".\"][\"roof:ridge\"!~\".\"][\"waterway\"!~\".\"][\"highway\"!~\".\"](area);>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Troisdorf"
+    },
+    "tags": {
+      "name=Troisdorf": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Troisdorf"
+      },
+      "building!~.": {
+        "key": "building",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "boundary!~.": {
+        "key": "boundary",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "barrier!~.": {
+        "key": "barrier",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "amenity!~.": {
+        "key": "amenity",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "leisure!~.": {
+        "key": "leisure",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "landuse!~.": {
+        "key": "landuse",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "railway!~.": {
+        "key": "railway",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "communication!~.": {
+        "key": "communication",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "natural!~.": {
+        "key": "natural",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "building:part!~.": {
+        "key": "building:part",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "roof:edge!~.": {
+        "key": "roof:edge",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "roof:ridge!~.": {
+        "key": "roof:ridge",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "waterway!~.": {
+        "key": "waterway",
+        "relation": "regex_not_match",
+        "value": ""
+      },
+      "highway!~.": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 624,
+    "qc_index": 347,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 2,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is accurate but slightly awkward and could be clearer about the exclusion logic."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 99,
+    "nl_question_en": "Ways in Troisdorf are not tagged with buildings, boundaries, barriers, amenities, leisure facilities, land uses, railways, communication features, natural features, building parts, roof edges, roof ridges, waterways, or highways?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 231,
+    "split": "test",
+    "nl_question": "ドイツにある緊急サイレンの総数と、そのうち用途、種類、範囲が指定されているものの数はいくつですか？",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Germany\"}}->.de;node[\"emergency\"=\"siren\"](area.de)->.sirens;node.sirens;out count;node.sirens[\"siren:purpose\"];out count;node.sirens[\"siren:type\"];out count;node.sirens[\"siren:range\"];out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Germany"
+    },
+    "tags": {
+      "emergency=siren": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "siren"
+      },
+      "siren:purpose": {
+        "key": "siren:purpose",
+        "relation": "has_key",
+        "value": ""
+      },
+      "siren:type": {
+        "key": "siren:type",
+        "relation": "has_key",
+        "value": ""
+      },
+      "siren:range": {
+        "key": "siren:range",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 231,
+    "qc_index": 399,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's counts for total sirens and those with purpose, type, and range tags."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 104,
+    "nl_question_en": "What is the total number of emergency sirens in Germany, and how many of them have a specified purpose, type, and range?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 669,
+    "split": "test",
+    "nl_question": "現在の表示範囲内にある、消火栓、採水点、防火水槽、防火池などの消防用利水施設を教えてください。",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"emergency\"=\"fire_hydrant\"]({{bbox}});nwr[\"emergency\"=\"suction_point\"]({{bbox}});nwr[\"emergency\"=\"water_tank\"]({{bbox}});nwr[\"emergency\"=\"fire_water_pond\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "emergency=fire_hydrant": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "fire_hydrant"
+      },
+      "emergency=suction_point": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "suction_point"
+      },
+      "emergency=water_tank": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "water_tank"
+      },
+      "emergency=fire_water_pond": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "fire_water_pond"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 669,
+    "qc_index": 6,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, listing all four emergency water source types queried."
+    },
+    "language": "japanese",
+    "is_duplicate": true,
+    "ml_index": 107,
+    "nl_question_en": "What emergency water sources for firefighting, such as fire hydrants, suction points, water tanks, and fire water ponds, are located within the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 845,
+    "split": "test",
+    "nl_question": "ブラジル、リオグランデ・ド・スル州のサンタ・マリアにはどのような薬局がありますか？",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"Santa Maria,RS\"}}->.searchArea;(nwr[\"amenity\"~\"pharmacy\"](area.searchArea););out meta center;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Santa Maria,RS"
+    },
+    "tags": {
+      "amenity~pharmacy": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "pharmacy"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 845,
+    "qc_index": 291,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query's intent to find pharmacies in Santa Maria, RS, Brazil."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 123,
+    "nl_question_en": "What pharmacies are in Santa Maria, Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 317,
+    "split": "test",
+    "nl_question": "現在の表示範囲には、どのような種類の道路や道がありますか？",
+    "OverpassQL": "[out:json][timeout:255];(way[\"highway\"~\"motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|track|path|footway|living_street\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway~motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|track|path|footway|living_street": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|track|path|footway|living_street"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 317,
+    "qc_index": 237,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the query, which retrieves various types of highways within the bounding box."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 126,
+    "nl_question_en": "What types of roads and paths are visible in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 523,
+    "split": "test",
+    "nl_question": "クルジュ＝ナポカにある住宅街ではない道路を教えてください。",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Cluj-Napoca\"}}->.searchArea;(way[\"highway\"!=\"residential\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Cluj-Napoca"
+    },
+    "tags": {
+      "highway!=residential": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "residential"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 523,
+    "v2_index": 1523,
+    "qc_index": 611,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query returns all non-residential highways, but the NL question says 'roads', which is slightly ambiguous as it could imply only certain highway types."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 139,
+    "nl_question_en": "What are the roads that are not residential in Cluj-Napoca?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 844,
+    "split": "test",
+    "nl_question": "現在の表示範囲にどのような質屋がありますか？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"shop\"=\"pawnbroker\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "shop=pawnbroker": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "pawnbroker"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 844,
+    "qc_index": 43,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 141,
+    "nl_question_en": "What pawnbroker shops are in the current area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 979,
+    "split": "test",
+    "nl_question": "現在の表示範囲にはどのようなラウンドアバウトではないものがありますか？",
+    "OverpassQL": "[out:json][timeout:25];(node[\"junction\"!=\"roundabout\"]({{bbox}});way[\"junction\"!=\"roundabout\"]({{bbox}});relation[\"junction\"!=\"roundabout\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "-2.021408,30.103569,-1.931511,30.212746",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "junction!=roundabout": {
+        "key": "junction",
+        "relation": "not_equal",
+        "value": "roundabout"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 979,
+    "v2_index": 1979,
+    "qc_index": 155,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 159,
+    "nl_question_en": "What features that are not roundabouts are in the current view?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 800,
+    "split": "test",
+    "nl_question": "アイダホ州にある主要ではない路線は何ですか？",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Idaho\"}}->.searchArea;(way[\"usage\"!=\"main\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Idaho"
+    },
+    "tags": {
+      "usage!=main": {
+        "key": "usage",
+        "relation": "not_equal",
+        "value": "main"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 800,
+    "v2_index": 1800,
+    "qc_index": 703,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is fluent but slightly ambiguous; 'non-main usage ways' could be clearer, though the query correctly filters ways where usage is not 'main'."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 161,
+    "nl_question_en": "What are the non-main usage ways in Idaho?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 938,
+    "split": "test",
+    "nl_question": "オアフ島には地区ではないどのようなものがありますか？",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Oahu\"}}->.searchArea;(nwr[\"place\"!=\"neighbourhood\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Oahu"
+    },
+    "tags": {
+      "place!=neighbourhood": {
+        "key": "place",
+        "relation": "not_equal",
+        "value": "neighbourhood"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 938,
+    "v2_index": 1938,
+    "qc_index": 758,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 165,
+    "nl_question_en": "What places in Oahu are not neighborhoods?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 751,
+    "split": "test",
+    "nl_question": "アルゼンチンにある博物館ではないすべての観光スポットを表示してください。",
+    "OverpassQL": "[out:csv(::type,::id,::lat,::lon,\"name\",::count)];{{geocodeArea:\"Argentina\"}}->.searchArea;(nwr[\"tourism\"!=\"museum\"](area.searchArea););out;out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Argentina"
+    },
+    "tags": {
+      "tourism!=museum": {
+        "key": "tourism",
+        "relation": "not_equal",
+        "value": "museum"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 751,
+    "v2_index": 1751,
+    "qc_index": 678,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 169,
+    "nl_question_en": "Show all tourism features in Argentina that are not museums.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 703,
+    "split": "test",
+    "nl_question": "フランス本土にある、RTEが運営する電圧400,000ボルトの送電用変電所は何ですか？",
+    "OverpassQL": "area[\"wikidata\"=\"Q212429\"][\"admin_level\"=\"3\"]->.france;nwr[\"power\"=\"substation\"][\"operator\"=\"RTE\"][\"substation\"=\"transmission\"][\"voltage\"~\"400000\"](area.france);(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "wikidata=Q212429": {
+        "key": "wikidata",
+        "relation": "equal",
+        "value": "Q212429"
+      },
+      "admin_level=3": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "3"
+      },
+      "power=substation": {
+        "key": "power",
+        "relation": "equal",
+        "value": "substation"
+      },
+      "operator=RTE": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "RTE"
+      },
+      "substation=transmission": {
+        "key": "substation",
+        "relation": "equal",
+        "value": "transmission"
+      },
+      "voltage~400000": {
+        "key": "voltage",
+        "relation": "regex_match",
+        "value": "400000"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 703,
+    "qc_index": 24,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 177,
+    "nl_question_en": "What are the power transmission substations operated by RTE with a voltage of 400,000 volts in Metropolitan France?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 970,
+    "split": "test",
+    "nl_question": "レンタル、修理、部品、販売、タイヤを扱っている自動車関連の店舗の数はいくつですか？",
+    "OverpassQL": "[out:csv(::count)][timeout:60];(nwr[\"shop\"=\"car\"][\"car:rental\"];nwr[\"shop\"=\"car\"][\"car:repair\"];nwr[\"shop\"=\"car\"][\"car:parts\"];nwr[\"shop\"=\"car\"][\"car:sales\"];nwr[\"shop\"=\"car\"][\"car:tyres\"];);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "shop=car": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "car"
+      },
+      "car:rental": {
+        "key": "car:rental",
+        "relation": "has_key",
+        "value": ""
+      },
+      "car:repair": {
+        "key": "car:repair",
+        "relation": "has_key",
+        "value": ""
+      },
+      "car:parts": {
+        "key": "car:parts",
+        "relation": "has_key",
+        "value": ""
+      },
+      "car:sales": {
+        "key": "car:sales",
+        "relation": "has_key",
+        "value": ""
+      },
+      "car:tyres": {
+        "key": "car:tyres",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 970,
+    "qc_index": 450,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for a count of car-related shops offering any of the listed services, but the query unions separate sets for each service, which may double-count shops with multiple services."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 189,
+    "nl_question_en": "What is the count of car-related shops offering rentals, repairs, parts, sales, and tyres?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 474,
+    "split": "test",
+    "nl_question": "ムではないすべてのものを表示してください。\n\n    Let's try to keep \"すべての\" in its position if possible? No, that doesn't work well in Japanese grammar.",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Mumbai\"}}->.searchArea;(nwr[\"leisure\"!=\"stadium\"](area.searchArea);>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Mumbai"
+    },
+    "tags": {
+      "leisure!=stadium": {
+        "key": "leisure",
+        "relation": "not_equal",
+        "value": "stadium"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 474,
+    "v2_index": 1474,
+    "qc_index": 184,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query excludes only stadiums via the leisure tag, but the NL question implies excluding all stadiums regardless of tagging, which is a minor omission."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 191,
+    "nl_question_en": "Show everything in Mumbai that is not a stadium.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 631,
+    "split": "test",
+    "nl_question": "ポルトガルにある橋やトンネルの中で、layerタグが設定されておらず、建物内の通路（building_passage）としても分類されていないものはどれですか？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Portugal\"}}->.searchArea;(way[\"bridge\"][\"layer\"!~\".*\"](area.searchArea);way[\"tunnel\"][\"tunnel\"!~\"building_passage\"][\"layer\"!~\".*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Portugal"
+    },
+    "tags": {
+      "layer!~.*": {
+        "key": "layer",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "tunnel!~building_passage": {
+        "key": "tunnel",
+        "relation": "regex_not_match",
+        "value": "building_passage"
+      },
+      "bridge": {
+        "key": "bridge",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 631,
+    "qc_index": 348,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes tunnels that are building passages, but the NL question only mentions 'not classified with a layer or as building passages', which is slightly ambiguous about whether building passages are excluded from both bridges and tunnels."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 192,
+    "nl_question_en": "What bridges and tunnels in Portugal are not classified with a layer or as building passages?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 453,
+    "split": "test",
+    "nl_question": "現在の表示範囲で、建物と交差している道路（トンネルや屋根付きの道路を除く）は何ですか？",
+    "OverpassQL": "[out:json][timeout:250];(nwr[\"building\"]({{bbox}});)->.buildings;(way[\"highway\"~\"motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|service|track\"][\"tunnel\"!~\".*\"][\"covered\"!~\".*\"]({{bbox}});)->.highways_1;(way.highways_1(around.buildings:0);)->.crossing_roads;(.crossing_roads;);out;>;out skel qt;",
+    "location": {
+      "bbox": "-2.021408,30.103569,-1.931511,30.212746",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway~motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|service|track": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|living_street|service|track"
+      },
+      "tunnel!~.*": {
+        "key": "tunnel",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "covered!~.*": {
+        "key": "covered",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 453,
+    "qc_index": 344,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question says 'cross near buildings' but the query finds highways that are within 0 meters of buildings, which is essentially intersecting, not necessarily crossing; also 'excluding tunnels and covered roads' is accurate but the query excludes tunnels and covered roads via regex, which is correct."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 198,
+    "nl_question_en": "What roads cross near buildings in the specified area, excluding tunnels and covered roads?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 745,
+    "split": "test",
+    "nl_question": "2018年3月19日から2018年3月23日の間に、ペルーでユーザー「karitotp」によって編集されたすべてのハイウェイの数はいくつですか？",
+    "OverpassQL": "[out:csv(::count)][timeout:100];{{geocodeArea:\"Perú\"}}->.searchArea;(way[\"highway\"](user:\"karitotp\")(changed:\"2018-03-19T00:00:00Z\",\"2018-03-23T23:59:59Z\")(area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Perú"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 745,
+    "qc_index": 409,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, is grammatically correct, and clearly describes the intent."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 200,
+    "nl_question_en": "What is the count of all highways edited by the user 'karitotp' in Peru between March 19, 2018, and March 23, 2018?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 824,
+    "split": "test",
+    "nl_question": "ブエノスアイレス自治市（CABA）にある、コリエンテス通りとサン・マルティン通りが交差する地点を表示してください。",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"CABA\"}}->.searchArea;(way[\"highway\"][\"name\"~\"Corrientes\"](area.searchArea)->.w1;way[\"highway\"][\"name\"~\"San Martín\"](area.searchArea)->.w2;node(w.w1)(w.w2)(area.searchArea););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "CABA"
+    },
+    "tags": {
+      "name~Corrientes": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Corrientes"
+      },
+      "name~San Martín": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "San Martín"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 824,
+    "qc_index": 259,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query finds nodes where ways named 'Corrientes' and 'San Martín' intersect, but the NL question implies a single intersection, while the query may return multiple nodes if the streets intersect more than once."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 208,
+    "nl_question_en": "Show intersection nodes where “Corrientes” street and “San Martín” street meet in CABA.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 595,
+    "split": "test",
+    "nl_question": "タンペレ地域（ノキア、ユロヤルヴィ、カンガサラ、レンパーラ、ピルッカラ、オリヴェシ、ヴェシラハティ、ハメーンキュレを含む）にある、ジャンクションや名称のない主要な道路は何ですか？",
+    "OverpassQL": "area[\"name\"~\"Tampere|Nokia|Ylöjärvi|Kangasala|Lempäälä|Pirkkala|Orivesi|Vesilahti|Hämeenkyrö\"]->.tre_seutu;out;way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary)$\"][\"junction\"!~\".*\"][\"name\"!~\".*\"](area.tre_seutu);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name~Tampere|Nokia|Ylöjärvi|Kangasala|Lempäälä|Pirkkala|Orivesi|Vesilahti|Hämeenkyrö": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Tampere|Nokia|Ylöjärvi|Kangasala|Lempäälä|Pirkkala|Orivesi|Vesilahti|Hämeenkyrö"
+      },
+      "highway~^(motorway|trunk|primary|secondary|tertiary)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(motorway|trunk|primary|secondary|tertiary)$"
+      },
+      "junction!~.*": {
+        "key": "junction",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "name!~.*": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 595,
+    "qc_index": 258,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query correctly finds major highways without junctions or names in the listed areas, but the NL question implies a single 'Tampere region' while the query uses a union of separate area names, which is a minor semantic mismatch."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 213,
+    "nl_question_en": "What major highways without junctions or names are in the Tampere region, including Nokia, Ylöjärvi, Kangasala, Lempäälä, Pirkkala, Orivesi, Vesilahti, and Hämeenkyrö?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 868,
+    "split": "test",
+    "nl_question": "現在の表示範囲内で、長距離や高速サービスに分類されず、S、RE、RB、ICEなどの系統番号を除外した鉄道およびライトレールの路線は何ですか？",
+    "OverpassQL": "nwr[\"railway\"=\"rail\"]({{bbox}})->.rail;relation[\"route\"~\"train|light_rail\"][\"ref\"!~\"^(S.|S..|RE.|RE..|RB..|S5 / S8|ICE..)$\"][\"service\"!~\"long_distance|high_speed\"](bw.rail);out tags;way.rail(r);out geom;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "railway=rail": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "rail"
+      },
+      "route~train|light_rail": {
+        "key": "route",
+        "relation": "regex_match",
+        "value": "train|light_rail"
+      },
+      "ref!~^(S.|S..|RE.|RE..|RB..|S5 / S8|ICE..)$": {
+        "key": "ref",
+        "relation": "regex_not_match",
+        "value": "^(S.|S..|RE.|RE..|RB..|S5 / S8|ICE..)$"
+      },
+      "service!~long_distance|high_speed": {
+        "key": "service",
+        "relation": "regex_not_match",
+        "value": "long_distance|high_speed"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 868,
+    "qc_index": 354,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is mostly accurate but omits that the query also excludes routes with ref matching certain patterns like S, RE, RB, ICE, not just service tags."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 222,
+    "nl_question_en": "What train and light rail routes are not classified as long-distance or high-speed services in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 973,
+    "split": "test",
+    "nl_question": "現在の表示範囲内で、自動車の通行が不可能な鉄道以外の路線は何ですか？",
+    "OverpassQL": "[out:json][timeout:25];(wr[\"route\"!~\"train*\"][\"motorcar\"!=\"yes\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "motorcar!=yes": {
+        "key": "motorcar",
+        "relation": "not_equal",
+        "value": "yes"
+      },
+      "route!~train*": {
+        "key": "route",
+        "relation": "regex_not_match",
+        "value": "train*"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 973,
+    "v2_index": 1973,
+    "qc_index": 774,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 223,
+    "nl_question_en": "What non-train routes do not allow motor vehicles in the current view?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 957,
+    "split": "test",
+    "nl_question": "現在の表示範囲内で、名前が指定されていない道路は何ですか？",
+    "OverpassQL": "[out:json][timeout:25];(node[\"highway\"][\"name\"!~\".\"]({{bbox}});way[\"highway\"][\"name\"!~\".\"]({{bbox}});relation[\"highway\"][\"name\"!~\".\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "name!~.": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": "."
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 957,
+    "qc_index": 367,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 227,
+    "nl_question_en": "What highways in the selected area do not have a specified name?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 421,
+    "split": "test",
+    "nl_question": "イスマニングにある番地のない住所を教えてください。",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:25];{{geocodeArea:\"Ismaning\"}}->.searchArea;(nwr[!\"addr:housenumber\"](area.searchArea););(._;>;);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ismaning"
+    },
+    "tags": {
+      "!addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 421,
+    "v2_index": 1421,
+    "qc_index": 470,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, which counts features without an addr:housenumber tag in Ismaning."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 238,
+    "nl_question_en": "What are the features without house numbers",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 507,
+    "split": "test",
+    "nl_question": "スイスのヴァレー州にある番地を教えてください。",
+    "OverpassQL": "[out:json];{{geocodeArea:\"CH-VS\"}}->.searchArea;(nwr[\"addr:housenumber\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "CH-VS"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 507,
+    "qc_index": 425,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 242,
+    "nl_question_en": "What are the house numbers in the Valais region of Switzerland?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 686,
+    "split": "test",
+    "nl_question": "現在の表示範囲内でFacebookページやプロフィールがない場所はどこですか？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[!\"contact:facebook\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "!contact:facebook": {
+        "key": "contact:facebook",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 686,
+    "v2_index": 1686,
+    "qc_index": 493,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query checks for missing contact:facebook tag, but 'locations' is vague and the query excludes nodes/ways/relations with any Facebook tag, not just pages or profiles."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 254,
+    "nl_question_en": "What locations do not have a Facebook page or profile",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 258,
+    "split": "test",
+    "nl_question": "ブルキナファソにある、名称や番号が付いた道路ルートおよび主要な幹線道路は何ですか？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Burkina Faso\"}}->.searchArea;(relation[\"type\"=\"route\"][\"route\"=\"road\"][\"ref\"](area.searchArea);way[\"highway\"~\"motorway|trunk|primary|secondary|motorway_link|trunk_link|primary_link|secondary_link\"][\"ref\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Burkina Faso"
+    },
+    "tags": {
+      "type=route": {
+        "key": "type",
+        "relation": "equal",
+        "value": "route"
+      },
+      "route=road": {
+        "key": "route",
+        "relation": "equal",
+        "value": "road"
+      },
+      "highway~motorway|trunk|primary|secondary|motorway_link|trunk_link|primary_link|secondary_link": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary|secondary|motorway_link|trunk_link|primary_link|secondary_link"
+      },
+      "ref": {
+        "key": "ref",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 258,
+    "qc_index": 98,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question mentions 'named or numbered road routes' and 'major highways', but the query also includes secondary roads and links, which are not typically considered 'major highways'."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 264,
+    "nl_question_en": "What are the named or numbered road routes and major highways in Burkina Faso?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 134,
+    "split": "test",
+    "nl_question": "フィンランドの高速道路はどこですか？",
+    "OverpassQL": "[maxsize:2000000000][out:json];(relation[\"ISO3166-1:alpha2\"=\"FI\"]->.relCountry;relation.relCountry;map_to_area->.relToAreaCountry;way[\"highway\"=\"motorway\"](area.relToAreaCountry)->.result;);way.result;(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "ISO3166-1:alpha2=FI": {
+        "key": "ISO3166-1:alpha2",
+        "relation": "equal",
+        "value": "FI"
+      },
+      "highway=motorway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 134,
+    "qc_index": 9,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question accurately and clearly describes the query, which retrieves motorways in Finland."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 283,
+    "nl_question_en": "What are the motorways in Finland?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 671,
+    "split": "test",
+    "nl_question": "テュービンゲンで番地が登録されている場所はどこですか？",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:25];{{geocodeArea:\"Tübingen\"}}->.searchArea;(nwr[\"addr:housenumber\"](area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Tübingen"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 671,
+    "qc_index": 365,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, which counts elements with house numbers in Tübingen."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 291,
+    "nl_question_en": "What places have house numbers in Tübingen?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 186,
+    "split": "test",
+    "nl_question": "座標 35.2375, 129.0898 から半径40メートル以内にある、主要道路、二次道路、三次道路、または生活道路に分類される道路は何ですか？",
+    "OverpassQL": "(way[\"highway\"~\"^(primary|secondary|tertiary|residential)$\"](around:40,35.2375,129.0898);>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway~^(primary|secondary|tertiary|residential)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(primary|secondary|tertiary|residential)$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 186,
+    "qc_index": 254,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, is grammatically correct, and clearly describes the spatial and tag filters."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 296,
+    "nl_question_en": "What highways are classified as primary, secondary, tertiary, or residential within a 40-meter radius of the coordinates 35.2375, 129.0898?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 792,
+    "split": "test",
+    "nl_question": "ンスではないものがありますか？\n    2. 現在の表示範囲にはフェンスではないどのようなものがありますか？\n\n    Option 1 feels closer to the original structure.\n\n    Wait, looking at",
+    "OverpassQL": "[out:json][timeout:25];(node[\"barrier\"!=\"fence\"]({{bbox}});way[\"barrier\"!=\"fence\"]({{bbox}});relation[\"barrier\"!=\"fence\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "barrier!=fence": {
+        "key": "barrier",
+        "relation": "not_equal",
+        "value": "fence"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 792,
+    "v2_index": 1792,
+    "qc_index": 133,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes only fence barriers, but the NL question implies excluding all fence-like features, which is a minor mismatch."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 303,
+    "nl_question_en": "What things that are not fences are in the current view",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 253,
+    "split": "test",
+    "nl_question": "ブラジル、リオグランデ・ド・スル州サンタ・マリアにある、車両の最大長が9メートル、重量制限が7.5トンの道路はどれですか？",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"Santa Maria, RS, Brasil\"}}->.searchArea;(way[\"highway\"][\"maxlength\"~\"9\"][\"maxweight\"~\"7.5\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Santa Maria, RS, Brasil"
+    },
+    "tags": {
+      "maxlength~9": {
+        "key": "maxlength",
+        "relation": "regex_match",
+        "value": "9"
+      },
+      "maxweight~7.5": {
+        "key": "maxweight",
+        "relation": "regex_match",
+        "value": "7.5"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 253,
+    "qc_index": 257,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question says 'maximum length of 9 meters' but the query uses 'maxlength' which typically refers to vehicle length limit, not road length; minor semantic mismatch."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 305,
+    "nl_question_en": "What roads in Santa Maria, RS, Brazil, have a maximum length of 9 meters and a weight limit of 7.5 tons for vehicles?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 406,
+    "split": "test",
+    "nl_question": "現在の表示範囲内で、番地が割り当てられている建物は何ですか？",
+    "OverpassQL": "[out:json][timeout:25];(node[\"addr:housenumber\"]({{bbox}});relation[\"addr:housenumber\"]({{bbox}});way[\"building\"][\"addr:housenumber\"]({{bbox}}););out center;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      },
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 406,
+    "qc_index": 415,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query also includes relations with house numbers, which the NL question does not mention, but the core intent is clear."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 312,
+    "nl_question_en": "What buildings with assigned house numbers are in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 251,
+    "split": "test",
+    "nl_question": "指定されたエリア内で、自転車道、歩道、小道、計画中の路線、サービス道路、農道・林道以外の道路は何ですか？",
+    "OverpassQL": "[out:json][timeout:25];area(3600296625)->.searchArea;(way[\"highway\"][\"highway\"!~\"^(cycleway|footway|path|proposed|service|track)$\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway!~^(cycleway|footway|path|proposed|service|track)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(cycleway|footway|path|proposed|service|track)$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 251,
+    "qc_index": 334,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 317,
+    "nl_question_en": "What roads are not designated as cycleways, footways, paths, proposed routes, service roads, or tracks in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 706,
+    "split": "test",
+    "nl_question": "マディヤ・プラデーシュ州にある、地区や市政公社の行政境界（レベル6）ではないものを教えてください。",
+    "OverpassQL": "[out:csv(::id,\"name\",\"wikidata\")][timeout:200];{{geocodeArea:\"Madhya Pradesh\"}}->.searchArea;(relation[\"boundary\"!=\"administrative\"][\"admin_level\"!=\"6\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Madhya Pradesh"
+    },
+    "tags": {
+      "boundary!=administrative": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "administrative"
+      },
+      "admin_level!=6": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "6"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 706,
+    "v2_index": 1706,
+    "qc_index": 661,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 329,
+    "nl_question_en": "What are the relations in Madhya Pradesh that are not administrative",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 408,
+    "split": "test",
+    "nl_question": "-23.73530, -46.70100 から -23.72433, -46.68250 の範囲内にある住宅地の道路とアスファルト舗装の道を表示してください。",
+    "OverpassQL": "[out:json][timeout:25];(way[\"highway\"=\"residential\"](-23.73530,-46.70100,-23.72433,-46.68250);way[\"surface\"=\"asphalt\"](-23.73530,-46.70100,-23.72433,-46.68250););out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      },
+      "surface=asphalt": {
+        "key": "surface",
+        "relation": "equal",
+        "value": "asphalt"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 408,
+    "qc_index": 83,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL says 'asphalt ways' but the query uses 'surface=asphalt', which is correct; however, 'ways' is slightly ambiguous as it could imply any type of way, but the query correctly filters by surface."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 343,
+    "nl_question_en": "Show residential highways and asphalt ways within -23.73530,-46.70100 and -23.72433,-46.68250.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 861,
+    "split": "test",
+    "nl_question": "アルバニャにはどのような建物がありますか？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Albañá\"}}->.searchArea;(nwr[\"building\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Albañá"
+    },
+    "tags": {
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 861,
+    "qc_index": 421,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 344,
+    "nl_question_en": "What buildings are in Albañá?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 966,
+    "split": "test",
+    "nl_question": "ジェシュフにある標示のない横断歩道はどこですか？",
+    "OverpassQL": "[out:json][timeout:2000];({{geocodeArea:\"Rzeszów\"}};)->.searchArea;(nwr[\"crossing\"=\"unmarked\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Rzeszów"
+    },
+    "tags": {
+      "crossing=unmarked": {
+        "key": "crossing",
+        "relation": "equal",
+        "value": "unmarked"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 966,
+    "qc_index": 49,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, which retrieves unmarked pedestrian crossings in Rzeszów."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 345,
+    "nl_question_en": "What are the unmarked pedestrian crossings in Rzeszów?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 692,
+    "split": "test",
+    "nl_question": "ミュンヘンにある一方通行の道路はどれですか？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"München\"}}->.searchArea;(way[\"oneway\"!=\"no\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "München"
+    },
+    "tags": {
+      "oneway!=no": {
+        "key": "oneway",
+        "relation": "not_equal",
+        "value": "no"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 692,
+    "v2_index": 1692,
+    "qc_index": 655,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query includes roads where oneway is not 'no', which includes both yes and other values, slightly broader than just one-way roads."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 369,
+    "nl_question_en": "What are the one-way roads in München",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 322,
+    "split": "test",
+    "nl_question": "エリア3600054094内にある、名前にハイフンが含まれていない名前付きの地物は何ですか？",
+    "OverpassQL": "[out:csv(::type,::id,\"name\")];area(3600054094)->.boundaryarea;(nwr[\"name\"][\"name\"!~\" - \"](area.boundaryarea););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name!~ - ": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": " - "
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 322,
+    "qc_index": 337,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query excludes names with ' - ' (space-hyphen-space), not any hyphen, so it's slightly inaccurate."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 377,
+    "nl_question_en": "What named features are in area 3600054094 that do not have a hyphen in their names?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 670,
+    "split": "test",
+    "nl_question": "ジャールカンド州の、行政境界ではなく、行政レベルが5でもないものを教えてください。",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Jharkhand\"}}->.searchArea;(relation[\"boundary\"!=\"administrative\"][\"admin_level\"!=\"5\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Jharkhand"
+    },
+    "tags": {
+      "boundary!=administrative": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "administrative"
+      },
+      "admin_level!=5": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "5"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 670,
+    "v2_index": 1670,
+    "qc_index": 644,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question correctly captures the main filters but omits the 'out meta' and recursive '>' parts of the query."
+    },
+    "language": "japanese",
+    "is_duplicate": false,
+    "ml_index": 393,
+    "nl_question_en": "What are the relations in Jharkhand that are not administrative boundaries and do not have an administrative level of 5?",
+    "nl_source": "flip_rewrite"
+  }
+]

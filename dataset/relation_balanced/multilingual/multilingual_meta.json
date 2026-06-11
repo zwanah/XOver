@@ -1,0 +1,138 @@
+{
+  "model": "gemini-3-flash-preview",
+  "dry_run": false,
+  "seed": 1234,
+  "total": 400,
+  "per_language": 50,
+  "languages": [
+    "english",
+    "mandarin_simplified",
+    "cantonese",
+    "french",
+    "german",
+    "japanese",
+    "korean",
+    "russian"
+  ],
+  "localization_counts": {
+    "curated": 246,
+    "flip_rewrite": 104,
+    "total_localized": 350
+  },
+  "n_english_kept": 50,
+  "n_duplicated_items": 2,
+  "source": "dataset/relation_balanced/test_balanced_english.json",
+  "per_language_detail": [
+    {
+      "language": "english",
+      "count": 50,
+      "n_duplicate": 1,
+      "relation_distribution": {
+        "equal": 12,
+        "has_key": 11,
+        "not_equal": 11,
+        "regex_match": 10,
+        "not_has_key": 3,
+        "regex_not_match": 3
+      }
+    },
+    {
+      "language": "mandarin_simplified",
+      "count": 50,
+      "n_duplicate": 0,
+      "relation_distribution": {
+        "not_equal": 19,
+        "equal": 10,
+        "has_key": 9,
+        "regex_match": 7,
+        "not_has_key": 3,
+        "regex_not_match": 2
+      }
+    },
+    {
+      "language": "cantonese",
+      "count": 50,
+      "n_duplicate": 0,
+      "relation_distribution": {
+        "equal": 16,
+        "has_key": 13,
+        "not_equal": 12,
+        "regex_match": 5,
+        "not_has_key": 2,
+        "regex_not_match": 2
+      }
+    },
+    {
+      "language": "french",
+      "count": 50,
+      "n_duplicate": 0,
+      "relation_distribution": {
+        "regex_match": 12,
+        "equal": 12,
+        "has_key": 11,
+        "not_equal": 7,
+        "regex_not_match": 6,
+        "not_has_key": 2
+      }
+    },
+    {
+      "language": "german",
+      "count": 50,
+      "n_duplicate": 0,
+      "relation_distribution": {
+        "equal": 13,
+        "not_equal": 12,
+        "has_key": 11,
+        "regex_match": 10,
+        "regex_not_match": 3,
+        "not_has_key": 1
+      }
+    },
+    {
+      "language": "japanese",
+      "count": 50,
+      "n_duplicate": 1,
+      "relation_distribution": {
+        "not_equal": 15,
+        "has_key": 11,
+        "equal": 9,
+        "regex_match": 7,
+        "regex_not_match": 6,
+        "not_has_key": 2
+      }
+    },
+    {
+      "language": "korean",
+      "count": 50,
+      "n_duplicate": 1,
+      "relation_distribution": {
+        "not_equal": 14,
+        "has_key": 13,
+        "equal": 9,
+        "regex_not_match": 6,
+        "regex_match": 6,
+        "not_has_key": 2
+      }
+    },
+    {
+      "language": "russian",
+      "count": 50,
+      "n_duplicate": 1,
+      "relation_distribution": {
+        "has_key": 13,
+        "regex_match": 12,
+        "equal": 12,
+        "not_equal": 10,
+        "not_has_key": 2,
+        "regex_not_match": 1
+      }
+    }
+  ],
+  "nl_source_distribution": {
+    "flip_rewrite": 104,
+    "curated": 246,
+    "english_kept": 50
+  },
+  "zero_coverage_flags": [],
+  "note": "Random split of 400 (398 + top-2 duplicated) into 8x50. Duplicate pairs placed in 4 distinct languages (no intra-language repeats). NL is fully localized in the MOsmNL style. original-variant items REUSE the published, audited dataset/OsmNL_<lang>/test_final_<lang>.json translation (by sample_index). flipped-variant items are rewritten IN-LANGUAGE by gemini-3-flash-preview from the pre-flip MOsmNL translation (by origin_sample_index) toward the flipped meaning. english chunk keeps its English NL. zero_coverage_flags lists any language missing a relation under the random split."
+}

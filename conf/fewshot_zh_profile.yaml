@@ -1,0 +1,42 @@
+# C2 profile-DPP diversity variant (Chinese / mandarin_simplified eval) — PLAIN demos.
+# English demo pool; both score signals ZH-query-encoded with ml_8x. The profile kernel
+# is stacked over ALL langs (bare base model, NOT the _ZH eval model) + suffixes.
+# Cross-lingual operating point: zh -> lambda 0.3 (the peak; zh dOQS +0.69, t2.59).
+# 
+
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180
+
+eval:
+  score_source_root: /path/to/XOver/dataset/OsmNL_mandarin_simplified
+  files:
+    dev: dev_final_mandarin_simplified.json
+    test: test_final_mandarin_simplified.json   # test pkls not yet generated -> fails loud
+
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3_ZH
+  influence_model: qwen3_qwen3_influence_ml_8x_euclidean_ZH   # quality term R(q,e): ZH influence
+  # Profile kernel: stacked over ALL langs (BARE base, not the _ZH eval model) + suffixes.
+  profile_influence_model: qwen3_qwen3_influence_ml_8x_euclidean
+  profile_influence_suffixes: ["", "ZH", "JA"]
+
+defaults:
+  k: 6
+  alpha: 0.2
+  split: dev
+  dedup_prefix_len: 80
+
+select:
+  method: dpp
+  kernel_mode: profile
+  M: 20
+  lambda: 0.3          # zh cross-lingual peak; sweep {0,0.1,0.2,0.3,0.5}
+  phi_mode: linear
+
+run:
+  out_dir: data/fewshot_zh_profile

@@ -1,0 +1,1754 @@
+[
+  {
+    "sample_index": 233,
+    "split": "test",
+    "nl_question": "Show all public libraries in Vermont located within the coordinates 42.13489, -74.24011 and 45.61404, -70.50476.",
+    "OverpassQL": "[out:json][timeout:60];nwr[\"amenity\"=\"library\"][\"library:type\"=\"public\"][\"addr:state\"=\"VT\"](42.13489,-74.24011,45.61404,-70.50476);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "amenity=library": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "library"
+      },
+      "library:type=public": {
+        "key": "library:type",
+        "relation": "equal",
+        "value": "public"
+      },
+      "addr:state=VT": {
+        "key": "addr:state",
+        "relation": "equal",
+        "value": "VT"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 233,
+    "qc_index": 84,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question correctly describes the query but omits the 'library:type' filter for public libraries, which is a minor omission."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 4,
+    "nl_question_en": "Show all public libraries in Vermont located within the coordinates 42.13489, -74.24011 and 45.61404, -70.50476."
+  },
+  {
+    "sample_index": 737,
+    "split": "test",
+    "nl_question": "What are all the stops along the Transilien train route H in the Paris metropolitan area?",
+    "OverpassQL": "[out:json][timeout:25];(relation[\"network\"=\"Transilien\"][\"ref\"=\"H\"];)->.Input;(nwr(r.Input:\"stop\"););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "network=Transilien": {
+        "key": "network",
+        "relation": "equal",
+        "value": "Transilien"
+      },
+      "ref=H": {
+        "key": "ref",
+        "relation": "equal",
+        "value": "H"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 737,
+    "qc_index": 31,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically perfect, and clearly conveys the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 6,
+    "nl_question_en": "What are all the stops along the Transilien train route H in the Paris metropolitan area?"
+  },
+  {
+    "sample_index": 803,
+    "split": "test",
+    "nl_question": "What highways are in Parque Erasmo Assunção, Santo André?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Parque Erasmo Assunção, Santo André\"}}->.a;(way[\"highway\"](area.a););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Parque Erasmo Assunção, Santo André"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 803,
+    "qc_index": 457,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 11,
+    "nl_question_en": "What highways are in Parque Erasmo Assunção, Santo André?"
+  },
+  {
+    "sample_index": 375,
+    "split": "test",
+    "nl_question": "What features have a specified height in meters within the area between the coordinates 37.7118, -122.5175 and 37.8351, -122.3548?",
+    "OverpassQL": "[out:json][timeout:300];(nwr[\"height\"~\"^.*m$\"](37.7118,-122.5175,37.8351,-122.3548););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "height~^.*m$": {
+        "key": "height",
+        "relation": "regex_match",
+        "value": "^.*m$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 375,
+    "qc_index": 231,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question is clear and fluent, but the query filters for height values ending with 'm', which may miss heights without units or in other formats, so it's not fully accurate."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 13,
+    "nl_question_en": "What features have a specified height in meters within the area between the coordinates 37.7118, -122.5175 and 37.8351, -122.3548?"
+  },
+  {
+    "sample_index": 653,
+    "split": "test",
+    "nl_question": "What are the sites in Bochum that are not historic?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Bochum\"}}->.searchArea;(nwr[!\"historic\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Bochum"
+    },
+    "tags": {
+      "!historic": {
+        "key": "historic",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 653,
+    "v2_index": 1653,
+    "qc_index": 488,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 14,
+    "nl_question_en": "What are the sites in Bochum that are not historic?"
+  },
+  {
+    "sample_index": 924,
+    "split": "test",
+    "nl_question": "What are the features that are not cliffs in Hungary?",
+    "OverpassQL": "[out:json][timeout:225];{{geocodeArea:\"Hungary\"}}->.searchArea;(nwr[\"natural\"!=\"cliff\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Hungary"
+    },
+    "tags": {
+      "natural!=cliff": {
+        "key": "natural",
+        "relation": "not_equal",
+        "value": "cliff"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 924,
+    "v2_index": 1924,
+    "qc_index": 751,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 29,
+    "nl_question_en": "What are the features that are not cliffs in Hungary?"
+  },
+  {
+    "sample_index": 25,
+    "split": "test",
+    "nl_question": "What are the boundaries of districts in the Northern Territory?",
+    "OverpassQL": "[out:csv(::type,::id,\"admin_level\",\"name\";true;\",\")][timeout:250];{{geocodeArea:\"Northern Territory\"}}->.searchArea;(relation[\"admin_level\"=\"6\"](area.searchArea););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Northern Territory"
+    },
+    "tags": {
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 25,
+    "qc_index": 16,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query retrieves admin_level=6 relations (local government areas), not districts, which is a minor semantic mismatch."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 36,
+    "nl_question_en": "What are the boundaries of districts in the Northern Territory?"
+  },
+  {
+    "sample_index": 265,
+    "split": "test",
+    "nl_question": "What cities and towns are in Iran?",
+    "OverpassQL": "[out:json][timeout:250];area[\"ISO3166-1\"=\"IR\"]->.boundaryarea;(nwr[\"place\"=\"city\"](area.boundaryarea);nwr[\"place\"=\"town\"](area.boundaryarea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "ISO3166-1=IR": {
+        "key": "ISO3166-1",
+        "relation": "equal",
+        "value": "IR"
+      },
+      "place=city": {
+        "key": "place",
+        "relation": "equal",
+        "value": "city"
+      },
+      "place=town": {
+        "key": "place",
+        "relation": "equal",
+        "value": "town"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 265,
+    "qc_index": 82,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 39,
+    "nl_question_en": "What cities and towns are in Iran?"
+  },
+  {
+    "sample_index": 690,
+    "split": "test",
+    "nl_question": "What features that are not tracks or paths are classified as grade 1 in the current view?",
+    "OverpassQL": "[out:json][timeout:100];way[\"highway\"!~\"^(track|path)$\"][\"tracktype\"=\"grade1\"]({{bbox}});(._;>;);out;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "tracktype=grade1": {
+        "key": "tracktype",
+        "relation": "equal",
+        "value": "grade1"
+      },
+      "highway!~^(track|path)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(track|path)$"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 690,
+    "v2_index": 1690,
+    "qc_index": 3,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": true,
+    "ml_index": 49,
+    "nl_question_en": "What features that are not tracks or paths are classified as grade 1 in the current view?"
+  },
+  {
+    "sample_index": 106,
+    "split": "test",
+    "nl_question": "Show me all hotel buildings in the current view.",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"building\"=\"hotel\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "building=hotel": {
+        "key": "building",
+        "relation": "equal",
+        "value": "hotel"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 106,
+    "qc_index": 55,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 70,
+    "nl_question_en": "Show me all hotel buildings in the current view."
+  },
+  {
+    "sample_index": 39,
+    "split": "test",
+    "nl_question": "What tracks in Turkey have restricted access?",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Turkey\"}}->.searchArea;way[\"highway\"~\"track\"][\"access\"!~\"(yes|1|permissive|designated|permited|customers|delivery|destination)\"][\"access\"~\".\"](area.searchArea);(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Turkey"
+    },
+    "tags": {
+      "highway~track": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "track"
+      },
+      "access~.": {
+        "key": "access",
+        "relation": "regex_match",
+        "value": "."
+      },
+      "access!~(yes|1|permissive|designated|permited|customers|delivery|destination)": {
+        "key": "access",
+        "relation": "regex_not_match",
+        "value": "(yes|1|permissive|designated|permited|customers|delivery|destination)"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 39,
+    "qc_index": 272,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is accurate but slightly incomplete, as the query also excludes tracks with certain access values like 'yes' or 'permissive', not just those with restricted access."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 73,
+    "nl_question_en": "What tracks in Turkey have restricted access?"
+  },
+  {
+    "sample_index": 269,
+    "split": "test",
+    "nl_question": "What is the count of all buildings within a 200-meter radius of the location at 51.498719, 7.225177?",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:600];(nwr[\"building\"](around:200,51.498719,7.225177););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 269,
+    "qc_index": 423,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically perfect, and clearly states the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 76,
+    "nl_question_en": "What is the count of all buildings within a 200-meter radius of the location at 51.498719, 7.225177?"
+  },
+  {
+    "sample_index": 841,
+    "split": "test",
+    "nl_question": "What are the railways in New York State that are not disused?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"New York State\"}}->.searchArea;(way[\"railway\"!=\"disused\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "New York State"
+    },
+    "tags": {
+      "railway!=disused": {
+        "key": "railway",
+        "relation": "not_equal",
+        "value": "disused"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 841,
+    "v2_index": 1841,
+    "qc_index": 717,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 95,
+    "nl_question_en": "What are the railways in New York State that are not disused?"
+  },
+  {
+    "sample_index": 788,
+    "split": "test",
+    "nl_question": "Show features in Baden-Württemberg that have street and place in their address, and whose house number is between 0 and 15.",
+    "OverpassQL": "[out:json][timeout:120];{{geocodeArea:\"Baden-Württemberg\"}}->.bw;nwr[\"addr:street\"][\"addr:place\"][\"addr:housenumber\"~\"^(0?[0-9]|1[0-5])$\"](area.bw);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Baden-Württemberg"
+    },
+    "tags": {
+      "addr:housenumber~^(0?[0-9]|1[0-5])$": {
+        "key": "addr:housenumber",
+        "relation": "regex_match",
+        "value": "^(0?[0-9]|1[0-5])$"
+      },
+      "addr:street": {
+        "key": "addr:street",
+        "relation": "has_key",
+        "value": ""
+      },
+      "addr:place": {
+        "key": "addr:place",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 788,
+    "qc_index": 438,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, which filters features in Baden-Württemberg with both addr:street and addr:place tags, and a house number between 0 and 15."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 97,
+    "nl_question_en": "Show features in Baden-Württemberg that have street and place in their address, and whose house number is between 0 and 15."
+  },
+  {
+    "sample_index": 810,
+    "split": "test",
+    "nl_question": "What are the ways not designated for snowmobiles in Finland?",
+    "OverpassQL": "[out:json][timeout:25];({{geocodeArea:\"Finland\"}}->.searchArea;way[\"snowmobile\"!=\"yes\"](area.searchArea);way[\"snowmobile\"!=\"permissive\"](area.searchArea);way[\"snowmobile\"!=\"designated\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Finland"
+    },
+    "tags": {
+      "snowmobile!=yes": {
+        "key": "snowmobile",
+        "relation": "not_equal",
+        "value": "yes"
+      },
+      "snowmobile!=permissive": {
+        "key": "snowmobile",
+        "relation": "not_equal",
+        "value": "permissive"
+      },
+      "snowmobile!=designated": {
+        "key": "snowmobile",
+        "relation": "not_equal",
+        "value": "designated"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 810,
+    "v2_index": 1810,
+    "qc_index": 708,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 115,
+    "nl_question_en": "What are the ways not designated for snowmobiles in Finland?"
+  },
+  {
+    "sample_index": 276,
+    "split": "test",
+    "nl_question": "What public access roads are primary, secondary, tertiary, trunk, or residential without roundabouts in the current view?",
+    "OverpassQL": "[out:json][timeout:25];way[\"highway\"~\"primary|secondary|tertiary|trunk|residential\"][\"access\"!~\"no|private\"][\"name\"!~\".\"][\"junction\"!~\"roundabout\"]({{bbox}});out;>;out skel qt;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway~primary|secondary|tertiary|trunk|residential": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "primary|secondary|tertiary|trunk|residential"
+      },
+      "access!~no|private": {
+        "key": "access",
+        "relation": "regex_not_match",
+        "value": "no|private"
+      },
+      "name!~.": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": "."
+      },
+      "junction!~roundabout": {
+        "key": "junction",
+        "relation": "regex_not_match",
+        "value": "roundabout"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 276,
+    "qc_index": 335,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits the condition that roads must have no name, which is present in the query."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 124,
+    "nl_question_en": "What public access roads are primary, secondary, tertiary, trunk, or residential without roundabouts in the current view?"
+  },
+  {
+    "sample_index": 961,
+    "split": "test",
+    "nl_question": "What are the roads in Vlaanderen that are not primary, trunk, or motorway and have a specified number of lanes?",
+    "OverpassQL": "[out:json][timeout:25];{{nominatimArea:\"Vlaanderen\"}}->.boundaryarea;(way[\"highway\"!~\"primary*|trunk*|motorway*\"][\"lanes\"~\".\"](area.boundaryarea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway!~primary*|trunk*|motorway*": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "primary*|trunk*|motorway*"
+      },
+      "lanes~.": {
+        "key": "lanes",
+        "relation": "regex_match",
+        "value": "."
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 961,
+    "v2_index": 1961,
+    "qc_index": 221,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 130,
+    "nl_question_en": "What are the roads in Vlaanderen that are not primary, trunk, or motorway and have a specified number of lanes?"
+  },
+  {
+    "sample_index": 394,
+    "split": "test",
+    "nl_question": "How many features are named 'Sperlingsberg' in Germany?",
+    "OverpassQL": "{{geocodeArea:\"DE\"}};nwr[\"name\"~\"Sperlingsberg\"];out count;(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "DE"
+    },
+    "tags": {
+      "name~Sperlingsberg": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Sperlingsberg"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 394,
+    "qc_index": 265,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's count of features named 'Sperlingsberg' in Germany, is grammatically perfect, and is unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 135,
+    "nl_question_en": "How many features are named 'Sperlingsberg' in Germany?"
+  },
+  {
+    "sample_index": 123,
+    "split": "test",
+    "nl_question": "What are the villages, towns, cities, and hamlets in Cabo Delgado Province?",
+    "OverpassQL": "[out:xml][timeout:250];({{geocodeArea:\"Cabo Delgado\"}};)->.searchArea;(nwr[\"place\"~\"village|town|city|hamlet\"](area.searchArea););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Cabo Delgado"
+    },
+    "tags": {
+      "place~village|town|city|hamlet": {
+        "key": "place",
+        "relation": "regex_match",
+        "value": "village|town|city|hamlet"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 123,
+    "qc_index": 255,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 138,
+    "nl_question_en": "What are the villages, towns, cities, and hamlets in Cabo Delgado Province?"
+  },
+  {
+    "sample_index": 380,
+    "split": "test",
+    "nl_question": "What highways are classified as motorway, trunk, primary, secondary, or tertiary without junctions or names in Hämeenlinna, Janakkala, and Hattula?",
+    "OverpassQL": "area[\"name\"~\"Hämeenlinna|Janakkala|Hattula\"]->.hml;out;way[\"highway\"~\"^(motorway|trunk|primary|secondary|tertiary)$\"][\"junction\"!~\".*\"][\"name\"!~\".*\"](area.hml);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name~Hämeenlinna|Janakkala|Hattula": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Hämeenlinna|Janakkala|Hattula"
+      },
+      "highway~^(motorway|trunk|primary|secondary|tertiary)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(motorway|trunk|primary|secondary|tertiary)$"
+      },
+      "junction!~.*": {
+        "key": "junction",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "name!~.*": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 380,
+    "qc_index": 284,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the OverpassQL query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 152,
+    "nl_question_en": "What highways are classified as motorway, trunk, primary, secondary, or tertiary without junctions or names in Hämeenlinna, Janakkala, and Hattula?"
+  },
+  {
+    "sample_index": 241,
+    "split": "test",
+    "nl_question": "Elements containing 'Befreiung' in the name tag in Düsseldorf",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Düsseldorf\"}}->.searchArea;(nwr[\"name\"~\"Befreiung\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Düsseldorf"
+    },
+    "tags": {
+      "name~Befreiung": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Befreiung"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 241,
+    "qc_index": 262,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 158,
+    "nl_question_en": "Elements containing 'Befreiung' in the name tag in Düsseldorf"
+  },
+  {
+    "sample_index": 480,
+    "split": "test",
+    "nl_question": "What are the features that are not places of worship in Yaroslavl Oblast?",
+    "OverpassQL": "[out:xml][timeout:400];{{geocodeArea:\"Ярославская область\"}}->.searchArea;(nwr[\"amenity\"!=\"place_of_worship\"](area.searchArea););(._;>;);out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ярославская область"
+    },
+    "tags": {
+      "amenity!=place_of_worship": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "place_of_worship"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 480,
+    "v2_index": 1480,
+    "qc_index": 595,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query retrieves all features without amenity=place_of_worship, but the NL question implies features that are not places of worship, which could include non-amenity features, so it's slightly ambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 162,
+    "nl_question_en": "What are the features that are not places of worship in Yaroslavl Oblast?"
+  },
+  {
+    "sample_index": 939,
+    "split": "test",
+    "nl_question": "What communication towers and masts are in Friuli Venezia Giulia?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"friuli Venezia giulia\"}}->.searchArea;(nwr[\"man_made\"~\"tower|mast\"][\"tower:type\"=\"communication\"](area.searchArea););out meta center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "friuli Venezia giulia"
+    },
+    "tags": {
+      "tower:type=communication": {
+        "key": "tower:type",
+        "relation": "equal",
+        "value": "communication"
+      },
+      "man_made~tower|mast": {
+        "key": "man_made",
+        "relation": "regex_match",
+        "value": "tower|mast"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 939,
+    "qc_index": 21,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 176,
+    "nl_question_en": "What communication towers and masts are in Friuli Venezia Giulia?"
+  },
+  {
+    "sample_index": 672,
+    "split": "test",
+    "nl_question": "What are all the ways in Uganda that are not motor",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Uganda\"}}->.searchArea;(way[\"highway\"!=\"motorway\"](area.searchArea););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Uganda"
+    },
+    "tags": {
+      "highway!=motorway": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "motorway"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 672,
+    "v2_index": 1672,
+    "qc_index": 645,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 2,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is mostly accurate but slightly ambiguous; 'not motor' could be interpreted as excluding motorways, which matches the query, but 'ways' might be confused with OSM ways vs. roads."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 202,
+    "nl_question_en": "What are all the ways in Uganda that are not motor"
+  },
+  {
+    "sample_index": 571,
+    "split": "test",
+    "nl_question": "What are the names and lengths of all roads in Parque Erasmo Assunção, Santo André?",
+    "OverpassQL": "[out:csv(\"name\",\"length\")];{{geocodeArea:\"Parque Erasmo Assunção, Santo André\"}}->.a;(way[\"highway\"][\"name\"](area.a););for(t[\"name\"]){make stat name=_.val,count=count(ways),length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Parque Erasmo Assunção, Santo André"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 571,
+    "qc_index": 431,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for names and lengths of roads, but the query uses a for loop to aggregate by name, outputting one row per unique name with total length and count, not individual road lengths."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 204,
+    "nl_question_en": "What are the names and lengths of all roads in Parque Erasmo Assunção, Santo André?"
+  },
+  {
+    "sample_index": 509,
+    "split": "test",
+    "nl_question": "What is the total length of highways with speed restrictions in Barcelona, Spain?",
+    "OverpassQL": "[out:csv(\"length\",\"highway\")][timeout:25];{{geocodeArea:\"Barcelona, Spain\"}};way[~\"maxspeed\"~\".*\"][\"highway\"](area);for(t[\"highway\"]){make stat highway=_.val,length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Barcelona, Spain"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 509,
+    "qc_index": 429,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for total length of highways with speed restrictions, but the query groups by highway type and outputs per-type lengths, not a single total."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 218,
+    "nl_question_en": "What is the total length of highways with speed restrictions in Barcelona, Spain?"
+  },
+  {
+    "sample_index": 57,
+    "split": "test",
+    "nl_question": "What railway features with UIC reference numbers are within 300 meters of each other in Alpes-de-Haute-Provence?",
+    "OverpassQL": "[out:xml][timeout:95];{{geocodeArea:\"Alpes-de-Haute-Provence\"}}->.searchArea;((node[\"uic_ref\"](area.searchArea);way[\"uic_ref\"](area.searchArea);relation[\"uic_ref\"](area.searchArea);)->.cr;(node[~\".\"~\".\"](around.cr:300);way[~\".\"~\".\"](around.cr:300);););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Alpes-de-Haute-Provence"
+    },
+    "tags": {
+      "uic_ref": {
+        "key": "uic_ref",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 57,
+    "qc_index": 376,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies finding pairs of features within 300m of each other, but the query finds all features within 300m of any UIC-ref feature, not pairwise distances."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 231,
+    "nl_question_en": "What railway features with UIC reference numbers are within 300 meters of each other in Alpes-de-Haute-Provence?"
+  },
+  {
+    "sample_index": 402,
+    "split": "test",
+    "nl_question": "What natural monuments or landmarks are designated trees in Friuli Venezia Giulia?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Friuli Venezia Giulia\"}}->.searchArea;(nwr[\"natural\"=\"tree\"][\"denotation\"~\"natural_monument|landmark\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Friuli Venezia Giulia"
+    },
+    "tags": {
+      "natural=tree": {
+        "key": "natural",
+        "relation": "equal",
+        "value": "tree"
+      },
+      "denotation~natural_monument|landmark": {
+        "key": "denotation",
+        "relation": "regex_match",
+        "value": "natural_monument|landmark"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 402,
+    "qc_index": 42,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, which retrieves trees with denotation of natural monument or landmark in Friuli Venezia Giulia."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 251,
+    "nl_question_en": "What natural monuments or landmarks are designated trees in Friuli Venezia Giulia?"
+  },
+  {
+    "sample_index": 924,
+    "split": "test",
+    "nl_question": "What are the cliffs in Hungary?",
+    "OverpassQL": "[out:json][timeout:225];{{geocodeArea:\"Hungary\"}}->.searchArea;(nwr[\"natural\"=\"cliff\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Hungary"
+    },
+    "tags": {
+      "natural=cliff": {
+        "key": "natural",
+        "relation": "equal",
+        "value": "cliff"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 924,
+    "qc_index": 70,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 256,
+    "nl_question_en": "What are the cliffs in Hungary?"
+  },
+  {
+    "sample_index": 246,
+    "split": "test",
+    "nl_question": "Where can I find locations in Moscow, Russia that are known for noodle cuisine?",
+    "OverpassQL": "[bbox:{{geocodeBbox:\"Москва, Россия\"}}][out:xml][timeout:25];(nwr[\"cuisine\"~\"noodle\",i];);(._;>;);out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "cuisine~noodle": {
+        "key": "cuisine",
+        "relation": "regex_match",
+        "value": "noodle"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 246,
+    "qc_index": 298,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question is clear and fluent, but 'locations known for noodle cuisine' slightly understates the query's focus on cuisine tags, though it's mostly accurate."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 262,
+    "nl_question_en": "Where can I find locations in Moscow, Russia that are known for noodle cuisine?"
+  },
+  {
+    "sample_index": 713,
+    "split": "test",
+    "nl_question": "What places in Australia have house numbers?",
+    "OverpassQL": "[out:csv(::count:nodes,::count:ways,::count:relations)][timeout:250];{{geocodeArea:\"Australia\"}}->.searchArea;(nwr[\"addr:housenumber\"](area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Australia"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 713,
+    "qc_index": 363,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 293,
+    "nl_question_en": "What places in Australia have house numbers?"
+  },
+  {
+    "sample_index": 647,
+    "split": "test",
+    "nl_question": "What highways suitable for motor vehicles are not designated for bicycles, pedestrians, or other minor uses in the current view?",
+    "OverpassQL": "[out:json];(way[\"highway\"][\"area\"!~\"yes\"][\"highway\"!~\"cycleway|footway|path|pedestrian|steps|track|corridor|elevator|escalator|proposed|construction|bridleway|abandoned|platform|raceway\"][\"motor_vehicle\"!~\"no\"][\"motorcar\"!~\"no\"][\"access\"!~\"private\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "area!~yes": {
+        "key": "area",
+        "relation": "regex_not_match",
+        "value": "yes"
+      },
+      "highway!~cycleway|footway|path|pedestrian|steps|track|corridor|elevator|escalator|proposed|construction|bridleway|abandoned|platform|raceway": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "cycleway|footway|path|pedestrian|steps|track|corridor|elevator|escalator|proposed|construction|bridleway|abandoned|platform|raceway"
+      },
+      "motor_vehicle!~no": {
+        "key": "motor_vehicle",
+        "relation": "regex_not_match",
+        "value": "no"
+      },
+      "motorcar!~no": {
+        "key": "motorcar",
+        "relation": "regex_not_match",
+        "value": "no"
+      },
+      "access!~private": {
+        "key": "access",
+        "relation": "regex_not_match",
+        "value": "private"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 647,
+    "qc_index": 349,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's filtering for motor-vehicle-accessible highways excluding minor uses, and is grammatically perfect and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 304,
+    "nl_question_en": "What highways suitable for motor vehicles are not designated for bicycles, pedestrians, or other minor uses in the current view?"
+  },
+  {
+    "sample_index": 479,
+    "split": "test",
+    "nl_question": "What are the ways that are not primary highways",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Cluj-Napoca\"}}->.searchArea;(way[\"highway\"!=\"primary\"](area.searchArea);way[\"highway\"!=\"primary_link\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Cluj-Napoca"
+    },
+    "tags": {
+      "highway!=primary": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "primary"
+      },
+      "highway!=primary_link": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "primary_link"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 479,
+    "v2_index": 1479,
+    "qc_index": 128,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits that the query also excludes primary_link highways and is limited to Cluj-Napoca."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 307,
+    "nl_question_en": "What are the ways that are not primary highways"
+  },
+  {
+    "sample_index": 957,
+    "split": "test",
+    "nl_question": "What features in the selected area that are not highways have a specified name?",
+    "OverpassQL": "[out:json][timeout:25];(node[!\"highway\"][\"name\"~\".\"]({{bbox}});way[!\"highway\"][\"name\"~\".\"]({{bbox}});relation[!\"highway\"][\"name\"~\".\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "name~.": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "."
+      },
+      "!highway": {
+        "key": "highway",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 957,
+    "v2_index": 1957,
+    "qc_index": 517,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 2,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question accurately describes the query but could be phrased more naturally as 'What features in the selected area that are not highways have a name?'"
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 309,
+    "nl_question_en": "What features in the selected area that are not highways have a specified name?"
+  },
+  {
+    "sample_index": 797,
+    "split": "test",
+    "nl_question": "What is the count of all disused man-made monuments, buildings, and land use features?",
+    "OverpassQL": "[out:csv(::count)][timeout:60];(nwr[\"disused:man_made\"];nwr[\"disused:building\"];nwr[\"disused:landuse\"];);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "disused:man_made": {
+        "key": "disused:man_made",
+        "relation": "has_key",
+        "value": ""
+      },
+      "disused:building": {
+        "key": "disused:building",
+        "relation": "has_key",
+        "value": ""
+      },
+      "disused:landuse": {
+        "key": "disused:landuse",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 797,
+    "qc_index": 404,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies counting three categories, but the query counts nodes/ways/relations with any of the three keys, not separate counts."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 323,
+    "nl_question_en": "What is the count of all disused man-made monuments, buildings, and land use features?"
+  },
+  {
+    "sample_index": 936,
+    "split": "test",
+    "nl_question": "What features in Matera are not guest houses?",
+    "OverpassQL": "[out:xml][timeout:60];{{geocodeArea:\"Matera\"}}->.searchArea;(nwr[\"tourism\"!=\"guest_house\"](area.searchArea););out meta qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Matera"
+    },
+    "tags": {
+      "tourism!=guest_house": {
+        "key": "tourism",
+        "relation": "not_equal",
+        "value": "guest_house"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 936,
+    "v2_index": 1936,
+    "qc_index": 147,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 325,
+    "nl_question_en": "What features in Matera are not guest houses?"
+  },
+  {
+    "sample_index": 589,
+    "split": "test",
+    "nl_question": "What features that are not charging stations for electric vehicles are in Luxembourg?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Luxembourg\"}}->.searchArea;(nwr[\"amenity\"!=\"charging_station\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Luxembourg"
+    },
+    "tags": {
+      "amenity!=charging_station": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "charging_station"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 589,
+    "v2_index": 1589,
+    "qc_index": 614,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query returns all features except charging stations, but the NL question implies a focus on features related to electric vehicles, which is not accurate."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 327,
+    "nl_question_en": "What features that are not charging stations for electric vehicles are in Luxembourg?"
+  },
+  {
+    "sample_index": 338,
+    "split": "test",
+    "nl_question": "What ways in the current view are not abandoned highways?",
+    "OverpassQL": "[out:json][timeout:25];(way[!\"abandoned:highway\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "!abandoned:highway": {
+        "key": "abandoned:highway",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 338,
+    "v2_index": 1338,
+    "qc_index": 465,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 328,
+    "nl_question_en": "What ways in the current view are not abandoned highways?"
+  },
+  {
+    "sample_index": 769,
+    "split": "test",
+    "nl_question": "What are the named roads and paths in Poltava?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Poltava\"}}->.searchArea;(way[\"highway\"][\"name\"](area.searchArea);relation[\"highway\"][\"name\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Poltava"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 769,
+    "qc_index": 395,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the query for named highways in Poltava."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 331,
+    "nl_question_en": "What are the named roads and paths in Poltava?"
+  },
+  {
+    "sample_index": 773,
+    "split": "test",
+    "nl_question": "What are the relations in Jammu and Kashmir that are not administrative boundaries and do not have an administrative level of 5?",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Jammu and Kashmir\"}}->.searchArea;(relation[\"boundary\"!=\"administrative\"][\"admin_level\"!=\"5\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Jammu and Kashmir"
+    },
+    "tags": {
+      "boundary!=administrative": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "administrative"
+      },
+      "admin_level!=5": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "5"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 773,
+    "v2_index": 1773,
+    "qc_index": 689,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question accurately captures the query's intent but omits that the query also outputs child nodes and ways via the '>; out meta qt' statement."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 339,
+    "nl_question_en": "What are the relations in Jammu and Kashmir that are not administrative boundaries and do not have an administrative level of 5?"
+  },
+  {
+    "sample_index": 757,
+    "split": "test",
+    "nl_question": "Fire hydrants of type pillar in the area with official German municipal ID 05113000.",
+    "OverpassQL": "[out:json][timeout:25];area[\"de:amtlicher_gemeindeschluessel\"=\"05113000\"]->.searchArea;(nwr[\"fire_hydrant:type\"=\"pillar\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "de:amtlicher_gemeindeschluessel=05113000": {
+        "key": "de:amtlicher_gemeindeschluessel",
+        "relation": "equal",
+        "value": "05113000"
+      },
+      "fire_hydrant:type=pillar": {
+        "key": "fire_hydrant:type",
+        "relation": "equal",
+        "value": "pillar"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 757,
+    "qc_index": 65,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 357,
+    "nl_question_en": "Fire hydrants of type pillar in the area with official German municipal ID 05113000."
+  },
+  {
+    "sample_index": 660,
+    "split": "test",
+    "nl_question": "Where are all the locations not named 'Café Martínez' in Argentina?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"argentina\"}}->.searchArea;(nwr[\"name\"!=\"Café Martínez\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "argentina"
+    },
+    "tags": {
+      "name!=Café Martínez": {
+        "key": "name",
+        "relation": "not_equal",
+        "value": "Café Martínez"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 660,
+    "v2_index": 1660,
+    "qc_index": 640,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 360,
+    "nl_question_en": "Where are all the locations not named 'Café Martínez' in Argentina?"
+  },
+  {
+    "sample_index": 639,
+    "split": "test",
+    "nl_question": "What designated bicycle paths in Greater Manchester include barriers like kerbs, crushes, squeezes, blocks, horse barriers, steps, chicanes, stiles, cycle barriers, or gates?",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Greater Manchester\"}}->.searchArea;way[\"bicycle\"~\"yes|designated\"](area.searchArea);node[\"barrier\"~\"yes|kerb|crush|squeeze|block|horse_barrier|step|chicane|stile|cycle_barrier|gate\"](w);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Greater Manchester"
+    },
+    "tags": {
+      "bicycle~yes|designated": {
+        "key": "bicycle",
+        "relation": "regex_match",
+        "value": "yes|designated"
+      },
+      "barrier~yes|kerb|crush|squeeze|block|horse_barrier|step|chicane|stile|cycle_barrier|gate": {
+        "key": "barrier",
+        "relation": "regex_match",
+        "value": "yes|kerb|crush|squeeze|block|horse_barrier|step|chicane|stile|cycle_barrier|gate"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 639,
+    "qc_index": 247,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": ""
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 366,
+    "nl_question_en": "What designated bicycle paths in Greater Manchester include barriers like kerbs, crushes, squeezes, blocks, horse barriers, steps, chicanes, stiles, cycle barriers, or gates?"
+  },
+  {
+    "sample_index": 316,
+    "split": "test",
+    "nl_question": "What are the stops and routes for 'IC' in Switzerland?",
+    "OverpassQL": "{{geocodeArea:\"CH\"}}->.ch;relation[\"name\"~\"^IC\"](area.ch)->.b1;relation[\"ref\"~\"^IC\"](area.ch)->.b2;(.b1;.b2;);node(r)(area.ch)->.n;((.b1;.b2;);.n;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "CH"
+    },
+    "tags": {
+      "name~^IC": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "^IC"
+      },
+      "ref~^IC": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "^IC"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 316,
+    "qc_index": 227,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query retrieves IC relations and their nodes, but 'stops' is ambiguous—it could mean platforms or stations, and the query doesn't filter for stop roles."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 367,
+    "nl_question_en": "What are the stops and routes for 'IC' in Switzerland?"
+  },
+  {
+    "sample_index": 738,
+    "split": "test",
+    "nl_question": "What places are not related to the peer-to-peer economy in the specified area?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"identity\"!~\"p2p_economy\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "identity!~p2p_economy": {
+        "key": "identity",
+        "relation": "regex_not_match",
+        "value": "p2p_economy"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 738,
+    "v2_index": 1738,
+    "qc_index": 318,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is fluent but slightly ambiguous about 'places' and 'specified area', while the query uses a tag negation that may not fully capture 'peer-to-peer economy'."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 370,
+    "nl_question_en": "What places are not related to the peer-to-peer economy in the specified area?"
+  },
+  {
+    "sample_index": 10,
+    "split": "test",
+    "nl_question": "Show the railway station named Planegg.",
+    "OverpassQL": "[out:json];nwr[\"name\"=\"Planegg\"][\"railway\"=\"station\"];out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Planegg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Planegg"
+      },
+      "railway=station": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "station"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 10,
+    "qc_index": 56,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query, is grammatically correct, and clearly describes the intent."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 375,
+    "nl_question_en": "Show the railway station named Planegg."
+  },
+  {
+    "sample_index": 368,
+    "split": "test",
+    "nl_question": "What are the internationally referenced motorways and trunk roads in Moldova?",
+    "OverpassQL": "[out:csv(::type,::id,::user,::version,\"int_ref\")][timeout:250];{{geocodeArea:\"Moldova\"}}->.searchArea;(way[\"highway\"~\"motorway|trunk\"][\"int_ref\"](area.searchArea););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Moldova"
+    },
+    "tags": {
+      "highway~motorway|trunk": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk"
+      },
+      "int_ref": {
+        "key": "int_ref",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 368,
+    "qc_index": 369,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the query for motorways and trunk roads with international references in Moldova."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 381,
+    "nl_question_en": "What are the internationally referenced motorways and trunk roads in Moldova?"
+  },
+  {
+    "sample_index": 960,
+    "split": "test",
+    "nl_question": "What is the count of highway area features contributed by the user 'rowers2' in Poland?",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:280];{{geocodeArea:\"Poland\"}}->.searchArea;(nwr[\"area:highway\"](user:\"rowers2\")(area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Poland"
+    },
+    "tags": {
+      "area:highway": {
+        "key": "area:highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 960,
+    "qc_index": 445,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for 'highway area features' but the query uses 'area:highway', which is a different tag; otherwise accurate."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 387,
+    "nl_question_en": "What is the count of highway area features contributed by the user 'rowers2' in Poland?"
+  },
+  {
+    "sample_index": 808,
+    "split": "test",
+    "nl_question": "What features that are not gas stations are in Prague?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"prague\"}}->.searchArea;(nwr[\"amenity\"!=\"fuel\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "prague"
+    },
+    "tags": {
+      "amenity!=fuel": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "fuel"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 808,
+    "v2_index": 1808,
+    "qc_index": 706,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query excludes only 'fuel' amenity, not all gas stations (e.g., 'fuel' tag covers most but not all), so minor omission."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 392,
+    "nl_question_en": "What features that are not gas stations are in Prague?"
+  },
+  {
+    "sample_index": 81,
+    "split": "test",
+    "nl_question": "What lift gates are located in Singen/Hohentwiel?",
+    "OverpassQL": "{{geocodeArea:\"Singen/Hohentwiel\"}}->.searchArea;(nwr[\"barrier\"=\"lift_gate\"](area.searchArea);>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Singen/Hohentwiel"
+    },
+    "tags": {
+      "barrier=lift_gate": {
+        "key": "barrier",
+        "relation": "equal",
+        "value": "lift_gate"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 81,
+    "qc_index": 62,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "english",
+    "is_duplicate": false,
+    "ml_index": 394,
+    "nl_question_en": "What lift gates are located in Singen/Hohentwiel?"
+  }
+]

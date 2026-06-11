@@ -1,0 +1,47 @@
+# C2 profile-DPP diversity variant (ENGLISH eval) — PLAIN demos.
+# Reranks the relevance top-M candidates to maximize
+#     f(S) = phi(sum rel) + lambda * logdet(I + K_S)
+# where K is the CROSS-LINGUAL RELEVANCE-PROFILE kernel: (1+corr)/2 over
+# per-(lang,query) mean-centered ml_8x influence profiles (en+zh+ja). Diversifies by
+# cross-lingual evidence ROLE, not NL embedding. lambda=0 reduces EXACTLY to relevance
+# top-k (== fewshot.yaml). 
+#
+# Operating point (per-language, from the lambda curve): en -> lambda 0 (no English
+# cost), zh/ja -> lambda 0.3 (the cross-lingual peak). EX-on-test is the open follow-up.
+
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:                            # (split, score_source_file)
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180
+
+eval:
+  score_source_root: /path/to/OsmNL_source
+  files:
+    dev: dev_final.json
+    test: test_final.json
+
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3
+  influence_model: qwen3_qwen3_influence_ml_8x_euclidean
+  # Profile kernel: stacked over ALL langs regardless of eval lang -> bare base + suffixes.
+  profile_influence_model: qwen3_qwen3_influence_ml_8x_euclidean
+  profile_influence_suffixes: ["", "ZH", "JA"]   # en (no suffix), zh, ja influence
+
+defaults:
+  k: 6
+  alpha: 0.2
+  split: dev
+  dedup_prefix_len: 80
+
+select:
+  method: dpp
+  kernel_mode: profile
+  M: 20                # candidate-pool size; smaller M tightens the changed-picks band
+  lambda: 0.0          # diversity weight; sweep {0,0.1,0.2,0.3,0.5}. en op-point = 0
+  phi_mode: linear
+
+run:
+  out_dir: data/fewshot_profile

@@ -1,0 +1,3006 @@
+[
+  {
+    "sample_index": 0,
+    "split": "syn",
+    "nl_question": "喺默爾特-摩澤爾，有邊啲地方嘅名係包含咗 'college' 或者 'College' 呢個字呢？",
+    "OverpassQL": "[out:xml][timeout:500];{{geocodeArea:\"Meurthe-et-Moselle\"}}->.searchArea;(nwr[\"name\"~\"[cC]ollege\"](area.searchArea););out meta;>;(._;>;);out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "默爾特-摩澤爾"
+    },
+    "tags": {
+      "name~[cC]ollege": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "[cC]ollege"
+      }
+    }
+  },
+  {
+    "sample_index": 1,
+    "split": "syn",
+    "nl_question": "喺薩克森邊度可以搵到鐵路限速預告信號，同埋名叫「Landkreis Roth」或者「IX. kerület」嘅物件呢？",
+    "OverpassQL": "area[\"name\"=\"Sachsen\"]->.sachsen;(nwr[\"railway:signal:speed_limit_distant\"](area.sachsen);nwr[\"name\"=\"Landkreis Roth\"](area.sachsen);nwr[\"name\"=\"IX. kerület\"](area.sachsen););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "薩克森"
+    },
+    "tags": {
+      "name=Sachsen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Sachsen"
+      },
+      "name=Landkreis Roth": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Landkreis Roth"
+      },
+      "name=IX. kerület": {
+        "key": "name",
+        "relation": "equal",
+        "value": "IX. kerület"
+      },
+      "railway:signal:speed_limit_distant": {
+        "key": "railway:signal:speed_limit_distant",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 2,
+    "split": "syn",
+    "nl_question": "喺 Bochold 邊度有壽司店、游泳池，或者有標明單車徑鋪面物料嘅路？",
+    "OverpassQL": "area[\"name\"=\"Bochold\"][\"admin_level\"=\"10\"]->.a;(nwr[\"cuisine\"=\"sushi\"](area.a);nwr[\"amenity\"=\"swimming_pool\"](area.a);way[\"cycleway:surface\"](area.a););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Bochold"
+    },
+    "tags": {
+      "name=Bochold": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Bochold"
+      },
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      },
+      "cuisine=sushi": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "sushi"
+      },
+      "amenity=swimming_pool": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "swimming_pool"
+      },
+      "cycleway:surface": {
+        "key": "cycleway:surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 3,
+    "split": "syn",
+    "nl_question": "喺卡佩倫地區入面，有邊啲唔係月台嘅公共交通關係呢？",
+    "OverpassQL": "[out:xml][timeout:400];area[\"name\"=\"Capellen\"][\"boundary\"=\"administrative\"]->.searchArea;relation[\"public_transport\"!~\"platform\"](area.searchArea);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "卡佩倫"
+    },
+    "tags": {
+      "name=Capellen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Capellen"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "public_transport!~platform": {
+        "key": "public_transport",
+        "relation": "regex_not_match",
+        "value": "platform"
+      }
+    }
+  },
+  {
+    "sample_index": 4,
+    "split": "syn",
+    "nl_question": "顯示下萊茵省入面嘅季節性道路。",
+    "OverpassQL": "[timeout:1500];{{geocodeArea:\"Bas-Rhin\"}}->.searchArea;(way[\"seasonal\"=\"yes\"](area.searchArea);>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "下萊茵省"
+    },
+    "tags": {
+      "seasonal=yes": {
+        "key": "seasonal",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 5,
+    "split": "syn",
+    "nl_question": "顯示所有喺澳洲首都領地同巴黎，包含從相反行車方向睇到嘅交通標誌資料嘅地點。",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Australia Capital Territory\"}}->.a;{{geocodeArea:\"Paris\"}}->.b;(nwr[\"traffic_sign:backward\"](area.a);nwr[\"traffic_sign:backward\"](area.b););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "澳洲首都領地"
+    },
+    "tags": {
+      "traffic_sign:backward": {
+        "key": "traffic_sign:backward",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 6,
+    "split": "syn",
+    "nl_question": "顯示所有喺摩洛哥同埋巴黎嘅醫院、診所、醫療站、醫療中心、護理安老院同埋牙醫。",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Maroc\"}}->.a;{{geocodeArea:\"Paris\"}}->.b;(nwr[\"amenity\"~\"^(hospital|clinic|health_post|health_center|nursing_home|dentist)$\"](area.a);nwr[\"amenity\"~\"^(hospital|clinic|health_post|health_center|nursing_home|dentist)$\"](area.b););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "摩洛哥"
+    },
+    "tags": {
+      "amenity~^(hospital|clinic|health_post|health_center|nursing_home|dentist)$": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "^(hospital|clinic|health_post|health_center|nursing_home|dentist)$"
+      }
+    }
+  },
+  {
+    "sample_index": 7,
+    "split": "syn",
+    "nl_question": "喺 Völs am Schlern – Fiè allo Sciliar 入面，邊啲市鎮有聖誕相關設施，而呢啲設施嘅營運者唔係以「France」開頭，亦都唔係標記做停車場通道呢？",
+    "OverpassQL": "area[\"xmas:feature\"][\"operator\"!~\"^france\"]->.a;area[\"xmas:feature\"][\"service\"!=\"parking_aisle\"]->.b;node[\"place\"=\"town\"](area.a)(area.b);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "place=town": {
+        "key": "place",
+        "relation": "equal",
+        "value": "town"
+      },
+      "service!=parking_aisle": {
+        "key": "service",
+        "relation": "not_equal",
+        "value": "parking_aisle"
+      },
+      "operator!~^france": {
+        "key": "operator",
+        "relation": "regex_not_match",
+        "value": "^france"
+      },
+      "xmas:feature": {
+        "key": "xmas:feature",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 8,
+    "split": "syn",
+    "nl_question": "Mengede 喺多蒙特邊度？",
+    "OverpassQL": "[out:json];relation[\"name\"=\"Dortmund\"];out geom;map_to_area;nwr[\"name\"=\"Mengede\"](area);out qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Dortmund": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Dortmund"
+      },
+      "name=Mengede": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Mengede"
+      }
+    }
+  },
+  {
+    "sample_index": 9,
+    "split": "syn",
+    "nl_question": "顯示加蓬所有名入面冇語源資料嘅住宅路。",
+    "OverpassQL": "[out:xml][timeout:250];{{geocodeArea:\"Gabon\"}}->.searchArea;(way[\"highway\"=\"residential\"][!\"name:etymology:wikidata\"](area.searchArea);way[\"highway\"=\"residential\"][!\"name:etymology:wikipedia\"](area.searchArea););out body geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "加蓬"
+    },
+    "tags": {
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      },
+      "!name:etymology:wikidata": {
+        "key": "name:etymology:wikidata",
+        "relation": "not_has_key",
+        "value": ""
+      },
+      "!name:etymology:wikipedia": {
+        "key": "name:etymology:wikipedia",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 10,
+    "split": "syn",
+    "nl_question": "愛爾蘭有邊啲國家公園同高速公路呢？",
+    "OverpassQL": "[out:json][timeout:100];({{geocodeArea:Irland}};)->.searchArea;(nwr[\"boundary\"=\"national_park\"](area.searchArea);nwr[\"highway\"=\"motorway\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "boundary=national_park": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "national_park"
+      },
+      "highway=motorway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway"
+      }
+    }
+  },
+  {
+    "sample_index": 11,
+    "split": "syn",
+    "nl_question": "喺烏塔拉克漢德有邊啲巴士路線同埋由主要道路到住宅區嘅道路紀錄呢？",
+    "OverpassQL": "[out:json][timeout:100];({{geocodeArea:\"Uttarakhand\"}};)->.searchArea;(nwr[\"route\"=\"bus\"](area.searchArea);nwr[\"highway\"~\"^(motorway|trunk|pedestrian|primary|secondary|tertiary|unclassified|service|residential|living_street)$\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "烏塔拉克漢德"
+    },
+    "tags": {
+      "route=bus": {
+        "key": "route",
+        "relation": "equal",
+        "value": "bus"
+      },
+      "highway~^(motorway|trunk|pedestrian|primary|secondary|tertiary|unclassified|service|residential|living_street)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(motorway|trunk|pedestrian|primary|secondary|tertiary|unclassified|service|residential|living_street)$"
+      }
+    }
+  },
+  {
+    "sample_index": 12,
+    "split": "syn",
+    "nl_question": "顯示巴黎所有主要道路。",
+    "OverpassQL": "[out:json][timeout:2500];{{geocodeArea:\"Paris\"}}->.searchArea;(way[\"highway\"~\"motorway|motorway_link|trunk|trunk_link|primary|secondary|tertiary\"](area.searchArea););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway~motorway|motorway_link|trunk|trunk_link|primary|secondary|tertiary": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|motorway_link|trunk|trunk_link|primary|secondary|tertiary"
+      }
+    }
+  },
+  {
+    "sample_index": 13,
+    "split": "syn",
+    "nl_question": "顯示巴黎所有嘅收費站。",
+    "OverpassQL": "[out:json][timeout:2500];{{geocodeArea:\"Paris\"}}->.searchArea;(nwr[\"barrier\"=\"toll_booth\"](area.searchArea););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "barrier=toll_booth": {
+        "key": "barrier",
+        "relation": "equal",
+        "value": "toll_booth"
+      }
+    }
+  },
+  {
+    "sample_index": 14,
+    "split": "syn",
+    "nl_question": "喺霍達蘭 1,000 米範圍內，有邊啲路係明確容許輕便電單車 (mofa) 嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];(way[\"mofa\"=\"yes\"](around:1000,{{geocodeCoords:\"hordaland\"}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "mofa=yes": {
+        "key": "mofa",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 15,
+    "split": "syn",
+    "nl_question": "喺恩賈梅納，門牌號碼係 165 號、參考編號係以「SC」開頭嘅所有路段，總長度係幾多呢？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"N'Djamena\"}}->.searchArea;way[\"addr:housenumber\"=\"165\"][\"ref\"~\"^SC*\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "恩賈梅納"
+    },
+    "tags": {
+      "addr:housenumber=165": {
+        "key": "addr:housenumber",
+        "relation": "equal",
+        "value": "165"
+      },
+      "ref~^SC*": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "^SC*"
+      }
+    }
+  },
+  {
+    "sample_index": 16,
+    "split": "syn",
+    "nl_question": "喺 Horst，路面係非鋪裝、2006 年開始用嘅路總共有幾長？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Horst\"}}->.searchArea;way[\"surface\"=\"unpaved\"][\"start_date\"=\"2006\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Horst"
+    },
+    "tags": {
+      "surface=unpaved": {
+        "key": "surface",
+        "relation": "equal",
+        "value": "unpaved"
+      },
+      "start_date=2006": {
+        "key": "start_date",
+        "relation": "equal",
+        "value": "2006"
+      }
+    }
+  },
+  {
+    "sample_index": 17,
+    "split": "syn",
+    "nl_question": "請問喺巴伐利亞入面，Glebe Point Road 嘅總長度係幾多？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:Bayern}}->.searchArea;way[\"name\"=\"Glebe Point Road\"](area.searchArea);make data length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴伐利亞"
+    },
+    "tags": {
+      "name=Glebe Point Road": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Glebe Point Road"
+      }
+    }
+  },
+  {
+    "sample_index": 18,
+    "split": "syn",
+    "nl_question": "顯示帕多瓦入面闊度啱啱好係 10 米嘅相關街道。",
+    "OverpassQL": "[out:xml];{{geocodeArea:\"Padova\"}}->.searchArea;way[\"width\"=\"10\"](area.searchArea)->.no;relation[\"type\"=\"associatedStreet\"](bn.no)->.rel;(nwr.no;relation.rel;);out meta;>;out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "帕多瓦"
+    },
+    "tags": {
+      "width=10": {
+        "key": "width",
+        "relation": "equal",
+        "value": "10"
+      },
+      "type=associatedStreet": {
+        "key": "type",
+        "relation": "equal",
+        "value": "associatedStreet"
+      }
+    }
+  },
+  {
+    "sample_index": 19,
+    "split": "syn",
+    "nl_question": "喺柏林有邊啲地方係屬於鄉郊交通區域，或者有電單車租賃資訊？",
+    "OverpassQL": "[out:json];(area[\"name\"=\"Berlin\"];)->.a;(nwr[\"zone:traffic\"=\"DE:rural\"](area.a);nwr[\"motorcycle:rental\"](area.a););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "柏林"
+    },
+    "tags": {
+      "name=Berlin": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Berlin"
+      },
+      "zone:traffic=DE:rural": {
+        "key": "zone:traffic",
+        "relation": "equal",
+        "value": "DE:rural"
+      },
+      "motorcycle:rental": {
+        "key": "motorcycle:rental",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 20,
+    "split": "syn",
+    "nl_question": "顯示 Santa Maria RS 所有快餐店嘅座標位置同電話號碼。",
+    "OverpassQL": "[out:csv(::lat,::lon,\"contact:phone\")];{{geocodeArea:\"Santa Maria RS\"}}->.searchArea;nwr[\"amenity\"=\"fast_food\"](area.searchArea);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴西聖瑪利亞 (Santa Maria RS)"
+    },
+    "tags": {
+      "amenity=fast_food": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fast_food"
+      }
+    }
+  },
+  {
+    "sample_index": 21,
+    "split": "syn",
+    "nl_question": "喺加拿大渥太華，有邊啲高速公路連接路係由用戶 'NegreanuAlina' 貢獻嘅？",
+    "OverpassQL": "{{geocodeArea:\"Ottawa, Canada\"}}->.searchArea;way[\"highway\"=\"motorway_link\"](user:\"NegreanuAlina\")(area.searchArea)(if:version()<2);out geom;make info versions=set(version());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "加拿大渥太華"
+    },
+    "tags": {
+      "highway=motorway_link": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway_link"
+      }
+    }
+  },
+  {
+    "sample_index": 22,
+    "split": "syn",
+    "nl_question": "顯示所有喺佛蘭德大區安特衛普嘅充電站？",
+    "OverpassQL": "[out:json][timeout:25];(area[\"name\"=\"Vlaanderen\"][\"admin_level\"=\"4\"];)->.b;(area[\"name\"=\"Antwerpen\"][\"admin_level\"=\"8\"](area.b);)->.a;(nwr[\"amenity\"=\"charging_station\"](area.a)(area.b););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "佛蘭德"
+    },
+    "tags": {
+      "name=Vlaanderen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Vlaanderen"
+      },
+      "admin_level=4": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "4"
+      },
+      "name=Antwerpen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Antwerpen"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "amenity=charging_station": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "charging_station"
+      }
+    }
+  },
+  {
+    "sample_index": 23,
+    "split": "syn",
+    "nl_question": "巴黎總共有幾多間餐廳？當中有幾多間係提供中菜、日本菜或者韓國菜嘅呢？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.paris;node[\"amenity\"=\"restaurant\"](area.paris)->.rests;node.rests;out count;node.rests[\"cuisine\"=\"chinese\"];out count;node.rests[\"cuisine\"=\"japanese\"];out count;node.rests[\"cuisine\"=\"korean\"];out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      },
+      "cuisine=japanese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "japanese"
+      },
+      "cuisine=korean": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "korean"
+      }
+    }
+  },
+  {
+    "sample_index": 24,
+    "split": "syn",
+    "nl_question": "喺座標 48.85683, 2.35087 嘅 500 米範圍內，有邊啲三級道路或者步行街呢？",
+    "OverpassQL": "[out:json][timeout:25];(way[\"highway\"=\"tertiary\"](around:500,{{geocodeCoords:\"48.85683,2.35087\"}});way[\"highway\"=\"pedestrian\"](around:500,{{geocodeCoords:\"48.85683,2.35087\"}}););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway=tertiary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "tertiary"
+      },
+      "highway=pedestrian": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "pedestrian"
+      }
+    }
+  },
+  {
+    "sample_index": 25,
+    "split": "syn",
+    "nl_question": "喺杜塞道夫 Düsseltal，有邊啲高過 100 米嘅寫字樓呢？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Düsseltal, Düsseldorf\"}}->.searchArea;(nwr[\"building\"=\"office\"](if:t[\"height\"]>100)(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "杜塞道夫 Düsseltal"
+    },
+    "tags": {
+      "building=office": {
+        "key": "building",
+        "relation": "equal",
+        "value": "office"
+      },
+      "height": {
+        "key": "height",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 26,
+    "split": "syn",
+    "nl_question": "喺杜塞道夫 Düsseltal，所有建築物嘅高度加埋係幾多？",
+    "OverpassQL": "{{geocodeArea:\"Düsseltal, Düsseldorf\"}}->.a;nwr[\"building\"](area.a)(if:is_number(t[\"height\"]));make total_hs hs=sum(t[\"height\"]);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "杜塞道夫 Düsseltal"
+    },
+    "tags": {
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      },
+      "height": {
+        "key": "height",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 27,
+    "split": "syn",
+    "nl_question": "搵晒贊比亞入面所有地圖上面嘅樹林同長凳。",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Zambia\"}}->.a;(nwr[\"landcover\"=\"trees\"](area.a);nwr[\"amenity\"=\"bench\"](area.a););out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "贊比亞"
+    },
+    "tags": {
+      "landcover=trees": {
+        "key": "landcover",
+        "relation": "equal",
+        "value": "trees"
+      },
+      "amenity=bench": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "bench"
+      }
+    }
+  },
+  {
+    "sample_index": 28,
+    "split": "syn",
+    "nl_question": "顯示名為「São Bernardo do Campo」嘅關係入面所有路段，但係唔包括路段 227805588 同 227805637？",
+    "OverpassQL": "(relation[\"name\"=\"São Bernardo do Campo\"];)->.searchArea;(((way(r.searchArea););-way(227805588););-way(227805637););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=São Bernardo do Campo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "São Bernardo do Campo"
+      }
+    }
+  },
+  {
+    "sample_index": 29,
+    "split": "syn",
+    "nl_question": "喺名為「聖貝爾納多-杜坎普」嘅關係入面，除咗編號 227805588 嘅路徑之外，有啲咩點同埋路徑呢？",
+    "OverpassQL": "(relation[\"name\"=\"São Bernardo do Campo\"];)->.searchArea;((nw(r.searchArea););-way(227805588););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=São Bernardo do Campo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "São Bernardo do Campo"
+      }
+    }
+  },
+  {
+    "sample_index": 30,
+    "split": "syn",
+    "nl_question": "巴黎主要道路同生活街道嘅數量同總長度係幾多？",
+    "OverpassQL": "[out:csv(\"number\",\"length\")];{{geocodeArea:\"Paris\"}}->.searchArea;way[\"highway\"=\"primary\"](area.searchArea);make stat number=count(ways),length=sum(length());way[\"highway\"=\"living_street\"](area.searchArea);make stat number=count(ways),length=sum(length());out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      },
+      "highway=living_street": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "living_street"
+      }
+    }
+  },
+  {
+    "sample_index": 31,
+    "split": "syn",
+    "nl_question": "喺巴黎有幾多間中菜館仲開緊，同埋有幾多間已經執咗？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Paris\"}}->.a;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](area.a)(if:!is_closed());out count;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](area.a)(if:is_closed());out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 32,
+    "split": "syn",
+    "nl_question": "喺巴黎，邊啲道路嘅路面係泥地、土地或者沙地，但係冇平整度評級或者係狀況極佳嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Paris\"}}->.city;way(area.city)[\"highway\"](if:is_tag(\"surface\")&&lrs_in(t[\"surface\"],\"dirt;ground;sand\")&&(!is_tag(\"smoothness\")||t[\"smoothness\"]==\"excellent\"));out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 33,
+    "split": "syn",
+    "nl_question": "喺巴黎，自 2021 年 1 月 1 日起編輯過嘅泥地表面道路，按貢獻用戶計嘅總長度係幾多？",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Paris\"}}->.searchArea;way(area.searchArea)[\"highway\"][\"surface\"=\"dirt\"](if:timestamp()>=\"2023-01-01T00:00:00Z\");for (user())(make stat number_of_ways=count(ways),user=_.val,length_in_m=sum(length());out;);",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "surface=dirt": {
+        "key": "surface",
+        "relation": "equal",
+        "value": "dirt"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 34,
+    "split": "syn",
+    "nl_question": "喺果阿有幾多個標記咗單行道資訊嘅地圖特徵呢？",
+    "OverpassQL": "[out:json][timeout:45];area[\"name\"=\"Goa\"]->.searchArea;(nwr[\"oneway\"](area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "果阿"
+    },
+    "tags": {
+      "name=Goa": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Goa"
+      },
+      "oneway": {
+        "key": "oneway",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 35,
+    "split": "syn",
+    "nl_question": "喺赤道幾內亞入面，有邊啲安老院喺 OpenStreetMap 係以點 (nodes) 嘅形式標記出嚟㗎？",
+    "OverpassQL": "[out:csv(::type,::id,\"amenity\",\"name\";true;\" || \")][timeout:25];(relation[\"name\"=\"Guinée Equatoriale\"];)->.a;(.a;>>;)->.b;(node.b[\"amenity\"=\"retirement_home\"];);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Guinée Equatoriale": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Guinée Equatoriale"
+      },
+      "amenity=retirement_home": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "retirement_home"
+      }
+    }
+  },
+  {
+    "sample_index": 36,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，聖安德烈有邊啲地方嘅名係全大階字母？",
+    "OverpassQL": "[out:csv(::lat,::lon;true,\",\")][timeout:250];area[\"name\"=\"Santo André\"]->.a;relation[\"name\"=\"Santo André\"](area.a);map_to_area->.b;(nwr[\"name\"~\"^[A-Z]+$\"](area.b)({{bbox}}););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "聖安德烈"
+    },
+    "tags": {
+      "name=Santo André": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Santo André"
+      },
+      "name~^[A-Z]+$": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "^[A-Z]+$"
+      }
+    }
+  },
+  {
+    "sample_index": 37,
+    "split": "syn",
+    "nl_question": "喺萊內斯塔特，有邊啲地方嘅編號係 A4 呢？",
+    "OverpassQL": "[out:json][timeout:50];{{geocodeArea:\"Lennestadt\"}}->.searchArea;(nwr[\"ref\"=\"A4\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "萊內斯塔特"
+    },
+    "tags": {
+      "ref=A4": {
+        "key": "ref",
+        "relation": "equal",
+        "value": "A4"
+      }
+    }
+  },
+  {
+    "sample_index": 38,
+    "split": "syn",
+    "nl_question": "喺贊比亞，有邊啲地方嘅描述係 'Berliner Straßenbrunnen' 呢？",
+    "OverpassQL": "[out:json][timeout:50];{{geocodeArea:\"zambia\"}}->.searchArea;(nwr[\"description\"=\"Berliner Straßenbrunnen\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "贊比亞"
+    },
+    "tags": {
+      "description=Berliner Straßenbrunnen": {
+        "key": "description",
+        "relation": "equal",
+        "value": "Berliner Straßenbrunnen"
+      }
+    }
+  },
+  {
+    "sample_index": 39,
+    "split": "syn",
+    "nl_question": "喺下西里西亞中心 10 至 50 公里範圍內，有邊啲地方係由 OI 營運嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];((nwr[\"operator\"=\"OI\"](around:50000,{{geocodeCoords:dolnoslaskie}});-nwr[\"operator\"=\"OI\"](around:10000,{{geocodeCoords:dolnoslaskie}}););(nwr[\"operator\"=\"OI\"](around:50000,{{geocodeCoords:dolnoslaskie}});-nwr[\"operator\"=\"OI\"](around:10000,{{geocodeCoords:dolnoslaskie}});););out qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "operator=OI": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "OI"
+      }
+    }
+  },
+  {
+    "sample_index": 40,
+    "split": "syn",
+    "nl_question": "喺伊斯坦堡市中心 5 公里至 20 公里之間，有咩樹木覆蓋嘅地方？（唔計中心 5 公里內嘅範圍）",
+    "OverpassQL": "[out:json][timeout:25];((nwr[\"de:amtlicher_gemeindeschluessel\"=\"06611000\"](around:20000,{{geocodeCoords:\"Istanbul\"}});-nwr[\"de:amtlicher_gemeindeschluessel\"=\"06611000\"](around:5000,{{geocodeCoords:\"Istanbul\"}}););(nwr[\"landcover\"=\"trees\"](around:20000,{{geocodeCoords:\"Istanbul\"}});-nwr[\"landcover\"=\"trees\"](around:5000,{{geocodeCoords:\"Istanbul\"}});););out qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "de:amtlicher_gemeindeschluessel=06611000": {
+        "key": "de:amtlicher_gemeindeschluessel",
+        "relation": "equal",
+        "value": "06611000"
+      },
+      "landcover=trees": {
+        "key": "landcover",
+        "relation": "equal",
+        "value": "trees"
+      }
+    }
+  },
+  {
+    "sample_index": 41,
+    "split": "syn",
+    "nl_question": "瑞士有邊啲路段嘅右邊係標記為 track 嘅單車徑？",
+    "OverpassQL": "[out:xml][timeout:600];{{geocodeArea:\"Suisse\"}}->.searchArea;(way[\"cycleway:right\"=\"track\"](area.searchArea););out meta;>;out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "瑞士"
+    },
+    "tags": {
+      "cycleway:right=track": {
+        "key": "cycleway:right",
+        "relation": "equal",
+        "value": "track"
+      }
+    }
+  },
+  {
+    "sample_index": 42,
+    "split": "syn",
+    "nl_question": "喺 Lamwo 呢區入面，邊啲地方係標記咗人口、名係 'Polska' 或者係草藥舖呢？",
+    "OverpassQL": "area[\"name\"=\"Lamwo\"]->.searchArea;(nwr[\"population\"](area.searchArea);nwr[\"name\"=\"Polska\"](area.searchArea);nwr[\"shop\"=\"herbalist\"](area.searchArea);nwr[\"population\"](area.searchArea););out;>;out skel;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Lamwo"
+    },
+    "tags": {
+      "name=Lamwo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Lamwo"
+      },
+      "name=Polska": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Polska"
+      },
+      "shop=herbalist": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "herbalist"
+      },
+      "population": {
+        "key": "population",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 43,
+    "split": "syn",
+    "nl_question": "邊啲叫 'Stadtmitte' 嘅地方，佢嘅海拔係以 2 至 9 開頭嘅三位數，或者係任何四位數？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"ele\"~\"([23456789]..|....)\"][\"name\"=\"Stadtmitte\"];nwr[\"ele\"~\"([23456789]..|....)\"][\"name\"=\"Stadtmitte\"];);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Stadtmitte": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Stadtmitte"
+      },
+      "ele~([23456789]..|....)": {
+        "key": "ele",
+        "relation": "regex_match",
+        "value": "([23456789]..|....)"
+      }
+    }
+  },
+  {
+    "sample_index": 44,
+    "split": "syn",
+    "nl_question": "喀拉拉邦各區嘅行政邊界係咩？",
+    "OverpassQL": "{{geocodeArea:\"Kerala\"}}->.searchArea;relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"6\"](area.searchArea)->.rels;.rels out;relation(r.rels);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "喀拉拉邦"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      }
+    }
+  },
+  {
+    "sample_index": 45,
+    "split": "syn",
+    "nl_question": "喺北萊茵-威斯特法倫，Frillendorf 入面有幾多條提供汽車零件服務、而且唔涉及 Circle K 嘅路段？佢哋按服務類型計嘅總長度係幾多呢？",
+    "OverpassQL": "[out:csv(\"key\",\"len\")];area[\"name\"=\"North Rhine-Westphalia\"][\"boundary\"=\"administrative\"];way[\"service:vehicle:parts\"][\"name\"=\"Frillendorf\"][\"ref:circlek\"!~\".*\"](area);for(t[\"service:vehicle:parts\"]){make stat num=count(ways),key=_.val,len=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "北萊茵-威斯特法倫"
+    },
+    "tags": {
+      "name=North Rhine-Westphalia": {
+        "key": "name",
+        "relation": "equal",
+        "value": "North Rhine-Westphalia"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "name=Frillendorf": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Frillendorf"
+      },
+      "ref:circlek!~.*": {
+        "key": "ref:circlek",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "service:vehicle:parts": {
+        "key": "service:vehicle:parts",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 46,
+    "split": "syn",
+    "nl_question": "喺米西奧內斯，有邊啲名叫「München」嘅廢棄公路係包含廁所設施，同埋喺 2020 年 1 月 1 日至 10 日期間修改過嘅呢？",
+    "OverpassQL": "[out:json][timeout:500];({{geocodeArea:\"misiones\"}};{{geocodeArea:\"misiones\"}};{{geocodeArea:\"misiones\"}};)->.searchArea;(nwr[\"highway\"=\"disused\"][\"amenity\"~\"toilet\"][\"name\"=\"München\"](changed:\"2020-01-01T00:00:00Z\",\"2020-01-10T23:59:59Z\")(area.searchArea););out;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "米西奧內斯"
+    },
+    "tags": {
+      "highway=disused": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "disused"
+      },
+      "name=München": {
+        "key": "name",
+        "relation": "equal",
+        "value": "München"
+      },
+      "amenity~toilet": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "toilet"
+      }
+    }
+  },
+  {
+    "sample_index": 47,
+    "split": "syn",
+    "nl_question": "喺貝寧，邊啲建築物（唔包括得個頂嘅結構）係距離任何有 moped_a 標籤嘅設施超過 300 米嘅呢？",
+    "OverpassQL": "{{geocodeArea:\"Benin\"}}->.searchArea;way[\"building\"][\"building\"!~\"roof\"](area.searchArea);node(w)->.buildings_all;(node(around.buildings_all:300)[\"moped_a\"]->.moped_points;);way(around.moped_points:300)[\"building\"][\"building\"!~\"roof\"](area.searchArea);node(w)->.buildings_near_moped;(.buildings_all;- .buildings_near_moped;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "貝寧"
+    },
+    "tags": {
+      "building!~roof": {
+        "key": "building",
+        "relation": "regex_not_match",
+        "value": "roof"
+      },
+      "moped_a": {
+        "key": "moped_a",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 48,
+    "split": "syn",
+    "nl_question": "喺座標 -26.4851, -49.0713 嘅 1000 米範圍內，有邊啲路嘅平整度係屬於「差」或者「極差」呢？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"smoothness\"~\"bad|horrible\"](around:1000,-26.4851,-49.0713););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "smoothness~bad|horrible": {
+        "key": "smoothness",
+        "relation": "regex_match",
+        "value": "bad|horrible"
+      }
+    }
+  },
+  {
+    "sample_index": 49,
+    "split": "syn",
+    "nl_question": "喺區域 3600075864 入面，有邊啲旅遊景點同時係渡輪碼頭，而地址又冇寫到城市名呢？",
+    "OverpassQL": "[out:json][timeout:300];area(3600075864)->.searchArea;(nwr[\"amenity\"~\"ferry_terminal\"][\"addr:city\"!~\".\"][\"tourism\"=\"attraction\"](area.searchArea););out qt geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "tourism=attraction": {
+        "key": "tourism",
+        "relation": "equal",
+        "value": "attraction"
+      },
+      "amenity~ferry_terminal": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "ferry_terminal"
+      },
+      "addr:city!~.": {
+        "key": "addr:city",
+        "relation": "regex_not_match",
+        "value": "."
+      }
+    }
+  },
+  {
+    "sample_index": 50,
+    "split": "syn",
+    "nl_question": "喺悉尼，邊啲住宅區、未分類、服務或者行人路係冇 ref:st1 標籤，而佢哋相關嘅 OSM 物件入面係少過兩個或者多過四個成員嘅呢？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Sydney\"}}->.searchArea;(nwr[\"highway\"!~\"track\"][\"highway\"~\"residential|unclassified|service|pedestrian\"][\"ref:st1\"!~\".*\"](if:count_members()<2)(area.searchArea);nwr[\"highway\"!~\"track\"][\"highway\"~\"residential|unclassified|service|pedestrian\"][\"ref:st1\"!~\".*\"](if:count_members()>4)(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "悉尼"
+    },
+    "tags": {
+      "highway~residential|unclassified|service|pedestrian": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "residential|unclassified|service|pedestrian"
+      },
+      "highway!~track": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "track"
+      },
+      "ref:st1!~.*": {
+        "key": "ref:st1",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    }
+  },
+  {
+    "sample_index": 51,
+    "split": "syn",
+    "nl_question": "喺名為「法蘭西島大區」(Île-de-France) 嘅關係範圍入面，邊啲路徑係屬於 wüstemarker forst 區域嘅呢？",
+    "OverpassQL": "relation[\"name\"=\"Île-de-France\"];out geom;map_to_area;(way[\"name\"=\"wüstemarker forst\"](area););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Île-de-France": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Île-de-France"
+      },
+      "name=wüstemarker forst": {
+        "key": "name",
+        "relation": "equal",
+        "value": "wüstemarker forst"
+      }
+    }
+  },
+  {
+    "sample_index": 52,
+    "split": "syn",
+    "nl_question": "喺明斯克，有邊啲地圖上嘅路段係由 Tesla Motors Inc. 營運嘅呢？",
+    "OverpassQL": "{{nominatimArea:\"Minsk\"}}->.searchArea;(way[\"operator\"=\"Tesla Motors Inc.\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "operator=Tesla Motors Inc.": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "Tesla Motors Inc."
+      }
+    }
+  },
+  {
+    "sample_index": 53,
+    "split": "syn",
+    "nl_question": "喺巴登-符騰堡，有邊啲巨石遺址係喺歷史紀念碑 200 米範圍內㗎？",
+    "OverpassQL": "[out:json];area[\"name\"=\"Baden-Württemberg\"];nwr[\"historic\"=\"memorial\"](area);nwr[\"site_type\"=\"megalith\"](around:200);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴登-符騰堡"
+    },
+    "tags": {
+      "name=Baden-Württemberg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Baden-Württemberg"
+      },
+      "historic=memorial": {
+        "key": "historic",
+        "relation": "equal",
+        "value": "memorial"
+      },
+      "site_type=megalith": {
+        "key": "site_type",
+        "relation": "equal",
+        "value": "megalith"
+      }
+    }
+  },
+  {
+    "sample_index": 54,
+    "split": "syn",
+    "nl_question": "喺巴西聖保羅州包魯有邊啲印度餐廳？",
+    "OverpassQL": "relation[\"name\"=\"Bauru\"][\"admin_level\"=\"8\"];out geom;area[\"name\"=\"Bauru\"][\"admin_level\"=\"8\"]->.searchArea;(way[\"cuisine\"=\"indian\"](area.searchArea););out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "包魯"
+    },
+    "tags": {
+      "name=Bauru": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Bauru"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "cuisine=indian": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "indian"
+      }
+    }
+  },
+  {
+    "sample_index": 55,
+    "split": "syn",
+    "nl_question": "顯示所有喺倫巴底嘅 Tempelhof-Schöneberg 山地單車路線。",
+    "OverpassQL": "(area[\"name\"=\"Lombardy\"];);(nwr[\"route\"=\"mtb\"][\"name\"=\"Tempelhof-Schöneberg\"](area););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "倫巴底"
+    },
+    "tags": {
+      "name=Lombardy": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Lombardy"
+      },
+      "route=mtb": {
+        "key": "route",
+        "relation": "equal",
+        "value": "mtb"
+      },
+      "name=Tempelhof-Schöneberg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Tempelhof-Schöneberg"
+      }
+    }
+  },
+  {
+    "sample_index": 56,
+    "split": "syn",
+    "nl_question": "顯示當前畫面入面所有離任何公路超過 300 米嘅小島。",
+    "OverpassQL": "[out:json][bbox:{{bbox}}][timeout:800];nwr[\"place\"=\"islet\"]->.Islet;way[\"highway\"]->.highways;node.Islet(around.highways:300)->.reachableIslet;(.Islet; - .reachableIslet;);out geom meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "place=islet": {
+        "key": "place",
+        "relation": "equal",
+        "value": "islet"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 57,
+    "split": "syn",
+    "nl_question": "喺法蘭西島入面，RER 網絡邊度有報攤？",
+    "OverpassQL": "{{geocodeArea:\"Île-de-France\"}}->.searchArea;relation[\"network\"=\"RER\"][\"type\"=\"public_transport\"](area.searchArea);nwr[\"shop\"=\"kiosk\"](r)(area.searchArea);out qt;relation[\"network\"=\"RER\"][\"type\"=\"public_transport\"](area.searchArea);nwr[\"shop\"=\"kiosk\"](r)(area.searchArea);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "法蘭西島"
+    },
+    "tags": {
+      "network=RER": {
+        "key": "network",
+        "relation": "equal",
+        "value": "RER"
+      },
+      "type=public_transport": {
+        "key": "type",
+        "relation": "equal",
+        "value": "public_transport"
+      },
+      "shop=kiosk": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "kiosk"
+      }
+    }
+  },
+  {
+    "sample_index": 58,
+    "split": "syn",
+    "nl_question": "顯示當前畫面入面所有唔係度假村嘅點。",
+    "OverpassQL": "[out:json][timeout:3600];(node({{bbox}});<;)->.a;(nwr[\"leisure\"=\"resort\"]({{bbox}});)->.b;(.a;- .b;);out body;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "leisure=resort": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "resort"
+      }
+    }
+  },
+  {
+    "sample_index": 59,
+    "split": "syn",
+    "nl_question": "喺利維夫州，邊度有唔屬於 'Rodovia Lindolfo Leonhardt' 路段嘅滑雪道？",
+    "OverpassQL": "area[\"name\"=\"Львівська область\"];node[\"piste:type\"](area)->.all;way[\"official_name\"~\"^Rodovia Lindolfo Leonhardt$\"](area)->.ways;(.all;-node(w.ways););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "利維夫州"
+    },
+    "tags": {
+      "name=Львівська область": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Львівська область"
+      },
+      "official_name~^Rodovia Lindolfo Leonhardt$": {
+        "key": "official_name",
+        "relation": "regex_match",
+        "value": "^Rodovia Lindolfo Leonhardt$"
+      },
+      "piste:type": {
+        "key": "piste:type",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 60,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，有邊啲提供素食或者三文治嘅地方唔係日本菜餐廳呢？",
+    "OverpassQL": "[bbox:{{bbox}}];nwr[\"cuisine\"= \"vegetarian\"]->.e2;nwr[\"cuisine\"= \"sandwich\"]->.e3;(.e2;.e3;)->.e1;nwr.e1[\"cuisine\"!=\"japanese\"];out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "cuisine=vegetarian": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "vegetarian"
+      },
+      "cuisine=sandwich": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "sandwich"
+      },
+      "cuisine!=japanese": {
+        "key": "cuisine",
+        "relation": "not_equal",
+        "value": "japanese"
+      }
+    }
+  },
+  {
+    "sample_index": 61,
+    "split": "syn",
+    "nl_question": "喺節點 1981236357 嘅 500 米範圍內，有邊啲馬鞍製作店呢？",
+    "OverpassQL": "[out:json][timeout:25];node(1981236357)->.place;nwr(around.place:500)[\"craft\"=\"saddler\"];out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "craft=saddler": {
+        "key": "craft",
+        "relation": "equal",
+        "value": "saddler"
+      }
+    }
+  },
+  {
+    "sample_index": 62,
+    "split": "syn",
+    "nl_question": "喺邁松阿爾福，邊啲地方嘅名係「Northeast 42nd Way」，嗰度有咩醫療化驗所，同埋邊啲設施嘅名包含「Wüstung」呢？",
+    "OverpassQL": "[out:json][timeout:60];area[\"name\"=\"Maisons-Alfort\"]->.a;(nwr[\"name\"=\"Northeast 42nd Way\"](area.a);nwr[\"healthcare\"=\"laboratory\"](area.a);nwr[\"name\"~\"Wüstung\"](area.a););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "邁松阿爾福"
+    },
+    "tags": {
+      "name=Maisons-Alfort": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Maisons-Alfort"
+      },
+      "name=Northeast 42nd Way": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Northeast 42nd Way"
+      },
+      "healthcare=laboratory": {
+        "key": "healthcare",
+        "relation": "equal",
+        "value": "laboratory"
+      },
+      "name~Wüstung": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Wüstung"
+      }
+    }
+  },
+  {
+    "sample_index": 63,
+    "split": "syn",
+    "nl_question": "喺巴黎，有邊啲供應韓國菜、美國菜或者法國菜嘅地方，同埋標記為「tradition」嘅餐廳，係喺 2023 年 10 月 1 日之後修改過嘅呢？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.a;(nwr[\"cuisine\"~\"korean|american|french\"](area.a)(newer:\"2018-09-01T00:00:00Z\");nwr[\"restaurant\"=\"tradition\"](area.a)(newer:\"2023-10-01T00:00:00Z\"););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "restaurant=tradition": {
+        "key": "restaurant",
+        "relation": "equal",
+        "value": "tradition"
+      },
+      "cuisine~korean|american|french": {
+        "key": "cuisine",
+        "relation": "regex_match",
+        "value": "korean|american|french"
+      }
+    }
+  },
+  {
+    "sample_index": 64,
+    "split": "syn",
+    "nl_question": "喺佩爾赫日莫夫縣，邊度有影印舖同埋低路壆？",
+    "OverpassQL": "{{geocodeArea:\"okres Pelhřimov\"}}->.searchArea;(nwr[\"shop\"=\"copyshop\"](area.searchArea);nwr[\"kerb\"=\"lowered\"](area.searchArea););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "佩爾赫日莫夫縣"
+    },
+    "tags": {
+      "shop=copyshop": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "copyshop"
+      },
+      "kerb=lowered": {
+        "key": "kerb",
+        "relation": "equal",
+        "value": "lowered"
+      }
+    }
+  },
+  {
+    "sample_index": 65,
+    "split": "syn",
+    "nl_question": "喺 2020 年 1 月 1 日至 1 月 31 日期間，巴西亞馬遜州瑪瑙斯有邊啲叫 'Manche' 嘅地方更改過？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Manaus AM Brasil\"}}->.searchArea;nwr[\"name\"=\"Manche\"](changed:\"2020-01-01T00:00:00Z\",\"2020-01-31T23:59:59Z\")(area.searchArea);out;>;out skel;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴西亞馬遜州瑪瑙斯"
+    },
+    "tags": {
+      "name=Manche": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Manche"
+      }
+    }
+  },
+  {
+    "sample_index": 66,
+    "split": "syn",
+    "nl_question": "喺 2023 年 1 月 1 日 00:00:00 至 09:36:20 期間，當前畫面有邊啲地方被修改過呢？",
+    "OverpassQL": "[out:json][timeout:999];(nwr(changed:\"2023-01-01T00:00:00Z\",\"2023-01-01T09:36:20Z\")({{bbox}}););out qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 67,
+    "split": "syn",
+    "nl_question": "喺布爾諾，邊度有地圖標記咗嘅單車徑同小徑？邊啲單車徑唔係單程嘅呢？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Brno\"}}->.searchArea;nwr[\"highway\"~\"cycleway|path\"](area.searchArea);way[\"highway\"=\"cycleway\"][\"oneway\"!=\"yes\"](area.searchArea);(nwr[\"highway\"~\"cycleway|path\"](around:0););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "布爾諾"
+    },
+    "tags": {
+      "highway=cycleway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "cycleway"
+      },
+      "oneway!=yes": {
+        "key": "oneway",
+        "relation": "not_equal",
+        "value": "yes"
+      },
+      "highway~cycleway|path": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "cycleway|path"
+      }
+    }
+  },
+  {
+    "sample_index": 68,
+    "split": "syn",
+    "nl_question": "顯示巴黎所有火車站嘅出入口？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.searchArea;(way[\"building\"=\"train_station\"](area.searchArea);relation[\"building\"=\"train_station\"](area.searchArea););>>->.station;(nwr[\"railway\"=\"train_station_entrance\"](area.searchArea);nwr.station[\"entrance\"];nwr.station[\"building\"=\"entrance\"];);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "building=train_station": {
+        "key": "building",
+        "relation": "equal",
+        "value": "train_station"
+      },
+      "railway=train_station_entrance": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "train_station_entrance"
+      },
+      "building=entrance": {
+        "key": "building",
+        "relation": "equal",
+        "value": "entrance"
+      },
+      "entrance": {
+        "key": "entrance",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 69,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲懸崖係距離任何非售票舖頭超過 1500 米？",
+    "OverpassQL": "[timeout:180][out:json][bbox:{{bbox}}];nwr[\"shop\"!=\"ticket\"]->.shops;nwr[\"natural\"=\"cliff\"]->.cliffs;(nwr.cliffs(around.shops:1500);>;)->.shops_cliffs;(.shops;- .resortsLifts;)->.shops_cliffs;(.result;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "natural=cliff": {
+        "key": "natural",
+        "relation": "equal",
+        "value": "cliff"
+      },
+      "shop!=ticket": {
+        "key": "shop",
+        "relation": "not_equal",
+        "value": "ticket"
+      }
+    }
+  },
+  {
+    "sample_index": 70,
+    "split": "syn",
+    "nl_question": "喺節點 240109189 嘅 20 公里範圍內，邊啲主要道路嘅編號係以「M」或者「E」開頭嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];node(240109189)->.center;node(around.center:20000);way[\"highway\"=\"primary\"][\"ref\"](bn)->.hw;way.hw[\"ref\"~\"^(M|E)\"]->.roads;(.roads;.center;);out;.roads >;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      },
+      "ref~^(M|E)": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "^(M|E)"
+      }
+    }
+  },
+  {
+    "sample_index": 71,
+    "split": "syn",
+    "nl_question": "喺緯度 43.7711、經度 11.2486 嘅 5000 米範圍內，有邊啲鈾資源設施呢？",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"resource\"=\"uranium\"](around:5000,43.7711,11.2486););out;>;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "resource=uranium": {
+        "key": "resource",
+        "relation": "equal",
+        "value": "uranium"
+      }
+    }
+  },
+  {
+    "sample_index": 72,
+    "split": "syn",
+    "nl_question": "喺聖克魯斯-德特內里費省嘅阿德赫市入面，有邊啲住宅路係冇路面資訊嘅呢？",
+    "OverpassQL": "[out:json][timeout:250];area[\"admin_level\"=\"6\"][\"boundary\"=\"administrative\"][\"name\"=\"Santa Cruz de Tenerife\"]->.prov;area[\"admin_level\"=\"8\"][\"boundary\"=\"administrative\"][\"name\"=\"Adeje\"]->.muni;(way[\"highway\"=\"residential\"][\"surface\"!~\".*\"](area.prov)(area.muni););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "name=Santa Cruz de Tenerife": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Santa Cruz de Tenerife"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "name=Adeje": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Adeje"
+      },
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      },
+      "surface!~.*": {
+        "key": "surface",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    }
+  },
+  {
+    "sample_index": 73,
+    "split": "syn",
+    "nl_question": "喺巴黎，邊啲門牌號碼係距離任何服務道路、行人路、三級、二級或者一級道路多過 30 米嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Paris\"}}->.searchArea;way[\"highway\"~\"(service|pedestrian|tertiary|secondary|primary)\"](area.searchArea)->.w;(nwr[\"addr:housenumber\"](area.searchArea)->.addr;-nwr.addr(around.w:30););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway~(service|pedestrian|tertiary|secondary|primary)": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "(service|pedestrian|tertiary|secondary|primary)"
+      },
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 74,
+    "split": "syn",
+    "nl_question": "喺當前畫面，有邊啲喺 2023 年 1 月 30 日 10:00 之後修改過嘅設施，係冇 power 標籤或者係泊車飛販賣機呢？",
+    "OverpassQL": "[timeout:100][out:json][bbox:{{bbox}}];(nwr[\"power\"!~\".\"]({{bbox}});nwr[\"vending\"=\"parking_tickets\"]({{bbox}});)->.all;nwr.all(newer:\"2023-01-30T10:00:00Z\");out meta;>;out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "vending=parking_tickets": {
+        "key": "vending",
+        "relation": "equal",
+        "value": "parking_tickets"
+      },
+      "power!~.": {
+        "key": "power",
+        "relation": "regex_not_match",
+        "value": "."
+      }
+    }
+  },
+  {
+    "sample_index": 75,
+    "split": "syn",
+    "nl_question": "喺東法蘭德斯省，有邊啲叫 'CP' 嘅路係標記咗做涉水點嘅呢？",
+    "OverpassQL": "area[\"name\"=\"Oost-Vlaanderen\"];way[\"name\"=\"CP\"][\"ford\"=\"yes\"](area);out ids;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "東法蘭德斯省"
+    },
+    "tags": {
+      "name=Oost-Vlaanderen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Oost-Vlaanderen"
+      },
+      "name=CP": {
+        "key": "name",
+        "relation": "equal",
+        "value": "CP"
+      },
+      "ford=yes": {
+        "key": "ford",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 76,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，有邊啲農地係位於任何建築物 300 米範圍之內呢？",
+    "OverpassQL": "[bbox:{{bbox}}];node[\"building\"=\"yes\"]->.center;way[\"landuse\"=\"farmland\"](around.center:300);(._;>;);out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "building=yes": {
+        "key": "building",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "landuse=farmland": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "farmland"
+      }
+    }
+  },
+  {
+    "sample_index": 77,
+    "split": "syn",
+    "nl_question": "喺當前畫面，邊啲喺過去七日內編輯過嘅地點係冇 Wikidata 標籤嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];((nwr(newer:\"{{date:7Day}}\")({{bbox}}););-(nwr[\"wikidata\"](newer:\"{{date:7Day}}\")({{bbox}});););out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "wikidata": {
+        "key": "wikidata",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 78,
+    "split": "syn",
+    "nl_question": "La Chapelle-sur-Erdre 入面有邊啲藥房？",
+    "OverpassQL": "area[\"type\"=\"boundary\"][\"admin_level\"=\"8\"][\"name\"=\"La Chapelle-sur-Erdre\"]->.a;(nwr[\"amenity\"=\"pharmacy\"](area.a););out center;relation(pivot.a);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "type=boundary": {
+        "key": "type",
+        "relation": "equal",
+        "value": "boundary"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "name=La Chapelle-sur-Erdre": {
+        "key": "name",
+        "relation": "equal",
+        "value": "La Chapelle-sur-Erdre"
+      },
+      "amenity=pharmacy": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "pharmacy"
+      }
+    }
+  },
+  {
+    "sample_index": 79,
+    "split": "syn",
+    "nl_question": "顯示當前畫面入面所有公園同學校嘅名。",
+    "OverpassQL": "[out:json];nwr[\"leisure\"=\"park\"][\"name\"]({{bbox}});for(t[\"name\"]){make park name=_.val,ids=set(id());out;}nwr[\"amenity\"=\"school\"][\"name\"]({{bbox}});for(t[\"name\"]){make school name=_.val,ids=set(id());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "leisure=park": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "park"
+      },
+      "amenity=school": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "school"
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 80,
+    "split": "syn",
+    "nl_question": "邊啲地方嘅郵寄地址街道名同主要地址入面嘅街道名係唔同嘅呢？",
+    "OverpassQL": "[out:csv(::id,::type,\"addr:street\",\"contact:street\")][timeout:300];(nwr[\"addr:street\"][\"contact:street\"](if:t[\"addr:street\"]!=t[\"contact:street\"]););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "addr:street": {
+        "key": "addr:street",
+        "relation": "has_key",
+        "value": ""
+      },
+      "contact:street": {
+        "key": "contact:street",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 81,
+    "split": "syn",
+    "nl_question": "顯示意大利所有有水壩嘅水道。",
+    "OverpassQL": "[out:json][timeout:120];area[\"ISO3166-1:alpha3\"=\"ITA\"]->.a;node[\"waterway\"=\"dam\"](area.a)->.dams;way(bn.dams)(area.a)[\"waterway\"]->.dways;(.dways;.dways >;)->.dways;.dways out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "ISO3166-1:alpha3=ITA": {
+        "key": "ISO3166-1:alpha3",
+        "relation": "equal",
+        "value": "ITA"
+      },
+      "waterway=dam": {
+        "key": "waterway",
+        "relation": "equal",
+        "value": "dam"
+      }
+    }
+  },
+  {
+    "sample_index": 82,
+    "split": "syn",
+    "nl_question": "喺北萊茵-威斯特法倫座標 51.4512, 7.1234 嘅 1500 米範圍內，有邊啲擋土牆同斑馬線呢？",
+    "OverpassQL": "[out:json][timeout:30];(nwr[\"barrier\"=\"retaining_wall\"](around:1500,51.4512,7.1234);nwr[\"crossing\"=\"zebra\"](around:1500,51.4512,7.1234););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "barrier=retaining_wall": {
+        "key": "barrier",
+        "relation": "equal",
+        "value": "retaining_wall"
+      },
+      "crossing=zebra": {
+        "key": "crossing",
+        "relation": "equal",
+        "value": "zebra"
+      }
+    }
+  },
+  {
+    "sample_index": 83,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲飲水設施係距離最少一個其他飲水設施 100 米範圍內嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];node[\"amenity\"=\"drinking_water\"]({{bbox}})->.waters;node[\"amenity\"=\"drinking_water\"]({{bbox}})(around.waters:100)->.nearwater;(.nearwater;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "amenity=drinking_water": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "drinking_water"
+      }
+    }
+  },
+  {
+    "sample_index": 84,
+    "split": "syn",
+    "nl_question": "喺柏林同馬德里有邊啲 2 級路面嘅小徑，同埋喺奧斯陸有邊啲 3 級路面嘅小徑呢？",
+    "OverpassQL": "[out:json];area[\"name\"=\"Berlin\"]->.a;area[\"name\"=\"Madrid\"]->.b;area[\"name\"=\"Oslo\"]->.c;(nwr[\"tracktype\"=\"grade2\"](area.a);nwr[\"tracktype\"=\"grade2\"](area.b);nwr[\"tracktype\"=\"grade3\"](area.c););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "柏林"
+    },
+    "tags": {
+      "name=Berlin": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Berlin"
+      },
+      "name=Madrid": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Madrid"
+      },
+      "name=Oslo": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Oslo"
+      },
+      "tracktype=grade2": {
+        "key": "tracktype",
+        "relation": "equal",
+        "value": "grade2"
+      },
+      "tracktype=grade3": {
+        "key": "tracktype",
+        "relation": "equal",
+        "value": "grade3"
+      }
+    }
+  },
+  {
+    "sample_index": 85,
+    "split": "syn",
+    "nl_question": "喺 2021 年 9 月 20 日，路段 10074543 有過咩修改呢？",
+    "OverpassQL": "[out:xml][timeout:30];(way(10074543)(changed:\"2021-09-20T00:00:00Z\",\"2021-09-20T23:59:59Z\"););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 86,
+    "split": "syn",
+    "nl_question": "顯示於巴赫-帕倫貝格入面所有標記為水庫嘅土地用途區域。",
+    "OverpassQL": "[out:json][timeout:120];area[\"name\"=\"Übach-Palenberg\"]->.searchArea;nwr[\"landuse\"=\"reservoir\"](area.searchArea);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "於巴赫-帕倫貝格"
+    },
+    "tags": {
+      "name=Übach-Palenberg": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Übach-Palenberg"
+      },
+      "landuse=reservoir": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "reservoir"
+      }
+    }
+  },
+  {
+    "sample_index": 87,
+    "split": "syn",
+    "nl_question": "喺卡斯蒂利亞-萊昂，名入面有 'trail' 或者 'hiking' 呢啲字眼嘅路段，按名分組之後，佢哋嘅總長度同埋路段數量分別係幾多？",
+    "OverpassQL": "[out:csv(\"name\",\"count\",\"length\")][timeout:250];{{geocodeArea:\"Castilla y León\"}}->.searchArea;way[\"name\"~\"trail|Trail|Hiking|hiking\"](area.searchArea);for(t[\"name\"]){make stat name=_.val,count=count(ways),length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "卡斯蒂利亞-萊昂"
+    },
+    "tags": {
+      "name~trail|Trail|Hiking|hiking": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "trail|Trail|Hiking|hiking"
+      }
+    }
+  },
+  {
+    "sample_index": 88,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲步行徑有標明路面物料，而當中邊啲又明確指出唔准踩單車呢？",
+    "OverpassQL": "[bbox:{{bbox}}];way[\"highway\"~\"^(footway|path)$\"]->.w1;way.w1[\"surface\"~\".+\"]->.w2;way.w1[\"bicycle\"=\"no\"]->.w3;(.w2;.w3;)->.w1;out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "bicycle=no": {
+        "key": "bicycle",
+        "relation": "equal",
+        "value": "no"
+      },
+      "highway~^(footway|path)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(footway|path)$"
+      },
+      "surface~.+": {
+        "key": "surface",
+        "relation": "regex_match",
+        "value": ".+"
+      }
+    }
+  },
+  {
+    "sample_index": 89,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲有臨時限制嘅道路係包含住名為「Oberpfalz」且營運者係「уралсиб」嘅節點呢？",
+    "OverpassQL": "[bbox:{{bbox}}];way[\"temporary:vehicle\"]->.philippines;node[\"name\"=\"Oberpfalz \"][\"operator\"=\"уралсиб\"](w.philippines);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "name=Oberpfalz ": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Oberpfalz "
+      },
+      "operator=уралсиб": {
+        "key": "operator",
+        "relation": "equal",
+        "value": "уралсиб"
+      },
+      "temporary:vehicle": {
+        "key": "temporary:vehicle",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 90,
+    "split": "syn",
+    "nl_question": "巴黎有邊啲飲水設施係唔喺任何噴水池 40 米範圍內？",
+    "OverpassQL": "[out:json][timeout:90];{{geocodeArea:\"Paris\"}}->.a;nwr[\"amenity\"=\"drinking_water\"](area.a)->.p;nwr[\"amenity\"=\"fountain\"](area.a)->.s;nwr[\"amenity\"=\"drinking_water\"](around.s:40)->.near;(.p;- .near;)->.result;.result out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "amenity=drinking_water": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "drinking_water"
+      },
+      "amenity=fountain": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fountain"
+      }
+    }
+  },
+  {
+    "sample_index": 91,
+    "split": "syn",
+    "nl_question": "喺巴黎市同埋柏林所有第 8 級行政區入面，邊度有遊樂場呢？",
+    "OverpassQL": "({{geocodeArea:\"Paris\"}};area[\"boundary\"=\"administrative\"][\"admin_level\"=\"8\"][\"name\"~\"^Berlin$\"];)->.area;nwr[\"leisure\"=\"playground\"](area.area);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "leisure=playground": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "playground"
+      },
+      "name~^Berlin$": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "^Berlin$"
+      }
+    }
+  },
+  {
+    "sample_index": 92,
+    "split": "syn",
+    "nl_question": "喺聖地牙哥，邊啲標示咗 ref=40/0320 嘅路段，沿線有提供單車打氣服務嘅點呢？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"San Diego\"}}->.searchArea;way[\"ref\"=\"40/0320\"](area.searchArea)->.ways;node(w.ways)[\"service:bicycle:pump\"]->.pump_nodes;way(bn.pump_nodes)[\"ref\"=\"40/0320\"](area.searchArea);out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "聖地牙哥"
+    },
+    "tags": {
+      "ref=40/0320": {
+        "key": "ref",
+        "relation": "equal",
+        "value": "40/0320"
+      },
+      "service:bicycle:pump": {
+        "key": "service:bicycle:pump",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 93,
+    "split": "syn",
+    "nl_question": "香港九龍所有道路加埋一共有幾長？",
+    "OverpassQL": "[out:json][timeout:30];rel(10268797);way(r);make tol_len length = sum(length());out;rel(10268797);way(r);convert geometry ::id=id(), type=type(), length=length();out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 94,
+    "split": "syn",
+    "nl_question": "顯示所有喺柏林或者華沙嘅音樂舖。",
+    "OverpassQL": "[out:json][timeout:25];({{geocodeArea:\"Berlin\"}};{{geocodeArea:\"Warsaw\"}};)->.searchArea;nwr[\"shop\"=\"music\"](area.searchArea);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "柏林"
+    },
+    "tags": {
+      "shop=music": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "music"
+      }
+    }
+  },
+  {
+    "sample_index": 95,
+    "split": "syn",
+    "nl_question": "喺巴黎，有邊啲中餐廳係喺公共建築物 3 米範圍內？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Paris\"}}->.area;nwr[\"amenity\"=\"public_building\"](area.area)->.pb1;nwr[\"building\"=\"public\"](area.area)->.pb2;(nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](around.pb1:3);nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](around.pb2:3););(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "amenity=public_building": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "public_building"
+      },
+      "building=public": {
+        "key": "building",
+        "relation": "equal",
+        "value": "public"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 96,
+    "split": "syn",
+    "nl_question": "喺巴黎，有邊啲主要或者次要道路同鐵路軌相交？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Paris\"}}->.s;way[\"railway\"=\"rail\"](area.s);node(w)->.a;way[\"highway\"~\"^(primary|secondary)$\"](area.s);node(w)->.b;node.a.b->.c;way(bn.c);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "railway=rail": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "rail"
+      },
+      "highway~^(primary|secondary)$": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "^(primary|secondary)$"
+      }
+    }
+  },
+  {
+    "sample_index": 97,
+    "split": "syn",
+    "nl_question": "巴黎有邊啲未分類道路係冇名嘅？",
+    "OverpassQL": "[out:json][timeout:125];{{geocodeArea:\"Paris\"}}->.a;way[\"highway\"=\"unclassified\"][!\"name\"](area.a)->.a;way[\"highway\"=\"unclassified\"][\"noname\"=\"yes\"](area.a)->.b;(.a;- .b;)->.c;.c out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway=unclassified": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "unclassified"
+      },
+      "noname=yes": {
+        "key": "noname",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "!name": {
+        "key": "name",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 98,
+    "split": "syn",
+    "nl_question": "喺朗根入面，有邊啲名叫「Bureau Vallée」嘅路段係短過 30 米嘅呢？",
+    "OverpassQL": "[out:json];area[\"name\"=\"Langen\"]->.searchArea;out;(way[\"name\"=\"Bureau Vallée\"](area.searchArea)(if:length()<30););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "朗根"
+    },
+    "tags": {
+      "name=Langen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Langen"
+      },
+      "name=Bureau Vallée": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Bureau Vallée"
+      }
+    }
+  },
+  {
+    "sample_index": 99,
+    "split": "syn",
+    "nl_question": "喺瓦隆尼亞，邊啲有 'operator:type' 標籤嘅路段係喺 2021 年 1 月 1 日至 2 月 1 日期間更改過嘅呢？",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:Wallonia}}->.searchArea;(way[\"operator:type\"](changed:\"2021-01-01T00:00:00Z\",\"2021-02-01T23:59:59Z\")(area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "operator:type": {
+        "key": "operator:type",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 100,
+    "split": "syn",
+    "nl_question": "顯示喺座標 41.6529, -4.7286 嘅 200 米範圍內，所有餐廳同埋行政等級係 6 或者 8 嘅行政邊界。",
+    "OverpassQL": "[out:json][timeout:120];(nwr[\"amenity\"=\"restaurant\"](around:200,41.6529,-4.7286);nwr[\"boundary\"=\"administrative\"][\"admin_level\"~\"^(6|8)$\"](around:200,41.6529,-4.7286););out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level~^(6|8)$": {
+        "key": "admin_level",
+        "relation": "regex_match",
+        "value": "^(6|8)$"
+      }
+    }
+  },
+  {
+    "sample_index": 101,
+    "split": "syn",
+    "nl_question": "威爾斯有幾多間體育館呢？",
+    "OverpassQL": "[out:csv(::count;false;\", \")];area(id:3600058437);nwr[\"leisure\"=\"sports_hall\"](area);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "leisure=sports_hall": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "sports_hall"
+      }
+    }
+  },
+  {
+    "sample_index": 102,
+    "split": "syn",
+    "nl_question": "顯示漢諾威入面所有嘅獨木舟搬運路徑。",
+    "OverpassQL": "area[\"name\"=\"Hannover\"]->.a;(node[\"canoe\"=\"portage\"](area.a);way[\"canoe\"=\"portage\"](area.a);relation[\"canoe\"=\"portage\"](area.a););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "漢諾威"
+    },
+    "tags": {
+      "name=Hannover": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Hannover"
+      },
+      "canoe=portage": {
+        "key": "canoe",
+        "relation": "equal",
+        "value": "portage"
+      }
+    }
+  },
+  {
+    "sample_index": 103,
+    "split": "syn",
+    "nl_question": "喺巴黎同倫敦有咩中餐廳？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.paris;{{geocodeArea:\"London\"}}->.london;(.paris;.london;)->.a;relation(pivot.a);out geom;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](area.a);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 104,
+    "split": "syn",
+    "nl_question": "喺 2015 年 1 月 12 日，UID 係 4710054 嘅用戶對路徑 (way) 做咗邊啲修改？",
+    "OverpassQL": "[out:json][timeout:600];(way(uid:4710054)(changed:\"2015-01-12T00:00:00Z\",\"2015-01-12T23:59:59Z\"););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 105,
+    "split": "syn",
+    "nl_question": "喺 2020 年 1 月 1 號至 1 月 31 號期間，巴黎有邊啲關係係由用戶 1234567 修改過嘅呢？",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Paris\"}}->.searchArea;(relation(uid:1234567)(changed:\"2020-01-01T00:00:00Z\",\"2020-01-31T23:59:59Z\")(area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 106,
+    "split": "syn",
+    "nl_question": "喺巴黎有幾多個公共交通月台，而邊啲係冇駁住任何電車或者輕軌軌道嘅呢？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.area;nwr[\"public_transport\"=\"platform\"](area.area)->.all;.all out count;(way[\"railway\"~\"^(tram|light_rail)$\"](bn.all););(.all;- node.all(w););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "public_transport=platform": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "platform"
+      },
+      "railway~^(tram|light_rail)$": {
+        "key": "railway",
+        "relation": "regex_match",
+        "value": "^(tram|light_rail)$"
+      }
+    }
+  },
+  {
+    "sample_index": 107,
+    "split": "syn",
+    "nl_question": "喺倫敦入面，邊度有高速公路同未分類道路嘅交界？",
+    "OverpassQL": "[out:json][timeout:120];{{geocodeArea:\"London\"}}->.london;way[\"highway\"=\"motorway\"](area.london);node(w)->.a;way[\"highway\"=\"unclassified\"](area.london);node(w)->.b;node.a.b;out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "倫敦"
+    },
+    "tags": {
+      "highway=motorway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "motorway"
+      },
+      "highway=unclassified": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "unclassified"
+      }
+    }
+  },
+  {
+    "sample_index": 108,
+    "split": "syn",
+    "nl_question": "喺當前畫面，ID 10074543 嘅用戶喺過去兩星期編輯過邊啲地方？",
+    "OverpassQL": "[out:json][timeout:25];nwr(uid:10074543)(newer:\"{{date:2week}}\")({{bbox}});out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 109,
+    "split": "syn",
+    "nl_question": "列出巴黎所有喺巴士線沿線嘅中餐廳。",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Paris\"}}->.paris;relation[\"route\"=\"bus\"](area.paris)->.bus_r;node(r.bus_r)->.bus_n;nwr[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"](r.bus_n);out meta geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "route=bus": {
+        "key": "route",
+        "relation": "equal",
+        "value": "bus"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      }
+    }
+  },
+  {
+    "sample_index": 110,
+    "split": "syn",
+    "nl_question": "喺摩洛哥，有幾多個地點係有 image 標籤，而且係限制咗淨係畀農業用途進入嘅呢？",
+    "OverpassQL": "{{geocodeArea:MA}};nwr[\"image\"][\"access\"=\"agricultural\"];out count;(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "access=agricultural": {
+        "key": "access",
+        "relation": "equal",
+        "value": "agricultural"
+      },
+      "image": {
+        "key": "image",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 111,
+    "split": "syn",
+    "nl_question": "柏林 300 公里範圍內嘅城市人口係幾多？",
+    "OverpassQL": "[out:csv(::id,\"name\",::lat,::lon,\"population\";true;\"|\")];node[\"name\"=\"Berlin\"][\"place\"=\"city\"]->.center;node[\"place\"=\"city\"](around.center:300000);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name=Berlin": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Berlin"
+      },
+      "place=city": {
+        "key": "place",
+        "relation": "equal",
+        "value": "city"
+      }
+    }
+  },
+  {
+    "sample_index": 112,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲主要道路附近有餐廳？",
+    "OverpassQL": "[out:json][timeout:20];way[\"highway\"=\"primary\"]({{bbox}})->.roads;nwr[\"amenity\"=\"restaurant\"](around.roads:0);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      }
+    }
+  },
+  {
+    "sample_index": 113,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，有邊啲 200 毫米嘅地底消防栓呢？",
+    "OverpassQL": "[out:json][timeout:60];node[\"emergency\"=\"fire_hydrant\"][\"fire_hydrant:type\"=\"underground\"][\"fire_hydrant:diameter\"=\"200\"]({{bbox}});out body;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "emergency=fire_hydrant": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "fire_hydrant"
+      },
+      "fire_hydrant:type=underground": {
+        "key": "fire_hydrant:type",
+        "relation": "equal",
+        "value": "underground"
+      },
+      "fire_hydrant:diameter=200": {
+        "key": "fire_hydrant:diameter",
+        "relation": "equal",
+        "value": "200"
+      }
+    }
+  },
+  {
+    "sample_index": 114,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲餐廳係同泥鯭的路線相關嘅呢？",
+    "OverpassQL": "[out:json][timeout:60];relation[\"route\"=\"share_taxi\"]({{bbox}});nwr[\"amenity\"=\"restaurant\"](r)({{bbox}});out center;relation[\"route\"=\"share_taxi\"]({{bbox}});nwr[\"amenity\"=\"restaurant\"](r)({{bbox}});out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "route=share_taxi": {
+        "key": "route",
+        "relation": "equal",
+        "value": "share_taxi"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      }
+    }
+  },
+  {
+    "sample_index": 115,
+    "split": "syn",
+    "nl_question": "法國巴黎嘅主要公路總長度係幾多？",
+    "OverpassQL": "[out:csv(\"length\",\"highway\")][timeout:25];{{geocodeArea:\"Paris\"}};way[\"highway\"=\"primary\"](area);for(t[\"highway\"]){make stat highway=_.val,length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway=primary": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "primary"
+      }
+    }
+  },
+  {
+    "sample_index": 116,
+    "split": "syn",
+    "nl_question": "喺呢個多邊形範圍 (−34.549571 −58.500719, −34.615550 −58.531930, 同埋 −34.687063 −58.485449) 之中，邊啲點係接受 Google Pay 嘅呢？",
+    "OverpassQL": "[out:json][timeout:25];node[\"payment:google_pay\"=\"yes\"](poly:\"-34.549571 -58.500719 -34.615550 -58.531930 -34.687063 -58.485449\");out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "payment:google_pay=yes": {
+        "key": "payment:google_pay",
+        "relation": "equal",
+        "value": "yes"
+      }
+    }
+  },
+  {
+    "sample_index": 117,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，自 2021 年 3 月 1 日起，每個用戶建立嘅節點同路徑數量統計係點？",
+    "OverpassQL": "[out:csv(user,total,nodes,ways)][timeout:120];(nwr(newer:\"2021-03-01T00:00:00Z\")({{bbox}}););for(user()){make stat user=_.val,nodes=count(nodes),ways=count(ways),total=count(nodes)+count(ways);out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {}
+  },
+  {
+    "sample_index": 118,
+    "split": "syn",
+    "nl_question": "邊啲預告號誌同限速號誌係屬於關係 1234567 㗎？",
+    "OverpassQL": "[out:json][timeout:120];relation(1234567)->.myrel;way(r.myrel)->.myways;node(w.myways)->.mywaynodes;(node.mywaynodes[\"railway:signal:distant\"];node.mywaynodes[\"railway:signal:speed_limit\"];)->.signals;.signals out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "railway:signal:distant": {
+        "key": "railway:signal:distant",
+        "relation": "has_key",
+        "value": ""
+      },
+      "railway:signal:speed_limit": {
+        "key": "railway:signal:speed_limit",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 119,
+    "split": "syn",
+    "nl_question": "喺曼哈頓，邊啲長凳係喺騎馬徑 30 米範圍內呢？",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Manhattan, New York\"}}->.area;way[\"highway\"=\"bridleway\"](area.area)->.street;(.street;>;);nwr[\"amenity\"=\"bench\"](around.street:30);(._;>;);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "紐約曼哈頓"
+    },
+    "tags": {
+      "highway=bridleway": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "bridleway"
+      },
+      "amenity=bench": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "bench"
+      }
+    }
+  },
+  {
+    "sample_index": 120,
+    "split": "syn",
+    "nl_question": "列出維也納所有帶有 level 或 layer 資訊嘅電車軌，同埋入面啲節點。",
+    "OverpassQL": "[out:json];{{geocodeArea:\"Wien\"}}->.a;(way[\"railway\"=\"tram\"][\"level\"](area.a);way[\"railway\"=\"tram\"][\"layer\"](area.a);)->.w;(node[\"level\"](w.w);node[\"layer\"](w.w););out;.w out tags geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "維也納"
+    },
+    "tags": {
+      "railway=tram": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "tram"
+      },
+      "level": {
+        "key": "level",
+        "relation": "has_key",
+        "value": ""
+      },
+      "layer": {
+        "key": "layer",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 121,
+    "split": "syn",
+    "nl_question": "巴黎邊啲月台係服務晒所有火車同渡輪路線？",
+    "OverpassQL": "[out:xml][timeout:20];{{geocodeArea:\"Paris\"}}->.searchArea;relation[\"type\"=\"route\"][\"route\"~\"train|ferry\"](area.searchArea);way(r);way._[\"public_transport\"=\"platform\"](area.searchArea);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "type=route": {
+        "key": "type",
+        "relation": "equal",
+        "value": "route"
+      },
+      "public_transport=platform": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "platform"
+      },
+      "route~train|ferry": {
+        "key": "route",
+        "relation": "regex_match",
+        "value": "train|ferry"
+      }
+    }
+  },
+  {
+    "sample_index": 122,
+    "split": "syn",
+    "nl_question": "喺當前畫面入面，邊啲行人過路處係冇導盲磚資料嘅呢？",
+    "OverpassQL": "[out:json][timeout:60];node[\"highway\"=\"crossing\"]({{bbox}})->.a;node.a[\"tactile_paving\"]->.b;(.a;- .b;)->.c;.c out geom qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "當前畫面"
+    },
+    "tags": {
+      "highway=crossing": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "crossing"
+      },
+      "tactile_paving": {
+        "key": "tactile_paving",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 123,
+    "split": "syn",
+    "nl_question": "喺座標 48.210033, 16.363449 嗰個分區入面有咩藥房？",
+    "OverpassQL": "[out:json][timeout:25];is_in(48.210033,16.363449);area._[\"admin_level\"=\"10\"]->.a;(nwr[\"amenity\"=\"pharmacy\"](area.a););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      },
+      "amenity=pharmacy": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "pharmacy"
+      }
+    }
+  },
+  {
+    "sample_index": 124,
+    "split": "syn",
+    "nl_question": "顯示晒貝加爾湖入面所有工業建築。",
+    "OverpassQL": "[out:xml][timeout:20];area[\"wikidata\"=\"Q5513\"]->.BL;(nwr[\"building\"=\"industrial\"](area.BL););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "wikidata=Q5513": {
+        "key": "wikidata",
+        "relation": "equal",
+        "value": "Q5513"
+      },
+      "building=industrial": {
+        "key": "building",
+        "relation": "equal",
+        "value": "industrial"
+      }
+    }
+  },
+  {
+    "sample_index": 125,
+    "split": "syn",
+    "nl_question": "邊啲變更集係對應 2021 年 5 月 1 日之後喺鄱陽湖入面做嘅修改？",
+    "OverpassQL": "[out:csv(::changeset)][timeout:25];area[\"wikidata\"=\"Q207690\"]->.lake;(nwr(newer:\"2021-05-01T00:00:00Z\")(area.lake););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "wikidata=Q207690": {
+        "key": "wikidata",
+        "relation": "equal",
+        "value": "Q207690"
+      }
+    }
+  },
+  {
+    "sample_index": 126,
+    "split": "syn",
+    "nl_question": "喺里昂有幾多間中菜同日本菜餐廳，同埋當中有幾多間係有店名嘅呢？",
+    "OverpassQL": "[out:json];area[\"name\"=\"Lyon\"]->.a;(node(area.a)[\"amenity\"=\"restaurant\"][\"cuisine\"=\"chinese\"];node(area.a)[\"amenity\"=\"restaurant\"][\"cuisine\"=\"japanese\"];)->.b;node.b[\"name\"]->.c;make count total=b.count(nodes), named=c.count(nodes);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "里昂"
+    },
+    "tags": {
+      "name=Lyon": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Lyon"
+      },
+      "amenity=restaurant": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "restaurant"
+      },
+      "cuisine=chinese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "chinese"
+      },
+      "cuisine=japanese": {
+        "key": "cuisine",
+        "relation": "equal",
+        "value": "japanese"
+      }
+    }
+  },
+  {
+    "sample_index": 127,
+    "split": "syn",
+    "nl_question": "科隆有邊啲道路嘅路面唔係未鋪設或者草地，或者平整度好過「差」或者「極差」嘅呢？",
+    "OverpassQL": "[out:json];area[\"name\"=\"Köln\"]->.a;way(area.a)[\"highway\"](if:is_tag(\"surface\")&&!lrs_in(t[\"surface\"],\"unpaved;grass\")||is_tag(\"smoothness\")&&!lrs_in(t[\"smoothness\"],\"bad;very_bad\"));out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "科隆"
+    },
+    "tags": {
+      "name=Köln": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Köln"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      },
+      "smoothness": {
+        "key": "smoothness",
+        "relation": "has_key",
+        "value": ""
+      }
+    }
+  },
+  {
+    "sample_index": 128,
+    "split": "syn",
+    "nl_question": "有邊啲地區行山路線係同 relation 6331691 有關嘅呢？",
+    "OverpassQL": "[out:json][timeout:60];relation(6331691)->.r0;way(r.r0)->.w0;relation[\"network\"=\"rwn\"](bw.w0)->.net;.net out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "network=rwn": {
+        "key": "network",
+        "relation": "equal",
+        "value": "rwn"
+      }
+    }
+  },
+  {
+    "sample_index": 129,
+    "split": "syn",
+    "nl_question": "巴黎有邊啲電車月台係冇對應嘅電車站嘅呢？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.a;way[\"public_transport\"=\"platform\"][\"tram\"=\"yes\"](area.a)->.p;node(w.p)[\"railway\"=\"tram_stop\"];way.p(bn)->.s;(.p;- .s;);(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "public_transport=platform": {
+        "key": "public_transport",
+        "relation": "equal",
+        "value": "platform"
+      },
+      "tram=yes": {
+        "key": "tram",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "railway=tram_stop": {
+        "key": "railway",
+        "relation": "equal",
+        "value": "tram_stop"
+      }
+    }
+  },
+  {
+    "sample_index": 130,
+    "split": "syn",
+    "nl_question": "喺巴黎有邊啲人工修築嚟儲水嘅地方？",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Paris\"}}->.a;(nwr[\"landuse\"=\"basin\"](area.a););map_to_area->.r;(relation(pivot.r);way(pivot.r););out qt;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "landuse=basin": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "basin"
+      }
+    }
+  },
+  {
+    "sample_index": 131,
+    "split": "syn",
+    "nl_question": "喺巴黎，邊啲行人過路處係輪椅過唔到，或者係冇導盲磚嘅呢？",
+    "OverpassQL": "{{geocodeArea:\"Paris\"}}->.a;(nwr[\"highway\"=\"crossing\"][\"wheelchair\"!~\".*\"][\"tactile_paving\"!~\".*\"](area.a);nwr[\"highway\"=\"crossing\"][\"wheelchair\"!~\".*\"][\"tactile_paving\"](area.a);nwr[\"highway\"=\"crossing\"][\"wheelchair\"][\"tactile_paving\"!~\".*\"](area.a););out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "巴黎"
+    },
+    "tags": {
+      "highway=crossing": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "crossing"
+      },
+      "wheelchair!~.*": {
+        "key": "wheelchair",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "tactile_paving!~.*": {
+        "key": "tactile_paving",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    }
+  },
+  {
+    "sample_index": 132,
+    "split": "syn",
+    "nl_question": "喺印度卡納塔克邦入面，有邊啲行政區界線呢？",
+    "OverpassQL": "{{geocodeArea:\"Karnataka\"}}->.searchArea;relation[\"boundary\"=\"administrative\"][\"admin_level\"=\"5\"](area.searchArea);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "卡納塔克邦"
+    },
+    "tags": {
+      "boundary=administrative": {
+        "key": "boundary",
+        "relation": "equal",
+        "value": "administrative"
+      },
+      "admin_level=5": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "5"
+      }
+    }
+  }
+]

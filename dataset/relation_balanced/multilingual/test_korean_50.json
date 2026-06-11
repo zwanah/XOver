@@ -1,0 +1,1943 @@
+[
+  {
+    "sample_index": 869,
+    "split": "test",
+    "nl_question": "바이마러란트에서 일방통행이 아니고, 전용 차로나 버스 전용 차로가 없으며, 차로 수가 1개 또는 2개가 아닌 도로는 무엇입니까?",
+    "OverpassQL": "{{nominatimArea:\"Weimarer Land\"}}->.boundaryarea;way[\"highway\"][\"ref\"][\"oneway\"!~\".*\"][\"access:lanes\"!~\".*\"][\"bus:lanes\"!~\".*\"][\"lanes\"!=\"2\"][\"lanes\"!=\"1\"][\"turn:lanes:forward\"!~\".*\"][\"turn:lanes:backward\"!~\".*\"](area.boundaryarea);(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "lanes!=2": {
+        "key": "lanes",
+        "relation": "not_equal",
+        "value": "2"
+      },
+      "lanes!=1": {
+        "key": "lanes",
+        "relation": "not_equal",
+        "value": "1"
+      },
+      "oneway!~.*": {
+        "key": "oneway",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "access:lanes!~.*": {
+        "key": "access:lanes",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "bus:lanes!~.*": {
+        "key": "bus:lanes",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "turn:lanes:forward!~.*": {
+        "key": "turn:lanes:forward",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "turn:lanes:backward!~.*": {
+        "key": "turn:lanes:backward",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "ref": {
+        "key": "ref",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 869,
+    "qc_index": 355,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits the query's additional filters for turn lanes and the requirement that roads have a 'ref' tag."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 2,
+    "nl_question_en": "What roads in Weimarer Land are not one-way, do not have access or bus lanes, and have neither one nor two lanes?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 71,
+    "split": "test",
+    "nl_question": "조두아뉴, 페르웨, 보베섕, 앵쿠르, 엘레신, 오르프조슈, 라밀리에서 문화유산 지정이 명시되지 않은 역사적인 성, 수도원, 기념물, 농장은 무엇입니까?",
+    "OverpassQL": "[out:json][timeout:25];({{geocodeArea:\"Jodoigne\"}};{{geocodeArea:\"Perwez\"}};{{geocodeArea:\"Beauvechain\"}};{{geocodeArea:\"Incourt,Nivelles\"}};{{geocodeArea:\"Hélécine\"}};{{geocodeArea:\"Orp-Jauche\"}};{{geocodeArea:\"Ramillies\"}};)->.searchArea;nwr[\"historic\"~\"castle|monastery|monument|farm\"][\"heritage\"!~\".*\"](area.searchArea);out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Jodoigne"
+    },
+    "tags": {
+      "historic~castle|monastery|monument|farm": {
+        "key": "historic",
+        "relation": "regex_match",
+        "value": "castle|monastery|monument|farm"
+      },
+      "heritage!~.*": {
+        "key": "heritage",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 71,
+    "qc_index": 273,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query correctly retrieves historic features without heritage tags, but the geocode for Incourt uses 'Nivelles' which may be inaccurate."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 8,
+    "nl_question_en": "What historic castles, monasteries, monuments, and farms without a specified heritage designation are in Jodoigne, Perwez, Beauvechain, Incourt, Hélécine, Orp-Jauche, and Ramillies?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 279,
+    "split": "test",
+    "nl_question": "와이오밍의 주요하지 않은 철도 노선은 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Wyoming\"}}->.searchArea;(way[\"usage\"!=\"main\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Wyoming"
+    },
+    "tags": {
+      "usage!=main": {
+        "key": "usage",
+        "relation": "not_equal",
+        "value": "main"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 279,
+    "v2_index": 1279,
+    "qc_index": 543,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 16,
+    "nl_question_en": "What are the railway lines in Wyoming that are not main lines?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 975,
+    "split": "test",
+    "nl_question": "독일 진델핑겐에서 1000미터 이내에 있는 도로들의 이름과 위치는 무엇입니까?",
+    "OverpassQL": "[out:csv(::id,\"name\",::lat,::lon;false;\"|\")];way[\"highway\"~\"motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|footway|path|living_street|road\"][\"name\"](around:1000,48.708618164062,9.0016298294067);out tags qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway~motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|footway|path|living_street|road": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|footway|path|living_street|road"
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 975,
+    "qc_index": 456,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically perfect, and clearly states the intent."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 22,
+    "nl_question_en": "What are the names and locations of roads within 1000 meters of Sindelfingen, Germany?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 861,
+    "split": "test",
+    "nl_question": "알바냐에는 건물이 아닌 어떤 것들이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Albañá\"}}->.searchArea;(nwr[!\"building\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Albañá"
+    },
+    "tags": {
+      "!building": {
+        "key": "building",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 861,
+    "v2_index": 1861,
+    "qc_index": 512,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 53,
+    "nl_question_en": "What features are not buildings in Albañá?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 640,
+    "split": "test",
+    "nl_question": "독일 밖에 있는 비어 가든이 아닌 것은 무엇입니까?",
+    "OverpassQL": "area[\"ISO3166-1\"!=\"DE\"][\"admin_level\"!=\"2\"];(nwr[\"amenity\"!=\"biergarten\"](area););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "ISO3166-1!=DE": {
+        "key": "ISO3166-1",
+        "relation": "not_equal",
+        "value": "DE"
+      },
+      "admin_level!=2": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "2"
+      },
+      "amenity!=biergarten": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "biergarten"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 640,
+    "v2_index": 1640,
+    "qc_index": 123,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes Germany and features that are not beer gardens, but the NL question's phrasing 'outside of Germany' is slightly ambiguous about whether it means globally excluding Germany or just non-German areas."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 54,
+    "nl_question_en": "What are the features that are not beer gardens outside of Germany?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 813,
+    "split": "test",
+    "nl_question": "낭트에 어떤 것이 문화유산이 아닙니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Nantes\"}}->.searchArea;(nwr[!\"heritage\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Nantes"
+    },
+    "tags": {
+      "!heritage": {
+        "key": "heritage",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 813,
+    "v2_index": 1813,
+    "qc_index": 509,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query selects all features without a heritage tag, but the NL question implies a specific category of 'sites' which is ambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 56,
+    "nl_question_en": "What sites in Nantes are not heritage sites?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 463,
+    "split": "test",
+    "nl_question": "혈액 검사를 전문으로 하지 않는 의료 실험실이 아닌 것은 몇 개입니까?",
+    "OverpassQL": "[out:csv(::count)][timeout:25];(nwr[\"healthcare\"!=\"laboratory\"][\"healthcare:speciality\"!=\"blood_check\"];);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "healthcare!=laboratory": {
+        "key": "healthcare",
+        "relation": "not_equal",
+        "value": "laboratory"
+      },
+      "healthcare:speciality!=blood_check": {
+        "key": "healthcare:speciality",
+        "relation": "not_equal",
+        "value": "blood_check"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 463,
+    "v2_index": 1463,
+    "qc_index": 146,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies counting features that are not medical labs and not blood testing, but the query also excludes features without those tags, which may not match the intended meaning."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 57,
+    "nl_question_en": "What is the count of features that are not medical laboratories and do not specialize in blood testing?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 471,
+    "split": "test",
+    "nl_question": "벨기에의 군 또는 독립 시가 아닌 행정 경계는 무엇입니까?",
+    "OverpassQL": "[out:json][timeout:120];{{geocodeArea:\"Belgium\"}}->.searchArea;(relation[\"admin_level\"!=\"6\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Belgium"
+    },
+    "tags": {
+      "admin_level!=6": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "6"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 471,
+    "v2_index": 1471,
+    "qc_index": 156,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes admin_level=6, but the NL mentions 'counties or independent cities' which may not exactly match that level."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 58,
+    "nl_question_en": "What are the administrative boundaries in Belgium that are not counties or independent cities?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 755,
+    "split": "test",
+    "nl_question": "현재 위치에서 의류 수거함이나 의류 재활용 시설을 어디에서 찾을 수 있습니까?",
+    "OverpassQL": "[out:json][timeout:3600];(nwr[\"recycling:clothes\"][\"operator\"]({{bbox}}););out center;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "recycling:clothes": {
+        "key": "recycling:clothes",
+        "relation": "has_key",
+        "value": ""
+      },
+      "operator": {
+        "key": "operator",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 755,
+    "qc_index": 435,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query uses 'recycling:clothes' but the question mentions 'clothing recycling facilities or containers', which is a minor semantic mismatch."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 80,
+    "nl_question_en": "Where can I find clothing recycling facilities or containers in my current location?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 762,
+    "split": "test",
+    "nl_question": "브라질 상파울루주 캄피나스에서 행정 구역 레벨 10에 해당하지 않는 동네나 구역은 무엇입니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Campinas SP Brasil\"}}->.searchArea;(relation[\"admin_level\"!=\"10\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Campinas SP Brasil"
+    },
+    "tags": {
+      "admin_level!=10": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "10"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 762,
+    "v2_index": 1762,
+    "qc_index": 684,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question asks for neighborhoods or districts, but the query retrieves all relations with admin_level not equal to 10, which may include other administrative boundaries, not just neighborhoods or districts."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 82,
+    "nl_question_en": "What are the neighborhoods or districts not at admin level 10 in Campinas, SP, Brazil?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 684,
+    "split": "test",
+    "nl_question": "몬태나주에 있는 철도는 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Montana\"}}->.searchArea;(way[\"railway\"!=\"abandoned\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Montana"
+    },
+    "tags": {
+      "railway!=abandoned": {
+        "key": "railway",
+        "relation": "not_equal",
+        "value": "abandoned"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 684,
+    "v2_index": 1684,
+    "qc_index": 112,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, which retrieves railways in Montana excluding abandoned ones, and is clear and natural."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 84,
+    "nl_question_en": "What are all the railways in Montana",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 669,
+    "split": "test",
+    "nl_question": "현재 화면 내에 소화전, 흡수점, 저수조, 소방용 연못과 같은 소방용 비상 용수 시설은 무엇이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"emergency\"=\"fire_hydrant\"]({{bbox}});nwr[\"emergency\"=\"suction_point\"]({{bbox}});nwr[\"emergency\"=\"water_tank\"]({{bbox}});nwr[\"emergency\"=\"fire_water_pond\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "emergency=fire_hydrant": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "fire_hydrant"
+      },
+      "emergency=suction_point": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "suction_point"
+      },
+      "emergency=water_tank": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "water_tank"
+      },
+      "emergency=fire_water_pond": {
+        "key": "emergency",
+        "relation": "equal",
+        "value": "fire_water_pond"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 669,
+    "qc_index": 6,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, listing all four emergency water source types queried."
+    },
+    "language": "korean",
+    "is_duplicate": true,
+    "ml_index": 86,
+    "nl_question_en": "What emergency water sources for firefighting, such as fire hydrants, suction points, water tanks, and fire water ponds, are located within the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 955,
+    "split": "test",
+    "nl_question": "트리니다드 토바고에 있는 병원이 아닌 것",
+    "OverpassQL": "{{geocodeArea:\"Trinidad and Tobago\"}}->.searchArea;(nwr[\"amenity\"!=\"hospital\"](area.searchArea););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Trinidad and Tobago"
+    },
+    "tags": {
+      "amenity!=hospital": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "hospital"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 955,
+    "v2_index": 1955,
+    "qc_index": 767,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, which retrieves all features in Trinidad and Tobago that are not hospitals."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 94,
+    "nl_question_en": "Features in Trinidad and Tobago that are not hospitals",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 146,
+    "split": "test",
+    "nl_question": "몽루주에서 제한 속도가 지정되지 않았으며 보도, 보행자 전용 도로, 계단 또는 개인 전용 도로가 아닌 도로는 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:90];{{geocodeArea:\"montrouge\"}}->.searchArea;(way[\"highway\"~\".*\"][\"maxspeed\"!~\".*\"][\"highway\"!~\"footway\"][\"highway\"!~\"pedestrian\"][\"highway\"!~\"steps\"][\"highway\"!~\"path\"][\"access\"!~\"private\"](area.searchArea););(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "montrouge"
+    },
+    "tags": {
+      "highway~.*": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": ".*"
+      },
+      "maxspeed!~.*": {
+        "key": "maxspeed",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "highway!~footway": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "footway"
+      },
+      "highway!~pedestrian": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "pedestrian"
+      },
+      "highway!~steps": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "steps"
+      },
+      "highway!~path": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "path"
+      },
+      "access!~private": {
+        "key": "access",
+        "relation": "regex_not_match",
+        "value": "private"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 146,
+    "qc_index": 332,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": ""
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 146,
+    "nl_question_en": "What roads in Montrouge do not have a specified maximum speed and are not footways, pedestrian paths, steps, or private access?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 328,
+    "split": "test",
+    "nl_question": "자라구아두술 산타루지아에서 자전거 도로, 보행로, 서비스 도로 및 공사 중인 도로를 제외한 주요 도로의 노면 유형과 길이는 어떻게 됩니까?",
+    "OverpassQL": "[out:csv(\"surface\",\"length\")];{{geocodeArea:\"Santa Luzia,Jaraguá do Sul\"}}->.searchArea;way[\"highway\"][\"highway\"!~\"^(construction|cycleway|footway|path|proposed|service|track)$\"][\"surface\"](area.searchArea);for(t[\"surface\"]){make stat surface=_.val,count=count(ways),length=sum(length());out;}",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Santa Luzia,Jaraguá do Sul"
+    },
+    "tags": {
+      "highway!~^(construction|cycleway|footway|path|proposed|service|track)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(construction|cycleway|footway|path|proposed|service|track)$"
+      },
+      "surface": {
+        "key": "surface",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 328,
+    "qc_index": 390,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question accurately describes the query's intent but omits that the output is aggregated by surface type rather than listing individual roads."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 148,
+    "nl_question_en": "What are the surface types and lengths of major roads in Santa Luzia, Jaraguá do Sul, excluding those for bicycles, pedestrians, service, and under construction?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 152,
+    "split": "test",
+    "nl_question": "우크라이나에서 도로, 철도, 수로 또는 대중교통으로 분류되지 않은 폐쇄된 구역은 무엇입니까?",
+    "OverpassQL": "[timeout:250];{{geocodeArea:\"Ukraine\"}}->.a;(nwr[\"area\"=\"yes\"][\"highway\"!~\".\"][\"railway\"!~\".\"][\"waterway\"!~\".\"][\"public_transport\"!~\".\"](area.a););out meta qt;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Ukraine"
+    },
+    "tags": {
+      "area=yes": {
+        "key": "area",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "highway!~.": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "."
+      },
+      "railway!~.": {
+        "key": "railway",
+        "relation": "regex_not_match",
+        "value": "."
+      },
+      "waterway!~.": {
+        "key": "waterway",
+        "relation": "regex_not_match",
+        "value": "."
+      },
+      "public_transport!~.": {
+        "key": "public_transport",
+        "relation": "regex_not_match",
+        "value": "."
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 152,
+    "qc_index": 333,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question mentions 'closed areas' but the query filters for features tagged area=yes, which is not exactly the same as closed areas; also the query excludes certain tags but the NL phrasing is slightly ambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 170,
+    "nl_question_en": "What closed areas in Ukraine are not classified as roads, railways, waterways, or public transport?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 787,
+    "split": "test",
+    "nl_question": "코트다르모르에 있는 도로들 중 'D'로 시작하는 주거용, 미분류 또는 서비스 도로이거나, 참조 번호가 없는 1차, 2차 또는 3차 도로는 무엇인가요?",
+    "OverpassQL": "[out:xml];(area[\"name\"=\"Côtes-d'Armor\"]->.zone;way[\"highway\"~\"residential|unclassified|service\"][\"ref\"~\"D \"](area.zone);way[\"highway\"~\"primary|secondary|tertiary\"][\"ref\"!~\".\"](area.zone););out meta;>;out skel;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Côtes-d'Armor"
+    },
+    "tags": {
+      "name=Côtes-d'Armor": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Côtes-d'Armor"
+      },
+      "highway~residential|unclassified|service": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "residential|unclassified|service"
+      },
+      "ref~D ": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "D "
+      },
+      "highway~primary|secondary|tertiary": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "primary|secondary|tertiary"
+      },
+      "ref!~.": {
+        "key": "ref",
+        "relation": "regex_not_match",
+        "value": "."
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 787,
+    "qc_index": 269,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is mostly accurate but the OverpassQL uses a regex for 'D ' (with a space) which may not match all 'D' prefixes, and the NL phrasing 'starting with D' is slightly ambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 181,
+    "nl_question_en": "What highways in Côtes-d'Armor are residential, unclassified, or service roads starting with 'D', or primary, secondary, or tertiary roads without a reference?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 600,
+    "split": "test",
+    "nl_question": "바이에른의 우편번호 경계가 아닌 경계는 무엇입니까?",
+    "OverpassQL": "[out:csv(::id,\"postal_code\",\"note\",\"name\",::timestamp)][timeout:25];{{geocodeArea:\"Bayern\"}}->.searchArea;relation[\"boundary\"!=\"postal_code\"](area.searchArea);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Bayern"
+    },
+    "tags": {
+      "boundary!=postal_code": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "postal_code"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 600,
+    "v2_index": 1600,
+    "qc_index": 195,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 183,
+    "nl_question_en": "What are the boundaries in Bayern that are not postal code boundaries?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 849,
+    "split": "test",
+    "nl_question": "브라질 히우그란지두술주의 행정 구역 경계는 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(relation[\"boundary\"~\"administrative\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "boundary~administrative": {
+        "key": "boundary",
+        "relation": "regex_match",
+        "value": "administrative"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 849,
+    "qc_index": 290,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 186,
+    "nl_question_en": "What are the administrative boundaries in the state of Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 722,
+    "split": "test",
+    "nl_question": "선택된 지역에서 주행 방향(전방)을 향하고 있는 교통 표지판은 무엇입니까?",
+    "OverpassQL": "[out:json][timeout:25];(node[\"traffic_sign:forward\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "traffic_sign:forward": {
+        "key": "traffic_sign:forward",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 722,
+    "qc_index": 452,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query uses 'traffic_sign:forward' which matches the forward direction, but the NL question says 'facing the forward direction of travel' which is slightly ambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 188,
+    "nl_question_en": "What traffic signs are facing the forward direction of travel in the selected area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 766,
+    "split": "test",
+    "nl_question": "역사적 기념물도 아니고 벤치도 아닌 것의 수는 얼마입니까?",
+    "OverpassQL": "[out:csv(::count)][timeout:60];(nwr[\"historic\"!=\"memorial\"][\"amenity\"!=\"bench\"];);out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "historic!=memorial": {
+        "key": "historic",
+        "relation": "not_equal",
+        "value": "memorial"
+      },
+      "amenity!=bench": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "bench"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 766,
+    "v2_index": 1766,
+    "qc_index": 164,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for features that are neither benches nor historic memorials, but the query excludes features with amenity=bench and historic=memorial, which is slightly different from excluding all benches and all historic memorials."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 209,
+    "nl_question_en": "What is the number of features that are neither benches nor historic memorials?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 132,
+    "split": "test",
+    "nl_question": "파리에 있는 모든 약국을 보여주세요.",
+    "OverpassQL": "[out:json][timeout:180];{{geocodeArea:\"Paris\"}}->.searchArea;nwr[\"amenity\"=\"pharmacy\"](area.searchArea);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Paris"
+    },
+    "tags": {
+      "amenity=pharmacy": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "pharmacy"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 132,
+    "qc_index": 38,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 210,
+    "nl_question_en": "Show all pharmacies in Paris.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 543,
+    "split": "test",
+    "nl_question": "포사다스에는 어떤 바, 펍, 카페, 약국, 동물병원, 식당, 패스트푸드점, 나이트클럽, 주차장, 아이스크림 가게, 주유소, 호텔이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Posadas\"}}->.searchArea;(nwr[\"shop\"](area.searchArea);nwr[\"amenity\"~\"(bar|pub|cafe|pharmacy|veterinary|restaurant|fast_food|nightclub|parking|ice_cream|fuel|hotel)\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Posadas"
+    },
+    "tags": {
+      "amenity~(bar|pub|cafe|pharmacy|veterinary|restaurant|fast_food|nightclub|parking|ice_cream|fuel|hotel)": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "(bar|pub|cafe|pharmacy|veterinary|restaurant|fast_food|nightclub|parking|ice_cream|fuel|hotel)"
+      },
+      "shop": {
+        "key": "shop",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 543,
+    "qc_index": 420,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query includes all listed amenities but also adds a 'shop' tag query not mentioned in the NL question, making it slightly over-inclusive."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 214,
+    "nl_question_en": "What bars, pubs, cafes, pharmacies, veterinary clinics, restaurants, fast food outlets, nightclubs, parking facilities, ice cream shops, fuel stations, and hotels are in Posadas?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 638,
+    "split": "test",
+    "nl_question": "관계 ID 5395605와 연결된 주 철도 신호기 및 복합 철도 신호기는 무엇입니까?",
+    "OverpassQL": "relation(5395605)->.myrel;way(r.myrel)->.myways;node(w.myways)->.mywaynodes;(node.mywaynodes[\"railway:signal:combined\"];node.mywaynodes[\"railway:signal:main\"];)->.mainsignals;.mainsignals out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "railway:signal:combined": {
+        "key": "railway:signal:combined",
+        "relation": "has_key",
+        "value": ""
+      },
+      "railway:signal:main": {
+        "key": "railway:signal:main",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 638,
+    "qc_index": 381,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's purpose, is grammatically perfect, and clearly states what is being queried."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 221,
+    "nl_question_en": "What are the main and combined railway signals connected to relation ID 5395605?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 701,
+    "split": "test",
+    "nl_question": "뒤셀도르프에서 이름이 지정된 도로 중 공식 도로 분류 키가 없는 도로는 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Düsseldorf\"}}->.searchArea;(way[\"highway\"][\"name\"][\"de:strassenschluessel_exists\"=\"no\"](area.searchArea););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Düsseldorf"
+    },
+    "tags": {
+      "de:strassenschluessel_exists=no": {
+        "key": "de:strassenschluessel_exists",
+        "relation": "equal",
+        "value": "no"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 701,
+    "qc_index": 364,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 235,
+    "nl_question_en": "What named roads in Düsseldorf do not have an official street classification key?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 280,
+    "split": "test",
+    "nl_question": "페루의 비행장이 아닌 것",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Peru\"}}->.searchArea;nwr[\"aeroway\"!=\"aerodrome\"](area.searchArea);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Peru"
+    },
+    "tags": {
+      "aeroway!=aerodrome": {
+        "key": "aeroway",
+        "relation": "not_equal",
+        "value": "aerodrome"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 280,
+    "v2_index": 1280,
+    "qc_index": 129,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 236,
+    "nl_question_en": "Features with an aeroway tag other than aer",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 827,
+    "split": "test",
+    "nl_question": "헨트에서 고속도로나 간선도로가 아니며 보행자와 일반 통행이 가능한 도로에 있는 다리는 무엇입니까?",
+    "OverpassQL": "[timeout:10];{{geocodeArea:\"Gent\"}}->.searchArea;nwr[\"highway\"][\"highway\"!~\"^(motorway|trunk)(_link)?$\"][\"motorroad\"!=\"yes\"][\"foot\"!~\"^(no|private)$\"][\"access\"!~\"^(no|private)$\"][\"bridge\"][\"bridge\"!=\"no\"](area.searchArea);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Gent"
+    },
+    "tags": {
+      "motorroad!=yes": {
+        "key": "motorroad",
+        "relation": "not_equal",
+        "value": "yes"
+      },
+      "bridge!=no": {
+        "key": "bridge",
+        "relation": "not_equal",
+        "value": "no"
+      },
+      "highway!~^(motorway|trunk)(_link)?$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(motorway|trunk)(_link)?$"
+      },
+      "foot!~^(no|private)$": {
+        "key": "foot",
+        "relation": "regex_not_match",
+        "value": "^(no|private)$"
+      },
+      "access!~^(no|private)$": {
+        "key": "access",
+        "relation": "regex_not_match",
+        "value": "^(no|private)$"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 827,
+    "qc_index": 353,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, is grammatically correct, and clearly describes the intent."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 246,
+    "nl_question_en": "What bridges are on roads in Gent that are not motorways or trunk roads and allow foot and general access?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 780,
+    "split": "test",
+    "nl_question": "타이난시에서 참조 번호가 '南'이 아니고 국지간선도로가 아닌 도로는 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:60];{{geocodeArea:\"臺南市\"}}->.searchArea;(way[\"highway\"!=\"tertiary\"][\"ref\"!~\"南\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "臺南市"
+    },
+    "tags": {
+      "highway!=tertiary": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "tertiary"
+      },
+      "ref!~南": {
+        "key": "ref",
+        "relation": "regex_not_match",
+        "value": "南"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 780,
+    "v2_index": 1780,
+    "qc_index": 694,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question correctly captures the exclusion of tertiary highways and ref '南', but omits that the query also returns nodes and uses meta output."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 258,
+    "nl_question_en": "What are the roads that are not tertiary highways and do not have the reference '南' in Tainan City?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 846,
+    "split": "test",
+    "nl_question": "노르토르프 시에 있는 주거용 도로들은 무엇입니까?",
+    "OverpassQL": "area[\"admin_level\"=\"8\"][\"name\"=\"Nortorf\"]->.boundaryarea;((way[\"highway\"=\"residential\"](area.boundaryarea););>;)->.a;.a out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "name=Nortorf": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Nortorf"
+      },
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 846,
+    "qc_index": 68,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 267,
+    "nl_question_en": "What are the residential roads in the town of Nortorf?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 70,
+    "split": "test",
+    "nl_question": "칠레에는 어떤 유치원들이 있습니까?",
+    "OverpassQL": "[out:csv(::id,::type,\"name\",\"addr:postcode\",\"addr:city\",\"addr:street\",\"addr:housenumber\",\"website\",\" contact:email=*\")][timeout:400];area[\"name\"=\"Chile\"]->.a;(nwr[\"amenity\"=\"kindergarten\"](area.a););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Chile"
+    },
+    "tags": {
+      "name=Chile": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Chile"
+      },
+      "amenity=kindergarten": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "kindergarten"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 70,
+    "qc_index": 96,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for kindergartens, but the query also exports many extra fields and a filter for contact:email, which is not mentioned."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 270,
+    "nl_question_en": "What kindergartens are in Chile?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 113,
+    "split": "test",
+    "nl_question": "필리핀의 어퍼 마리키나 강 유역 보호 경관 내에는 어떤 지형지물들이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Philippines\"}}->.searchArea;(nwr[\"protection_title\"=\"Upper Marikina River Basin Protected Landscape\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Philippines"
+    },
+    "tags": {
+      "protection_title=Upper Marikina River Basin Protected Landscape": {
+        "key": "protection_title",
+        "relation": "equal",
+        "value": "Upper Marikina River Basin Protected Landscape"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 113,
+    "qc_index": 63,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for features within the protected landscape, but the query only retrieves the boundary itself, not features inside it."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 277,
+    "nl_question_en": "What features are within the Upper Marikina River Basin Protected Landscape in the Philippines?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 77,
+    "split": "test",
+    "nl_question": "브라질 히우그란지두술주에서 'Rodovia Vespertino de Medeiros Bonorino'라는 이름의 고속도로나 경로는 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(way[\"highway\"~\".*\"][\"name\"~\"^Rodovia Vespertino de Medeiros Bonorino$\"](area.searchArea);relation[\"type\"~\"route\"][\"name\"~\"^Rodovia Vespertino de Medeiros Bonorino$\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "highway~.*": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": ".*"
+      },
+      "name~^Rodovia Vespertino de Medeiros Bonorino$": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "^Rodovia Vespertino de Medeiros Bonorino$"
+      },
+      "type~route": {
+        "key": "type",
+        "relation": "regex_match",
+        "value": "route"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 77,
+    "qc_index": 239,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically perfect, and clearly states the intent."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 280,
+    "nl_question_en": "What highways or routes are named 'Rodovia Vespertino de Medeiros Bonorino' in Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 909,
+    "split": "test",
+    "nl_question": "오스트리아에 있는 산악 고개와 관련 도로는 무엇입니까?",
+    "OverpassQL": "[out:json][timeout:1500];{{geocodeArea:\"Austria\"}}->.searchArea;nwr[\"mountain_pass\"](area.searchArea);way[\"highway\"~\"primary|secondary|tertiary|trunk|service|residential|road\"](area.searchArea);(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Austria"
+    },
+    "tags": {
+      "highway~primary|secondary|tertiary|trunk|service|residential|road": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "primary|secondary|tertiary|trunk|service|residential|road"
+      },
+      "mountain_pass": {
+        "key": "mountain_pass",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 909,
+    "qc_index": 444,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query retrieves mountain passes and highways separately, but does not explicitly associate them as the question implies."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 282,
+    "nl_question_en": "What mountain passes and associated highways are in Austria?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 875,
+    "split": "test",
+    "nl_question": "라이프치히 시의 주거 지역은 어디입니까?",
+    "OverpassQL": "area[\"admin_level\"=\"6\"][\"official_name\"=\"Kreisfreie Stadt Leipzig\"]->.a;(nwr[\"landuse\"=\"residential\"](area.a););map_to_area->.r;(relation(pivot.r);way(pivot.r););out qt;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=6": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "6"
+      },
+      "official_name=Kreisfreie Stadt Leipzig": {
+        "key": "official_name",
+        "relation": "equal",
+        "value": "Kreisfreie Stadt Leipzig"
+      },
+      "landuse=residential": {
+        "key": "landuse",
+        "relation": "equal",
+        "value": "residential"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 875,
+    "qc_index": 40,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for residential areas, but the query retrieves residential landuse features and then maps them to areas, which is slightly more complex than stated."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 292,
+    "nl_question_en": "What are the residential areas in the city of Leipzig?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 217,
+    "split": "test",
+    "nl_question": "러시아에서 이름이 'Папа Джон스'인 장소",
+    "OverpassQL": "[out:xml][timeout:400];{{geocodeArea:\"Россия\"}}->.searchArea;(nwr[\"name\"~\"Папа Джонс\"](area.searchArea););(._;>;);out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Россия"
+    },
+    "tags": {
+      "name~Папа Джонс": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Папа Джонс"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 217,
+    "qc_index": 283,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly states the intent."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 298,
+    "nl_question_en": "places with the name Папа Джонс in Россия",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 366,
+    "split": "test",
+    "nl_question": "라란잘 파울리스타에서 공사 중이 아니며 자전거나 보행자 전용이 아닌 이름 없는 도로는 무엇입니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Laranjal Paulista\"}}->.a;(way[\"highway\"][\"highway\"!~\"(construction|cycleway|footway|path|proposed|service|track|steps|platform|link)\"][\"name\"!~\".*\"][\"noname\"!~\".*\"](area.a););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Laranjal Paulista"
+    },
+    "tags": {
+      "highway!~(construction|cycleway|footway|path|proposed|service|track|steps|platform|link)": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "(construction|cycleway|footway|path|proposed|service|track|steps|platform|link)"
+      },
+      "name!~.*": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "noname!~.*": {
+        "key": "noname",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 366,
+    "qc_index": 339,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question accurately captures the intent but omits the exclusion of several highway types (service, track, steps, etc.) present in the query."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 308,
+    "nl_question_en": "What unnamed roads are in Laranjal Paulista that are not under construction or designated for bicycles or pedestrians?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 621,
+    "split": "test",
+    "nl_question": "2013년 11월 17일 기준 현재 화면에서 볼 수 있는 도로 시설물은 무엇입니까?",
+    "OverpassQL": "[out:xml][timeout:800][date:\"2013-11-17T00:00:00Z\"];(node[\"highway\"]({{bbox}});way[\"highway\"]({{bbox}});relation[\"highway\"]({{bbox}}););out meta;>;out meta;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 621,
+    "qc_index": 401,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 322,
+    "nl_question_en": "What highway features are visible in the current view as of November 17, 2013?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 133,
+    "split": "test",
+    "nl_question": "오슬로에서 Circle K, Esso, St1, YX 또는 Best가 운영하지 않는 주유소는 어디에 있습니까?",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Oslo\"}}->.searchArea;(nwr[\"amenity\"=\"fuel\"][\"ref:circlek\"!~\".*\"][\"ref:esso\"!~\".*\"][\"ref:st1\"!~\".*\"][\"ref:yx\"!~\".*\"][\"ref:best\"!~\".*\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Oslo"
+    },
+    "tags": {
+      "amenity=fuel": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "fuel"
+      },
+      "ref:circlek!~.*": {
+        "key": "ref:circlek",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:esso!~.*": {
+        "key": "ref:esso",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:st1!~.*": {
+        "key": "ref:st1",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:yx!~.*": {
+        "key": "ref:yx",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "ref:best!~.*": {
+        "key": "ref:best",
+        "relation": "regex_not_match",
+        "value": ".*"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 133,
+    "qc_index": 331,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for fuel stations not operated by specific brands, but the query uses ref tags instead of operator tags, which may not fully capture the intended exclusion."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 335,
+    "nl_question_en": "Where are the fuel stations in Oslo that are not operated by Circle K, Esso, St1, YX, or Best?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 283,
+    "split": "test",
+    "nl_question": "2015년 10월 21일 당시 현재 화면에는 어떤 건물들이 있었습니까?",
+    "OverpassQL": "[timeout:250][date:\"2015-10-21T00:00:01Z\"];(nwr[\"building\"]({{bbox}}););out meta;>;out meta;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 283,
+    "qc_index": 439,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, which retrieves buildings within the current view as of October 21, 2015."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 338,
+    "nl_question_en": "What buildings were in the current view on October 21, 2015?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 826,
+    "split": "test",
+    "nl_question": "폴리뇨의 주차 시설이 아닌 것은 어디에 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Foligno\"}}->.searchArea;(nwr[\"amenity\"!=\"parking\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Foligno"
+    },
+    "tags": {
+      "amenity!=parking": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "parking"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 826,
+    "v2_index": 1826,
+    "qc_index": 713,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query selects features with any amenity tag except parking, but the NL question implies all features that are not parking facilities, which is broader."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 342,
+    "nl_question_en": "Where are the features that are not parking facilities in Foligno?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 939,
+    "split": "test",
+    "nl_question": "프리울리 베네치아 줄리아에는 통신 타워와 마스트가 아닌 어떤 것들이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"friuli Venezia giulia\"}}->.searchArea;(nwr[\"man_made\"!~\"tower|mast\"][\"tower:type\"!=\"communication\"](area.searchArea););out meta center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "friuli Venezia giulia"
+    },
+    "tags": {
+      "tower:type!=communication": {
+        "key": "tower:type",
+        "relation": "not_equal",
+        "value": "communication"
+      },
+      "man_made!~tower|mast": {
+        "key": "man_made",
+        "relation": "regex_not_match",
+        "value": "tower|mast"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 939,
+    "v2_index": 1939,
+    "qc_index": 759,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, which excludes features with man_made=tower or mast and tower:type=communication, and is grammatically perfect and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 347,
+    "nl_question_en": "What features in Friuli Venezia Giulia are not communication towers or masts?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 464,
+    "split": "test",
+    "nl_question": "흐로닝언의 카풀 주차장은 어디에 있습니까?",
+    "OverpassQL": "area[\"name\"=\"Groningen\"][\"admin_level\"=\"4\"]->.g;(nwr[\"parking\"=\"carpool\"](area.g);nwr[\"carpool\"](area.g);nwr[\"name\"~\"carpool\",i](area.g););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Groningen"
+    },
+    "tags": {
+      "name=Groningen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Groningen"
+      },
+      "admin_level=4": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "4"
+      },
+      "parking=carpool": {
+        "key": "parking",
+        "relation": "equal",
+        "value": "carpool"
+      },
+      "name~carpool": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "carpool"
+      },
+      "carpool": {
+        "key": "carpool",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 464,
+    "qc_index": 45,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query searches more broadly than just 'parking areas' (it includes nodes, ways, and relations with carpool tags or names), but the NL question is clear and natural."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 348,
+    "nl_question_en": "Where are the carpool parking areas in Groningen?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 373,
+    "split": "test",
+    "nl_question": "베를린에 어떤 찻집이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Berlin\"}}->.searchArea;(nwr[\"shop\"=\"tea\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Berlin"
+    },
+    "tags": {
+      "shop=tea": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "tea"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 373,
+    "qc_index": 32,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query, is grammatically correct, and clearly asks for tea shops in Berlin."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 350,
+    "nl_question_en": "What tea shops are in Berlin?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 496,
+    "split": "test",
+    "nl_question": "청두의 위린로를 보여주세요.",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"成都\"}}->.searchArea;way[\"highway\"][\"name\"~\"玉林\"](area.searchArea);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "成都"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name~玉林": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "玉林"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 496,
+    "qc_index": 373,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly requests the specific road in Chengdu, matching the OverpassQL query."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 355,
+    "nl_question_en": "Please show me the 玉林路 in 成都.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 880,
+    "split": "test",
+    "nl_question": "드롬에는 어떤 피크닉 테이블과 피크닉 장소가 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"drome\"}}->.searchArea;(nwr[\"leisure\"=\"picnic_table\"](area.searchArea);nwr[\"tourism\"=\"picnic_site\"](area.searchArea););out;>;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "drome"
+    },
+    "tags": {
+      "leisure=picnic_table": {
+        "key": "leisure",
+        "relation": "equal",
+        "value": "picnic_table"
+      },
+      "tourism=picnic_site": {
+        "key": "tourism",
+        "relation": "equal",
+        "value": "picnic_site"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 880,
+    "qc_index": 10,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 372,
+    "nl_question_en": "What picnic tables and picnic sites are in Drôme?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 830,
+    "split": "test",
+    "nl_question": "2016년 10월 19일에 지정된 지역에서 어떤 도로와 건물들이 변경되었습니까?",
+    "OverpassQL": "[out:json][timeout:25];(way[\"highway\"]({{bbox}})(changed:\"2016-10-19T00:00:00Z\",\"2016-10-19T23:59:59Z\");nwr[\"building\"]({{bbox}})(changed:\"2016-10-19T00:00:00Z\",\"2016-10-19T23:59:59Z\"););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "building": {
+        "key": "building",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 830,
+    "qc_index": 410,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 379,
+    "nl_question_en": "What highways and buildings were changed on October 19, 2016, in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 625,
+    "split": "test",
+    "nl_question": "베를린에 있는 식수원은 어디에 있나요?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Berlin\"}}->.searchArea;(nwr[\"drinking_water\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Berlin"
+    },
+    "tags": {
+      "drinking_water": {
+        "key": "drinking_water",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 625,
+    "qc_index": 392,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for 'sources of drinking water', but the query uses the tag 'drinking_water', which typically marks drinking water fountains or taps, not natural sources like springs."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 385,
+    "nl_question_en": "Where are the sources of drinking water in Berlin?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 607,
+    "split": "test",
+    "nl_question": "필리핀에서 이름에 'power', 'electric', 'nuclear' 또는 'generator'가 포함되어 있고, 사용자 ID 2041564가 마지막으로 수정했으며, 2015년 8월 1일 00:01 이후에 업데이트된 길을 보여주세요.",
+    "OverpassQL": "[out:json][timeout:120];{{geocodeArea:\"Philippines\"}}->.ph;way[\"name\"~\"(power|electric|nuclear|generator)\",i](newer:\"2015-08-01T00:01:00Z\")(uid:2041564)(area.ph);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Philippines"
+    },
+    "tags": {
+      "name~(power|electric|nuclear|generator)": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "(power|electric|nuclear|generator)"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 607,
+    "qc_index": 270,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the OverpassQL query, is grammatically correct, and clearly describes the search criteria."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 388,
+    "nl_question_en": "Show ways in the Philippines whose name contains “power”, “electric”, “nuclear”, or “generator”, last edited by user ID 2041564 and updated after August 1, 2015 at 00:01.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 373,
+    "split": "test",
+    "nl_question": "베를린에 찻집이 아닌 어떤 상점이 있습니까?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Berlin\"}}->.searchArea;(nwr[\"shop\"!=\"tea\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Berlin"
+    },
+    "tags": {
+      "shop!=tea": {
+        "key": "shop",
+        "relation": "not_equal",
+        "value": "tea"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 373,
+    "v2_index": 1373,
+    "qc_index": 573,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query returns all shops not equal to 'tea', but the NL question implies only shops that are not tea shops, which is accurate; however, the query also includes non-shop features with shop tags, a minor omission."
+    },
+    "language": "korean",
+    "is_duplicate": false,
+    "ml_index": 396,
+    "nl_question_en": "What shops that are not tea shops are in Berlin",
+    "nl_source": "flip_rewrite"
+  }
+]

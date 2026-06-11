@@ -1,0 +1,1845 @@
+[
+  {
+    "sample_index": 898,
+    "split": "test",
+    "nl_question": "Покажи объекты в Познани, не являющиеся пунктами проката велосипедов и не имеющие вместимости 10 мест.",
+    "OverpassQL": "[out:json][timeout:250];{{geocodeArea:\"Poznań\"}}->.searchArea;(nwr[\"amenity\"!=\"bicycle_rental\"][\"capacity\"!=\"10\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Poznań"
+    },
+    "tags": {
+      "amenity!=bicycle_rental": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "bicycle_rental"
+      },
+      "capacity!=10": {
+        "key": "capacity",
+        "relation": "not_equal",
+        "value": "10"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 898,
+    "v2_index": 1898,
+    "qc_index": 736,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, which filters for objects in Poznań that are not bicycle rental facilities and do not have a capacity of 10."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 12,
+    "nl_question_en": "Show me the objects in Poznań that are not bicycle rental facilities and do not have a capacity of 10.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 964,
+    "split": "test",
+    "nl_question": "Какие объекты имеют этимологическую связь с понятием, соответствующим Q336977 в Викиданных?",
+    "OverpassQL": "[out:json][timeout:20];(nwr[\"name:etymology:wikidata\"~\"(^|;)(Q336977)(;|$)\"];>>;);out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name:etymology:wikidata~(^|;)(Q336977)(;|$)": {
+        "key": "name:etymology:wikidata",
+        "relation": "regex_match",
+        "value": "(^|;)(Q336977)(;|$)"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 964,
+    "qc_index": 280,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 20,
+    "nl_question_en": "What locations have etymological connections to the term represented by Q336977 in Wikidata?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 458,
+    "split": "test",
+    "nl_question": "Какие объекты в Нойбиберге имеют номера домов?",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:25];{{geocodeArea:\"Neubiberg\"}}->.searchArea;(nwr[\"addr:housenumber\"](area.searchArea););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Neubiberg"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 458,
+    "qc_index": 370,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 47,
+    "nl_question_en": "What places have house numbers in Neubiberg?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 650,
+    "split": "test",
+    "nl_question": "Какие магазины, не являющиеся магазинами напитков, есть в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"shop\"!=\"beverages\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "shop!=beverages": {
+        "key": "shop",
+        "relation": "not_equal",
+        "value": "beverages"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 650,
+    "v2_index": 1650,
+    "qc_index": 635,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes shops with shop=beverages, but the NL question implies shops that do not sell beverages, which could include many shop types; the match is mostly accurate but slightly ambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 48,
+    "nl_question_en": "What shops not selling beverages are in the current view",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 526,
+    "split": "test",
+    "nl_question": "Какие силовые кабели, включая подземные и подводные, находятся в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"power\"=\"cable\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "power=cable": {
+        "key": "power",
+        "relation": "equal",
+        "value": "cable"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 526,
+    "qc_index": 19,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query for power=cable elements within the bounding box, and is grammatically correct and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 50,
+    "nl_question_en": "What electrical power cables, including underground and undersea cables, are in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 354,
+    "split": "test",
+    "nl_question": "Какие типы дорог видны в текущей области просмотра?",
+    "OverpassQL": "[out:json];(way[\"highway\"~\"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|secondary|track|path|residential|service|services|secondary_link|tertiary_link\"]({{bbox}}););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway~motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|secondary|track|path|residential|service|services|secondary_link|tertiary_link": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|secondary|track|path|residential|service|services|secondary_link|tertiary_link"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 354,
+    "qc_index": 261,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the query's purpose of retrieving various road types within the current view."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 55,
+    "nl_question_en": "What types of roads are visible in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 921,
+    "split": "test",
+    "nl_question": "Какие именованные объекты с номерами домов есть в Астане?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Astana\"}}->.searchArea;(nwr[\"addr:housenumber\"][\"name\"](area.searchArea););out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Astana"
+    },
+    "tags": {
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 921,
+    "qc_index": 378,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 65,
+    "nl_question_en": "What are the named locations with house numbers in Astana?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 255,
+    "split": "test",
+    "nl_question": "Где находятся автоматы по продаже почтовых марок в текущей области просмотра?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"vending\"=\"stamps\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "vending=stamps": {
+        "key": "vending",
+        "relation": "equal",
+        "value": "stamps"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 255,
+    "qc_index": 61,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 72,
+    "nl_question_en": "Where are the vending machines that dispense postage stamps in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 583,
+    "split": "test",
+    "nl_question": "Где находятся пункты приема вторсырья в Хольстерхаузене?",
+    "OverpassQL": "[out:json][timeout:90];area[\"name\"=\"Holsterhausen\"][\"admin_level\"=\"10\"]->.a;(nwr[\"amenity\"=\"recycling\"](area.a););out meta;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Holsterhausen"
+    },
+    "tags": {
+      "name=Holsterhausen": {
+        "key": "name",
+        "relation": "equal",
+        "value": "Holsterhausen"
+      },
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      },
+      "amenity=recycling": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "recycling"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 583,
+    "qc_index": 90,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 75,
+    "nl_question_en": "Where are the recycling facilities in Holsterhausen?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 508,
+    "split": "test",
+    "nl_question": "Какие границы в Аугсбурге не являются местными административными?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Augsburg\"}}->.searchArea;(relation[\"boundary\"!=\"administrative\"][\"admin_level\"!=\"10\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Augsburg"
+    },
+    "tags": {
+      "boundary!=administrative": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "administrative"
+      },
+      "admin_level!=10": {
+        "key": "admin_level",
+        "relation": "not_equal",
+        "value": "10"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 508,
+    "v2_index": 1508,
+    "qc_index": 608,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The query filters out administrative boundaries and admin_level=10, but the NL question only mentions 'not administrative', which is a minor omission."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 83,
+    "nl_question_en": "What are the relations in Augsburg that are not administrative",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 468,
+    "split": "test",
+    "nl_question": "Покажи неопознанные автобусные остановки в текущей области просмотра.",
+    "OverpassQL": "[out:json][timeout:60];nwr[\"highway\"=\"bus_stop\"][!\"ref\"]({{bbox}});out body;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "highway=bus_stop": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "bus_stop"
+      },
+      "!ref": {
+        "key": "ref",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 468,
+    "qc_index": 76,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question implies 'unidentified' bus stops, but the query filters by missing 'ref' tag, which is a reasonable but not exact match for 'unidentified'."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 96,
+    "nl_question_en": "Show unidentified bus stops in current view.",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 900,
+    "split": "test",
+    "nl_question": "Какие места имеют уличный адрес в Жарагуа-ду-Сул, Санта-Катарина?",
+    "OverpassQL": "[out:csv(::count,::count:nodes,::count:ways,::count:relations)][timeout:25];{{geocodeArea:\"Jaraguá do Sul,Santa Catarina\"}}->.a;(nwr[\"addr:street\"](area.a););out count;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Jaraguá do Sul,Santa Catarina"
+    },
+    "tags": {
+      "addr:street": {
+        "key": "addr:street",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 900,
+    "qc_index": 428,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question asks for places with a street address, but the query counts features with an addr:street tag, which is a reasonable proxy but not exactly the same as having a full street address."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 102,
+    "nl_question_en": "What places have a street address in Jaraguá do Sul, Santa Catarina?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 690,
+    "split": "test",
+    "nl_question": "Какие объекты в текущей области просмотра, не являющиеся грунтовыми дорогами или тропами, классифицированы как grade 1?",
+    "OverpassQL": "[out:json][timeout:100];way[\"highway\"!~\"^(track|path)$\"][\"tracktype\"=\"grade1\"]({{bbox}});(._;>;);out;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "tracktype=grade1": {
+        "key": "tracktype",
+        "relation": "equal",
+        "value": "grade1"
+      },
+      "highway!~^(track|path)$": {
+        "key": "highway",
+        "relation": "regex_not_match",
+        "value": "^(track|path)$"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 690,
+    "v2_index": 1690,
+    "qc_index": 3,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": true,
+    "ml_index": 109,
+    "nl_question_en": "What features that are not tracks or paths are classified as grade 1 in the current view?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 545,
+    "split": "test",
+    "nl_question": "Какие дороги в Росарио, Аргентина, содержат «Maria» в названии, пункте назначения, съезде или адресе?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Rosario,AR\"}}->.searchArea;(way[\"highway\"][~\"(name|destination|exit_to|addr:street)\"~\"[Mm]aria\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Rosario,AR"
+    },
+    "tags": {
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 545,
+    "qc_index": 383,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 112,
+    "nl_question_en": "What highways in Rosario, Argentina include 'Maria' in their name, destination, exit, or street address?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 220,
+    "split": "test",
+    "nl_question": "Какие шоссе или маршруты официально называются «Rodovia Maria Emília de Paula» в Риу-Гранди-ду-Сул, Бразилия?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(way[\"highway\"~\".*\"][\"official_name\"~\"^Rodovia Maria Emília de Paula$\"](area.searchArea);relation[\"type\"~\"route\"][\"official_name\"~\"^Rodovia Maria Emília de Paula$\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "highway~.*": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": ".*"
+      },
+      "official_name~^Rodovia Maria Emília de Paula$": {
+        "key": "official_name",
+        "relation": "regex_match",
+        "value": "^Rodovia Maria Emília de Paula$"
+      },
+      "type~route": {
+        "key": "type",
+        "relation": "regex_match",
+        "value": "route"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 220,
+    "qc_index": 226,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, which searches for ways with any highway tag and relations with type 'route' that have the exact official name in Rio Grande do Sul."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 118,
+    "nl_question_en": "What highways or routes are officially named 'Rodovia Maria Emília de Paula' in Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 613,
+    "split": "test",
+    "nl_question": "Какие улицы в Париже не являются жилыми и не имеют ограничения максимальной скорости 20 километров в час?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Paris\"}}->.searchArea;(way[\"maxspeed\"!=\"20\"][\"highway\"!=\"living_street\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Paris"
+    },
+    "tags": {
+      "maxspeed!=20": {
+        "key": "maxspeed",
+        "relation": "not_equal",
+        "value": "20"
+      },
+      "highway!=living_street": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "living_street"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 613,
+    "v2_index": 1613,
+    "qc_index": 102,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's filters for ways in Paris excluding living streets and maxspeed of 20 km/h."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 127,
+    "nl_question_en": "What ways in Paris are not living streets and do not have a maximum speed limit of 20 kilometers per hour?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 928,
+    "split": "test",
+    "nl_question": "Какие дороги в Киевской области имеют названия, не содержащие такие слова, как улица, переулок или проспект?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Київська область\"}}->.searchArea;(way[\"highway\"][\"name\"][\"name\"!~\" (вулиця|провулок|площа|узвіз|спуск|проїзд|набережна|мікрорайон|проспект|бульвар|тупик|дорога|квартал|міст|шосе|алея|в’їзд|підйом|лінія|шляхопровід|автомагістраль|завулок|заїзд|траса|кільце|тунель|майдан|шлях)\"](area.searchArea););out geom;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Київська область"
+    },
+    "tags": {
+      "name!~ (вулиця|провулок|площа|узвіз|спуск|проїзд|набережна|мікрорайон|проспект|бульвар|тупик|дорога|квартал|міст|шосе|алея|в’їзд|підйом|лінія|шляхопровід|автомагістраль|завулок|заїзд|траса|кільце|тунель|майдан|шлях)": {
+        "key": "name",
+        "relation": "regex_not_match",
+        "value": " (вулиця|провулок|площа|узвіз|спуск|проїзд|набережна|мікрорайон|проспект|бульвар|тупик|дорога|квартал|міст|шосе|алея|в’їзд|підйом|лінія|шляхопровід|автомагістраль|завулок|заїзд|траса|кільце|тунель|майдан|шлях)"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 928,
+    "qc_index": 424,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question omits many excluded terms present in the query, making it partially accurate."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 131,
+    "nl_question_en": "What roads in Київська область have names that do not include terms like вулиця, провулок, or проспект?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 462,
+    "split": "test",
+    "nl_question": "Какие местные административные единицы, такие как микрорайоны или районы, находятся в Бессе, Жуан-Песоа, Бразилия?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Bessa João pessoa Brasil\"}}->.searchArea;(nwr[\"admin_level\"=\"10\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Bessa João pessoa Brasil"
+    },
+    "tags": {
+      "admin_level=10": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "10"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 462,
+    "qc_index": 85,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query for admin_level=10 features in Bessa, João Pessoa, Brazil, and is clear and natural."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 145,
+    "nl_question_en": "What are the local administrative units, like neighborhoods or districts, in Bessa, João Pessoa, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 729,
+    "split": "test",
+    "nl_question": "Какие объекты не являются культовыми сооружениями и не называются «Iglesia»?",
+    "OverpassQL": "[out:json][timeout:900];(nwr[\"name\"!=\"Iglesia\"][\"amenity\"!=\"place_of_worship\"];);out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "name!=Iglesia": {
+        "key": "name",
+        "relation": "not_equal",
+        "value": "Iglesia"
+      },
+      "amenity!=place_of_worship": {
+        "key": "amenity",
+        "relation": "not_equal",
+        "value": "place_of_worship"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 729,
+    "v2_index": 1729,
+    "qc_index": 670,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The query excludes both name and amenity, but the NL question implies only two conditions without specifying that all other features are included."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 147,
+    "nl_question_en": "What things are not places of worship and are not named 'Iglesia'?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 978,
+    "split": "test",
+    "nl_question": "Какие источники питьевой воды есть в Санта-Марии, Риу-Гранди-ду-Сул, Бразилия?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Santa Maria, Rio Grande do Sul, Brazil\"}}->.a;nwr[\"amenity\"=\"drinking_water\"](area.a);out body;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Santa Maria, Rio Grande do Sul, Brazil"
+    },
+    "tags": {
+      "amenity=drinking_water": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "drinking_water"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 978,
+    "qc_index": 20,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question accurately and clearly describes the query, which retrieves drinking water sources in the specified area."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 149,
+    "nl_question_en": "What drinking water sources are available in Santa Maria, Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 352,
+    "split": "test",
+    "nl_question": "Какие исторические городские стены есть в Чехии?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"czechia\"}}->.searchArea;(nwr[\"historic\"=\"citywalls\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "czechia"
+    },
+    "tags": {
+      "historic=citywalls": {
+        "key": "historic",
+        "relation": "equal",
+        "value": "citywalls"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 352,
+    "qc_index": 15,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 150,
+    "nl_question_en": "What are the historic city walls in Czechia?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 348,
+    "split": "test",
+    "nl_question": "Какие основные магистральные дороги, включая автомагистрали и строящиеся дороги, находятся в Азербайджане?",
+    "OverpassQL": "[maxsize:800000000][out:csv(::type,::id,\"name\",::user,::timestamp,::version,\"highway\",\"ref\",\"int_ref\")][timeout:2500000];{{geocodeArea:\"Azerbaijan\"}}->.searchArea;(way[\"highway\"~\"motorway|trunk|primary|secondary|tertiary|_link|construction\"](area.searchArea););out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Azerbaijan"
+    },
+    "tags": {
+      "highway~motorway|trunk|primary|secondary|tertiary|_link|construction": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "motorway|trunk|primary|secondary|tertiary|_link|construction"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 348,
+    "qc_index": 252,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question mentions 'major highways, including motorways and roads under construction', but the query includes all highway types from motorway to tertiary and links, which is broader than just 'major highways'."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 151,
+    "nl_question_en": "What are all the major highways, including motorways and roads under construction, in Azerbaijan?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 387,
+    "split": "test",
+    "nl_question": "На каких жилых улицах в Райне не указано ограничение максимальной скорости ни в одном из направлений?",
+    "OverpassQL": "{{nominatimArea:\"Rheine\"}}->.boundaryarea;(way[\"highway\"=\"residential\"][\"maxspeed\"!~\".*\"](area.boundaryarea);-way[\"maxspeed:backward\"][\"maxspeed:forward\"](area.boundaryarea););(._;>;);out meta;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "highway=residential": {
+        "key": "highway",
+        "relation": "equal",
+        "value": "residential"
+      },
+      "maxspeed!~.*": {
+        "key": "maxspeed",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "maxspeed:backward": {
+        "key": "maxspeed:backward",
+        "relation": "has_key",
+        "value": ""
+      },
+      "maxspeed:forward": {
+        "key": "maxspeed:forward",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 387,
+    "qc_index": 417,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question omits that the query excludes ways with maxspeed:backward or maxspeed:forward tags, not just maxspeed."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 153,
+    "nl_question_en": "What residential streets in Rheine have no maximum speed limit specified in either direction?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 428,
+    "split": "test",
+    "nl_question": "Какие часы работы у различных объектов в Баден-Вюртемберге, Германия?",
+    "OverpassQL": "[out:xml][timeout:210];{{geocodeArea:\"Baden-Württemberg\"}}->.searchArea;(nwr[\"opening_hours\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Baden-Württemberg"
+    },
+    "tags": {
+      "opening_hours": {
+        "key": "opening_hours",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 428,
+    "qc_index": 412,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question mentions 'specific features' but the query retrieves all features with opening_hours, not specific ones."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 154,
+    "nl_question_en": "What are the opening hours of specific features in Baden-Württemberg, Germany?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 601,
+    "split": "test",
+    "nl_question": "Какие объекты для отдыха, включая бассейны, зоны для купания, спортивные центры, спортивные и детские площадки, находятся в текущей области просмотра?",
+    "OverpassQL": "nwr[\"leisure\"~\"(swimming_pool)|(swimming_area)|(sports_centre)|(pitch)|(playground)\"]({{bbox}});(._;>;);out;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "leisure~(swimming_pool)|(swimming_area)|(sports_centre)|(pitch)|(playground)": {
+        "key": "leisure",
+        "relation": "regex_match",
+        "value": "(swimming_pool)|(swimming_area)|(sports_centre)|(pitch)|(playground)"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 601,
+    "qc_index": 299,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question mentions swimming pools, sports centers, and playgrounds, but the query also includes pitches and swimming areas, which are not explicitly listed."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 166,
+    "nl_question_en": "What leisure facilities, including swimming pools, sports centers, and playgrounds, are in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 756,
+    "split": "test",
+    "nl_question": "Какие источники питьевой воды находятся в муниципалитете по координатам 41.6413837, -0.8926406?",
+    "OverpassQL": "[out:json][timeout:25];is_in(41.6413837,-0.8926406);area._[\"admin_level\"=\"8\"]->.searchArea;(nwr[\"amenity\"=\"drinking_water\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "admin_level=8": {
+        "key": "admin_level",
+        "relation": "equal",
+        "value": "8"
+      },
+      "amenity=drinking_water": {
+        "key": "amenity",
+        "relation": "equal",
+        "value": "drinking_water"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 756,
+    "qc_index": 92,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query's purpose, is grammatically correct, and clearly states the intent."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 167,
+    "nl_question_en": "What drinking water sources are located within the municipality at the coordinates 41.6413837, -0.8926406?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 247,
+    "split": "test",
+    "nl_question": "киоски в текущей области просмотра",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"shop\"=\"kiosk\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "46.232103,7.461090,46.621147,8.052979",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "shop=kiosk": {
+        "key": "shop",
+        "relation": "equal",
+        "value": "kiosk"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 247,
+    "qc_index": 66,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 175,
+    "nl_question_en": "kiosks in current view",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 604,
+    "split": "test",
+    "nl_question": "Какие объекты во Фриули-Венеции-Джулии не являются станциями мониторинга?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Friuli Venezia Giulia\"}}->.searchArea;(nwr[\"man_made\"!=\"monitoring_station\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Friuli Venezia Giulia"
+    },
+    "tags": {
+      "man_made!=monitoring_station": {
+        "key": "man_made",
+        "relation": "not_equal",
+        "value": "monitoring_station"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 604,
+    "v2_index": 1604,
+    "qc_index": 619,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is accurate but slightly ambiguous as it doesn't specify the region or the key being filtered."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 182,
+    "nl_question_en": "What are the features that are not monitoring",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 352,
+    "split": "test",
+    "nl_question": "Какие исторические объекты в Чехии не являются городскими стенами?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"czechia\"}}->.searchArea;(nwr[\"historic\"!=\"citywalls\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "czechia"
+    },
+    "tags": {
+      "historic!=citywalls": {
+        "key": "historic",
+        "relation": "not_equal",
+        "value": "citywalls"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 352,
+    "v2_index": 1352,
+    "qc_index": 167,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 215,
+    "nl_question_en": "What are the historic features in Czechia that are not city walls?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 813,
+    "split": "test",
+    "nl_question": "Какие объекты культурного наследия есть в Нанте?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Nantes\"}}->.searchArea;(nwr[\"heritage\"](area.searchArea););out center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Nantes"
+    },
+    "tags": {
+      "heritage": {
+        "key": "heritage",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 813,
+    "qc_index": 443,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the OverpassQL query, which retrieves heritage-tagged features in Nantes."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 217,
+    "nl_question_en": "What heritage sites are in Nantes?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 760,
+    "split": "test",
+    "nl_question": "Какие отели или мотели есть в указанной области?",
+    "OverpassQL": "[out:xml][timeout:25];(nwr[\"tourism\"~\"hotel|motel\"]({{bbox}}););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "tourism~hotel|motel": {
+        "key": "tourism",
+        "relation": "regex_match",
+        "value": "hotel|motel"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 760,
+    "qc_index": 228,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 228,
+    "nl_question_en": "What hotels or motels are in the specified area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 927,
+    "split": "test",
+    "nl_question": "Какие именованные объекты с номерами домов в текущей области просмотра не имеют специальных тегов для авиации, инфраструктуры, экстренных служб, мастерских, исторических мест, досуга, искусственных сооружений, офисов, энергообъектов, железных дорог, магазинов или туризма?",
+    "OverpassQL": "[out:json][timeout:250];(nwr[\"addr:housenumber\"][\"name\"][\"aeroway\"!~\".*\"][\"amenity\"!~\".*\"][\"emergency\"!~\".*\"][\"craft\"!~\".*\"][\"historic\"!~\".*\"][\"leisure\"!~\".*\"][\"man_made\"!~\".*\"][\"office\"!~\".*\"][\"power\"!~\".*\"][\"railway\"!~\".*\"][\"shop\"!~\".*\"][\"tourism\"!~\".*\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "aeroway!~.*": {
+        "key": "aeroway",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "amenity!~.*": {
+        "key": "amenity",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "emergency!~.*": {
+        "key": "emergency",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "craft!~.*": {
+        "key": "craft",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "historic!~.*": {
+        "key": "historic",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "leisure!~.*": {
+        "key": "leisure",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "man_made!~.*": {
+        "key": "man_made",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "office!~.*": {
+        "key": "office",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "power!~.*": {
+        "key": "power",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "railway!~.*": {
+        "key": "railway",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "shop!~.*": {
+        "key": "shop",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "tourism!~.*": {
+        "key": "tourism",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 927,
+    "qc_index": 357,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the OverpassQL query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 229,
+    "nl_question_en": "What are the named locations with house numbers that lack specific tags for aeroway, amenities, emergencies, crafts, historic sites, leisure activities, man-made structures, offices, power facilities, railways, shops, or tourism in the current area?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 96,
+    "split": "test",
+    "nl_question": "Какие дороги пересекают водные пути по мостам в текущей области просмотра?",
+    "OverpassQL": "[bbox:{{bbox}}][out:json];(way[\"waterway\"];)->.primary_junc;node(w.primary_junc)->.pjuncnodes;(way[\"highway\"][\"bridge\"=\"yes\"];)->.hwyclass;node(w.hwyclass)->.hwyclassnodes;node.pjuncnodes.hwyclassnodes->.diffnodes;way(bn.diffnodes);out;>;out skel qt;",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "bridge=yes": {
+        "key": "bridge",
+        "relation": "equal",
+        "value": "yes"
+      },
+      "waterway": {
+        "key": "waterway",
+        "relation": "has_key",
+        "value": ""
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 96,
+    "qc_index": 453,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 8,
+      "comment": "The NL question is clear and fluent, but the OverpassQL actually finds waterways that intersect with highway bridges, not highways crossing waterways via bridges, which is a minor semantic mismatch."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 237,
+    "nl_question_en": "What highways cross over waterways using bridges in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 712,
+    "split": "test",
+    "nl_question": "Какие реки есть в Баварии?",
+    "OverpassQL": "[out:json][timeout:165];{{geocodeArea:\"bavaria\"}}->.searchArea;(way[\"waterway\"=\"river\"](area.searchArea);relation[\"waterway\"=\"river\"](area.searchArea););(._;>;);out;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "bavaria"
+    },
+    "tags": {
+      "waterway=river": {
+        "key": "waterway",
+        "relation": "equal",
+        "value": "river"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 712,
+    "qc_index": 97,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The question perfectly matches the query, is grammatically correct, and clearly asks for rivers in Bavaria."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 239,
+    "nl_question_en": "What rivers are in Bavaria?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 321,
+    "split": "test",
+    "nl_question": "Показать все объекты, не являющиеся железнодорожными остановками, остановочными пунктами и станциями, без названий в текущей области просмотра.",
+    "OverpassQL": "[bbox:{{bbox}}][out:csv(\"name\")][timeout:600];node[\"railway\"!~\"^(stop|halt|station)$\"][!\"name\"];out;",
+    "location": {
+      "bbox": "49.53100223931169,8.533029556274414,49.54654209123097,8.623580932617188",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "railway!~^(stop|halt|station)$": {
+        "key": "railway",
+        "relation": "regex_not_match",
+        "value": "^(stop|halt|station)$"
+      },
+      "!name": {
+        "key": "name",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 321,
+    "v2_index": 1321,
+    "qc_index": 463,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 244,
+    "nl_question_en": "Show all nodes that are not railway stops, halts, or stations and lack name tags in the current view.",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 159,
+    "split": "test",
+    "nl_question": "Какие игровые центры для взрослых находятся в областях 3600062341 или 3600062611?",
+    "OverpassQL": "[out:csv(::id,::lat,::lon,\"amenity\",\"name\")][timeout:250];(area(3600062341);area(3600062611);)->.searchArea;(nwr[\"leisure\"~\"adult_gaming_centre\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "none"
+    },
+    "tags": {
+      "leisure~adult_gaming_centre": {
+        "key": "leisure",
+        "relation": "regex_match",
+        "value": "adult_gaming_centre"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 159,
+    "qc_index": 277,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 252,
+    "nl_question_en": "What adult gaming centers are in the areas 3600062341 or 3600062611?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 379,
+    "split": "test",
+    "nl_question": "У каких объектов в Вилларозе нет номеров домов?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Villarosa\"}}->.searchArea;(nwr[!\"addr:housenumber\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Villarosa"
+    },
+    "tags": {
+      "!addr:housenumber": {
+        "key": "addr:housenumber",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 379,
+    "v2_index": 1379,
+    "qc_index": 466,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 255,
+    "nl_question_en": "What are the elements without house numbers in Villarosa?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 476,
+    "split": "test",
+    "nl_question": "Какие федеральные школы есть в штате Риу-Гранди-ду-Сул, Бразилия?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(nwr[\"amenity\"~\"school\"][\"operator\"~\"Federal\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "amenity~school": {
+        "key": "amenity",
+        "relation": "regex_match",
+        "value": "school"
+      },
+      "operator~Federal": {
+        "key": "operator",
+        "relation": "regex_match",
+        "value": "Federal"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 476,
+    "qc_index": 266,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 265,
+    "nl_question_en": "What are the federal schools in the state of Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 237,
+    "split": "test",
+    "nl_question": "Какие шоссе и маршруты официально называются «Juvêncio Antônio Cândido» в штате Риу-Гранди-ду-Сул, Бразилия?",
+    "OverpassQL": "[out:xml][timeout:900];{{geocodeArea:\"RS, Brasil\"}}->.searchArea;(way[\"highway\"~\".*\"][\"official_name\"~\"^Juvêncio Antônio Cândido$\"](area.searchArea);relation[\"type\"~\"route\"][\"official_name\"~\"^Juvêncio Antônio Cândido$\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "RS, Brasil"
+    },
+    "tags": {
+      "highway~.*": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": ".*"
+      },
+      "official_name~^Juvêncio Antônio Cândido$": {
+        "key": "official_name",
+        "relation": "regex_match",
+        "value": "^Juvêncio Antônio Cândido$"
+      },
+      "type~route": {
+        "key": "type",
+        "relation": "regex_match",
+        "value": "route"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 237,
+    "qc_index": 233,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": ""
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 271,
+    "nl_question_en": "What highways and routes are officially named 'Juvêncio Antônio Cândido' in Rio Grande do Sul, Brazil?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 24,
+    "split": "test",
+    "nl_question": "Какие дороги в области 3606195356 имеют номер, начинающийся с одной цифры, не являются круговыми развязками или лыжными трассами и не входят в линию 294140400?",
+    "OverpassQL": "(way[\"highway\"][\"ref\"~\"[0-9][^0-9; M]\"][\"junction\"!=\"roundabout\"][\"piste:type\"!~\".*\"]({{bbox}});-way(294140400););out meta geom; {{bbox=area:3606195356}}",
+    "location": {
+      "bbox": "31.271508,121.455917,31.552208,121.825333",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "junction!=roundabout": {
+        "key": "junction",
+        "relation": "not_equal",
+        "value": "roundabout"
+      },
+      "ref~[0-9][^0-9; M]": {
+        "key": "ref",
+        "relation": "regex_match",
+        "value": "[0-9][^0-9; M]"
+      },
+      "piste:type!~.*": {
+        "key": "piste:type",
+        "relation": "regex_not_match",
+        "value": ".*"
+      },
+      "highway": {
+        "key": "highway",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 24,
+    "qc_index": 442,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question mostly matches the query but omits the bbox restriction and the ref regex is slightly misaligned."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 281,
+    "nl_question_en": "What highways in area 3606195356 have a reference number that starts with a single digit, are not roundabouts or ski pistes, and are not in way 294140400?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 136,
+    "split": "test",
+    "nl_question": "Какие магистральные, основные, второстепенные, третичные, жилые или служебные дороги в текущей области просмотра проходят через тоннели под зданиями и не имеют ограничений по максимальной высоте?",
+    "OverpassQL": "(way[\"tunnel\"~\"yes|building_passage\"][\"highway\"~\"primary|secondary|tertiary|trunk|service|residential|primary_link|secondary_link|tertiary_link|unclassified\"][\"maxheight\"!~\".\"][\"man_made\"!~\"adit\"]({{bbox}}););out;",
+    "location": {
+      "bbox": "35.604556,139.727898,35.651159,139.796047",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "tunnel~yes|building_passage": {
+        "key": "tunnel",
+        "relation": "regex_match",
+        "value": "yes|building_passage"
+      },
+      "highway~primary|secondary|tertiary|trunk|service|residential|primary_link|secondary_link|tertiary_link|unclassified": {
+        "key": "highway",
+        "relation": "regex_match",
+        "value": "primary|secondary|tertiary|trunk|service|residential|primary_link|secondary_link|tertiary_link|unclassified"
+      },
+      "maxheight!~.": {
+        "key": "maxheight",
+        "relation": "regex_not_match",
+        "value": "."
+      },
+      "man_made!~adit": {
+        "key": "man_made",
+        "relation": "regex_not_match",
+        "value": "adit"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 136,
+    "qc_index": 282,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question mentions 'routes' and 'under buildings', but the query uses 'tunnel' (which includes building_passage) and does not filter for routes specifically; also 'current view' is implied by bbox but not explicit."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 286,
+    "nl_question_en": "What routes go through tunnels under buildings in the current view that are on primary, secondary, tertiary, trunk, service, or residential streets and do not have a maximum height restriction?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 704,
+    "split": "test",
+    "nl_question": "Где в текущей области просмотра находятся места, где занимаются пчеловодством?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"craft\"=\"beekeeper\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "52.472273,13.404350,52.505199,13.475761",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "craft=beekeeper": {
+        "key": "craft",
+        "relation": "equal",
+        "value": "beekeeper"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 704,
+    "qc_index": 87,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 301,
+    "nl_question_en": "Where are the locations where beekeeping is practiced in the current view?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 427,
+    "split": "test",
+    "nl_question": "Где на Филиппинах находятся объекты с описанием, содержащим «vawc», которые были изменены 25 октября 2018 года?",
+    "OverpassQL": "[out:json][timeout:500];({{geocodeArea:\"Philippines\"}};)->.searchArea;(nwr[\"description\"~\"vawc\",i](changed:\"2018-10-25T00:00:00Z\",\"2018-10-25T23:59:59Z\")(area.searchArea););out qt center;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Philippines"
+    },
+    "tags": {
+      "description~vawc": {
+        "key": "description",
+        "relation": "regex_match",
+        "value": "vawc"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 427,
+    "qc_index": 246,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately describes the query, is grammatically correct, and clearly conveys the intent."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 319,
+    "nl_question_en": "Where are the locations in the Philippines with descriptions containing 'vawc' that were changed on October 25, 2018?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 794,
+    "split": "test",
+    "nl_question": "Какие объекты в текущей области просмотра не являются зоопарками?",
+    "OverpassQL": "[out:json][timeout:25];(nwr[\"tourism\"!=\"zoo\"]({{bbox}}););out;>;out skel qt;",
+    "location": {
+      "bbox": "40.755125,-73.986053,40.769687,-73.966141",
+      "mentioned_region": "current view"
+    },
+    "tags": {
+      "tourism!=zoo": {
+        "key": "tourism",
+        "relation": "not_equal",
+        "value": "zoo"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 794,
+    "v2_index": 1794,
+    "qc_index": 701,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 320,
+    "nl_question_en": "What is in the current view area that is not a zoo?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 153,
+    "split": "test",
+    "nl_question": "Какие именованные места есть в Карловарском крае?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Karlovarský kraj\"}}->.searchArea;(nwr[\"place\"][\"name\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Karlovarský kraj"
+    },
+    "tags": {
+      "place": {
+        "key": "place",
+        "relation": "has_key",
+        "value": ""
+      },
+      "name": {
+        "key": "name",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 153,
+    "qc_index": 434,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 330,
+    "nl_question_en": "What are the named places in the Karlovy Vary region?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 559,
+    "split": "test",
+    "nl_question": "Какие объекты в округе Ломас-де-Самора имеют код страны?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Partido de Lomas de Zamora\"}}->.searchArea;(nwr[\"addr:country\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Partido de Lomas de Zamora"
+    },
+    "tags": {
+      "addr:country": {
+        "key": "addr:country",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 559,
+    "qc_index": 430,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question accurately and clearly describes the query, which retrieves features with an addr:country tag in the specified area."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 333,
+    "nl_question_en": "What places in Partido de Lomas de Zamora have a country code?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 758,
+    "split": "test",
+    "nl_question": "Какие объекты в Беларуси не являются национальными парками?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Беларусь\"}}->.searchArea;(node[\"boundary\"!=\"national_park\"](area.searchArea);way[\"boundary\"!=\"national_park\"](area.searchArea);relation[\"boundary\"!=\"national_park\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Беларусь"
+    },
+    "tags": {
+      "boundary!=national_park": {
+        "key": "boundary",
+        "relation": "not_equal",
+        "value": "national_park"
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 758,
+    "v2_index": 1758,
+    "qc_index": 682,
+    "qc_score": {
+      "accuracy": 2,
+      "fluency": 3,
+      "clarity": 2,
+      "total": 7,
+      "comment": "The NL question is clear and fluent, but it omits that the query selects only features with a boundary tag not equal to national_park, not all features."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 340,
+    "nl_question_en": "What features that are not national parks are in Belarus",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 531,
+    "split": "test",
+    "nl_question": "Где находятся магазины MediaMarkt в Нидерландах?",
+    "OverpassQL": "[out:json][timeout:60];{{geocodeArea:\"Netherlands\"}}->.searchArea;(nwr[\"name\"~\"MediaMarkt\"](area.searchArea);nwr[\"name\"~\"media markt\"](area.searchArea);nwr[\"name\"~\"mediamarkt\"](area.searchArea);nwr[\"name\"~\"Media markt\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Netherlands"
+    },
+    "tags": {
+      "name~MediaMarkt": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "MediaMarkt"
+      },
+      "name~media markt": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "media markt"
+      },
+      "name~mediamarkt": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "mediamarkt"
+      },
+      "name~Media markt": {
+        "key": "name",
+        "relation": "regex_match",
+        "value": "Media markt"
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 531,
+    "qc_index": 232,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "The NL question perfectly matches the query's intent to find MediaMarkt stores in the Netherlands."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 349,
+    "nl_question_en": "Where are the MediaMarkt stores located in the Netherlands?",
+    "nl_source": "curated"
+  },
+  {
+    "sample_index": 817,
+    "split": "test",
+    "nl_question": "Какие улицы, не являющиеся жилыми и без установленного ограничения скорости, есть в административном округе Детмольд?",
+    "OverpassQL": "[out:json][timeout:25];{{geocodeArea:\"Regierungsbezirk Detmold\"}}->.searchArea;(way[\"highway\"!=\"living_street\"][!\"maxspeed\"](area.searchArea););out;>;out skel qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Regierungsbezirk Detmold"
+    },
+    "tags": {
+      "highway!=living_street": {
+        "key": "highway",
+        "relation": "not_equal",
+        "value": "living_street"
+      },
+      "!maxspeed": {
+        "key": "maxspeed",
+        "relation": "not_has_key",
+        "value": ""
+      }
+    },
+    "variant": "flipped",
+    "origin_sample_index": 817,
+    "v2_index": 1817,
+    "qc_index": 187,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 361,
+    "nl_question_en": "What are the streets that are not living streets and do not have defined speed limits in the Regierungsbezirk Detmold?",
+    "nl_source": "flip_rewrite"
+  },
+  {
+    "sample_index": 599,
+    "split": "test",
+    "nl_question": "Какие точки и линии с указанными часами работы есть в Сааре?",
+    "OverpassQL": "[out:xml][timeout:25];{{geocodeArea:\"Saarland\"}}->.searchArea;(nwr[\"opening_hours\"](area.searchArea););out meta;>;out meta qt;",
+    "location": {
+      "bbox": "none",
+      "mentioned_region": "Saarland"
+    },
+    "tags": {
+      "opening_hours": {
+        "key": "opening_hours",
+        "relation": "has_key",
+        "value": ""
+      }
+    },
+    "variant": "original",
+    "origin_sample_index": 599,
+    "qc_index": 400,
+    "qc_score": {
+      "accuracy": 3,
+      "fluency": 3,
+      "clarity": 3,
+      "total": 9,
+      "comment": "Perfectly accurate, natural, and unambiguous."
+    },
+    "language": "russian",
+    "is_duplicate": false,
+    "ml_index": 386,
+    "nl_question_en": "What are the ways and nodes with specified opening hours in Saarland?",
+    "nl_source": "curated"
+  }
+]

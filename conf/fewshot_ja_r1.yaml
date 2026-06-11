@@ -1,0 +1,42 @@
+# C2 profile-DPP diversity variant (Japanese eval) — PLAIN demos.
+# English demo pool; both score signals JA-query-encoded with ml_8x. The profile kernel
+# is stacked over ALL langs (bare base model, NOT the _JA eval model) + suffixes.
+# Cross-lingual operating point: ja -> lambda 0.3 (the peak; ja dOQS +0.58, t2.22).
+# 
+
+pool:
+  score_source_root: /path/to/OsmNL_source
+  splits:
+    train: [train_final.json]
+    syn: [syn_final.json]
+  size: 6180
+
+eval:
+  score_source_root: /path/to/XOver/dataset/OsmNL_japanese
+  files:
+    dev: dev_final_japanese.json
+    test: test_final_japanese.json   # test pkls not yet generated -> fails loud
+
+scores:
+  root: /path/to/eval_backend/TACO/caculate_score/scores
+  sim_encoder: qwen3_JA
+  influence_model: qwen3_qwen3_influence_euclidean_JA   # quality term R(q,e): JA influence
+  # Profile kernel: stacked over ALL langs (BARE base, not the _JA eval model) + suffixes.
+  profile_influence_model: qwen3_qwen3_influence_euclidean
+  profile_influence_suffixes: ["", "ZH", "JA"]
+
+defaults:
+  k: 6
+  alpha: 0.2
+  split: dev
+  dedup_prefix_len: 80
+
+select:
+  method: dpp
+  kernel_mode: profile
+  M: 20
+  lambda: 0.3          # ja cross-lingual peak; sweep {0,0.1,0.2,0.3,0.5}
+  phi_mode: linear
+
+run:
+  out_dir: data/fewshot_ja_r1
