@@ -39,8 +39,8 @@ class Retriever:
         self.revision=revisions(paths)
         self.memory={}
 
-    def identity(self,question,language):
-        return {'version':1,'question':question,'language':language,'parameters':PARAMETERS,'artifacts':self.revision}
+    def identity(self,question,language,k_shot=6):
+        return {'version':1,'question':question,'language':language,'parameters':{**PARAMETERS,'k':k_shot},'artifacts':self.revision}
 
     def load_pool(self):
         if self.pool is None:
@@ -66,27 +66,50 @@ class Retriever:
         c=replace(RetrievalConfig(),influence_checkpoint=self.config.checkpoint,influence_model='qwen3_influence_ml_8x')
         self.encoder=QwenInfluenceEncoder(c)
 
-    def payload(self,question,indices,**extra):
+    def payload(self,question,indices,k_shot=6,**extra):
         pool=self.load_pool()
         examples=[{'nl':pool.entry(i).nl_question,'ovq':pool.entry(i).overpassql,'example_index':i,'rank':rank} for rank,i in enumerate(indices,1)]
-        return {'examples':examples,'selected':indices,'prompt':assemble_prompt(indices,pool,question),'parameters':PARAMETERS,**extra}
+        return {'examples':examples,'selected':indices,'prompt':assemble_prompt(indices,pool,question) if indices else f'/* Answer the following: {question} */','parameters':{**PARAMETERS,'k':k_shot},**extra}
 
-    def select(self,question,language):
+    def historical(self,question,language,k_shot):
+        folder='fewshot_profile' if language=='en' else f'fewshot_{language}_profile'
+        for split in ('dev','test'):
+            path=self.config.research/'data'/folder/f'questions_{split}_k{k_shot}_a0.3_profile_lam0.5_M20.json'
+            if not path.is_file():continue
+            cell=json.loads(path.read_text())
+            expected={'k':k_shot,'alpha':.3,'lambda':.5,'M':20,'dedup_prefix_len':80,'method':'dpp','kernel_mode':'profile'}
+            if any(cell['args'].get(k)!=v for k,v in expected.items()):continue
+            for row in cell['questions']:
+                if row['nl_question']!=question:continue
+                indices=row['selected']
+                if len(indices)!=k_shot or len(set(indices))!=k_shot or any(type(i) is not int or not 0<=i<6180 for i in indices):continue
+                result=self.payload(question,indices,k_shot,precomputed=True,cache_source='precomputed')
+                if result['prompt']==row['prompt']:return result
+        return None
+
+    def select(self,question,language,k_shot=6):
+        if type(k_shot) is not int or not 0<=k_shot<=12:raise ValueError('K-shot must be an integer from 0 to 12')
         with self.lock:
-            identity=self.identity(question,language);key=(question,language)
+            identity=self.identity(question,language,k_shot);key=(question,language,k_shot)
             if key in self.memory:return {**deepcopy(self.memory[key]),'cache_source':'memory'}
             hit=self.store._get('xover-selection',identity)
             if hit:
                 result=hit.value
                 result={**result,'cache_source':'precomputed' if result.get('precomputed') else 'persistent'}
             else:
+                result=self.historical(question,language,k_shot) if k_shot else self.payload(question,[],0,cache_source='computed')
+                if result is not None:
+                    self.store._put('xover-selection',identity,result)
+                    self.memory[key]=deepcopy(result)
+                    if len(self.memory)>128:self.memory.pop(next(iter(self.memory)))
+                    return result
                 self._load()
                 b,i=self.encoder.encode_pair(question)
                 sim=similarity(b,self.base);inf=similarity(i,self.influence)
                 scores=QueryScores(-1,tuple(range(len(self.pool.pool))),tuple(sim),tuple(inf))
                 selector=ProfileDppSelector(alpha=.3,dedup_prefix_len=80,M=20,lam=.5,phi_mode='linear',kernel_provider=self.kernel)
-                selected=selector.select(scores,self.pool,6).selected
-                result=self.payload(question,selected,cache_source='computed')
+                selected=selector.select(scores,self.pool,k_shot).selected
+                result=self.payload(question,selected,k_shot,cache_source='computed')
                 for example in result['examples']:
                     n=example['example_index'];example.update(similarity=float(sim[n]),influence=float(inf[n]))
                 self.store._put('xover-selection',identity,result)

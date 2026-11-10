@@ -46,26 +46,27 @@ class Engine:
             response=await api.responses.create(model=self.settings.model,input=messages,reasoning={'effort':'low'},max_output_tokens=2200,store=False)
         return response.output_text, {'input_tokens':response.usage.input_tokens,'output_tokens':response.usage.output_tokens}
 
-    async def run(self,question,language,bbox,client,emit):
+    async def run(self,question,language,bbox,client,emit,k_shot=6):
         started=perf_counter();timings={};usage=[]
-        identity={**self.retriever.identity(question,language),'bbox':bbox,'model':self.settings.model,'candidates':3,'pipeline_version':1,'overpass':list(self.settings.execution_urls)}
+        identity={**self.retriever.identity(question,language,k_shot),'bbox':bbox,'model':self.settings.model,'candidates':3,'pipeline_version':1,'overpass':list(self.settings.execution_urls)}
         complete=await asyncio.to_thread(self.store._get,'xover-answer',identity)
         if complete:
             result={**complete.value,'answer_cache':True,'model_usage':[], 'timings':{'server_ms':round((perf_counter()-started)*1000,2)}}
             await emit({'stage':'complete','data':result});return result
         t=perf_counter();await emit({'stage':'selection','message':'C2 · Selecting cross-lingual examples'})
-        selected=await asyncio.to_thread(self.retriever.select,question,language)
+        selected=await asyncio.to_thread(self.retriever.select,question,language,k_shot)
         timings['selection_ms']=round((perf_counter()-t)*1000,2)
-        await emit({'stage':'selection_done','source':selected['cache_source'],'elapsed_ms':timings['selection_ms'],'examples':selected['examples'],'parameters':PARAMETERS})
+        await emit({'stage':'selection_done','source':selected['cache_source'],'elapsed_ms':timings['selection_ms'],'examples':selected['examples'],'parameters':selected['parameters']})
         t=perf_counter();await emit({'stage':'generation','message':'Generating or loading 3 candidate queries'})
-        precomputed=await asyncio.to_thread(self.store._get,'xover-research-candidates',self.retriever.identity(question,language))
+        precomputed=await asyncio.to_thread(self.store._get,'xover-research-candidates',self.retriever.identity(question,language,k_shot))
         batch=None
         if precomputed:
             saved=precomputed.value
             scoped=any(re.search(r'\{\{\s*(bbox|center)\s*\}\}',q) for q in saved['queries'])
             if saved['bbox']==bbox or (saved['bbox']=='none' and not scoped):
                 batch={**saved,'source':'precomputed'}
-        candidate_key={**identity,'prompt':selected['prompt'],'system':SYSTEM}
+        system=SYSTEM if k_shot else 'Translate the question into executable OverpassQL. Return only the query starting with [out:json]. Use only tags, values and areas grounded in the question.'
+        candidate_key={**identity,'prompt':selected['prompt'],'system':system}
         if batch is None:
             hit=await asyncio.to_thread(self.store._get,'xover-candidates',candidate_key)
             if hit:batch={**hit.value,'source':'persistent'}
@@ -75,7 +76,7 @@ class Engine:
             # Three independently decoded candidates. The public demo deliberately
             # bounds this to three, versus the research's eight sampled candidates.
             for n in range(3):
-                text,tokens=await self.model([{'role':'system','content':SYSTEM},{'role':'user','content':prompt}],client)
+                text,tokens=await self.model([{'role':'system','content':system},{'role':'user','content':prompt}],client)
                 usage.append(tokens);queries.append(text)
                 await emit({'stage':'candidate_generated','index':n+1,'total':3})
             batch={'queries':queries,'source':'generated','model':self.settings.model}

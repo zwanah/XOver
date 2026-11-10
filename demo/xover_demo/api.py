@@ -14,6 +14,7 @@ log=logging.getLogger(__name__)
 class Query(BaseModel):
     question:str=Field(min_length=1,max_length=2000)
     language:str='en'
+    k_shot:int=Field(default=6,ge=0,le=12,strict=True)
     bbox:str=Field(max_length=150)
     @field_validator('question')
     @classmethod
@@ -44,7 +45,7 @@ def install(app,settings,*,engine=None):
 
     @app.get('/api/xover/config')
     async def public_config():
-        return {'name':'XOver Demo','languages':LANGUAGES,'parameters':PARAMETERS,'candidates':3,'model':settings.model,
+        return {'name':'XOver Demo','languages':LANGUAGES,'parameters':PARAMETERS,'k_shot':{'min':0,'max':12,'default':6},'candidates':3,'model':settings.model,
                 'generation_available':bool(settings.openai_api_key),'turnstile':app.state.turnstile.public_config(),
                 'protection':app.state.protection.public_config(),'pipeline':['multilingual ml_8x retrieval','profile DPP','three candidates','execution voting','hygiene and bounded syntax repair']}
 
@@ -59,7 +60,7 @@ def install(app,settings,*,engine=None):
                 try:
                     await emit({'stage':'verified','message':'Human verification complete'})
                     async with app.state.protection.slot('generate'):
-                        await asyncio.wait_for(engine.run(body.question,body.language,body.bbox,getattr(request.state,'protection_client','local'),emit),timeout=240)
+                        await asyncio.wait_for(engine.run(body.question,body.language,body.bbox,getattr(request.state,'protection_client','local'),emit,k_shot=body.k_shot),timeout=240)
                 except ProtectionDenied as exc:await emit({'stage':'error','detail':exc.detail,'status':exc.status_code})
                 except ValueError as exc:await emit({'stage':'error','detail':str(exc),'status':422})
                 except asyncio.TimeoutError:await emit({'stage':'error','detail':'The query timed out. Please try again; saved stages can be reused.','status':504})
