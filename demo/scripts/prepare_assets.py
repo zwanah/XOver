@@ -58,3 +58,6 @@ for lang in LANGUAGES:
     print(lang,counts,flush=True)
 (c.root/'frontend/showcases.json').write_text(json.dumps(showcases,ensure_ascii=False,indent=2))
 print(json.dumps(counts),flush=True)
+
+from build_showcases import build
+print("Showcase cards:",build(c),flush=True)
